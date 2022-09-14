@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="mGXaE7WQqmvvN6tOJ2US" name="Page-1">
-        <mxGraphModel dx="1239" dy="371" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="381" dy="361" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -276,7 +276,7 @@
                 <mxCell id="91" value="client info form" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#a0522d;fontColor=#ffffff;strokeColor=#6D1F00;" parent="1" vertex="1">
                     <mxGeometry x="545" y="720" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="104" value="succesfull purchase" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#a0522d;fontColor=#ffffff;strokeColor=#6D1F00;" parent="1" vertex="1">
+                <mxCell id="104" value="successfull purchase" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#a0522d;fontColor=#ffffff;strokeColor=#6D1F00;" parent="1" vertex="1">
                     <mxGeometry x="545" y="820" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="120" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1;" parent="1" source="115" target="116" edge="1">
