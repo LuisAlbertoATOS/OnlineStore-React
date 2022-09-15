@@ -1,11 +1,12 @@
 import './App.css';
+import SignInForm from './forms/SignInForm';
 
 function App() {
   return (
     <div className="App">
-      <div className='h-screen bg-green-400'>
-        <h1 className='h-full text-4xl font-bold'>Hello</h1>
-      </div>
+        <div>
+          <SignInForm/>
+        </div>
     </div>
   );
 }
