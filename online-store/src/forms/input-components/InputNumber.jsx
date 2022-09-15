@@ -3,7 +3,7 @@ import React from "react";
 const InputNumber = (props) => {
   return (
     <div className="flex flex-row">
-      <label className="w-1/3 self-center">{props.label}</label>
+      <label className="w-1/3 self-center text-left">{props.label}</label>
       <input
         type={props.type}
         min={props.min}

@@ -3,7 +3,7 @@ import React from "react";
 const InputSelect = (props) => {
   return (
     <div className="flex flex-row">
-      <label className="w-1/3 self-center">{props.label}</label>
+      <label className="w-1/3 self-center text-left">{props.label}</label>
       <select
         className="
       form-control
@@ -11,6 +11,7 @@ const InputSelect = (props) => {
       w-2/3
       px-3
       py-1.5
+      my-1.5
       text-base
       font-normal
       text-gray-700
