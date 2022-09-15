@@ -1,10 +1,10 @@
 import './App.css';
-import ProductForm from './forms/ProductForm';
+import Home from './components/Home/Home';
 
 function App() {
   return (
     <div className="App">
-      <ProductForm action={'New'}/>
+      <Home />
     </div>
   );
 }
