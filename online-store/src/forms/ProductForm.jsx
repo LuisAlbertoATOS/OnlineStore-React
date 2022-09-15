@@ -9,7 +9,7 @@ const ProductForm = (props) => {
     <React.Fragment>
       <div className="bg-blue-100 grid h-screen place-items-center">
         <div className="block p-6 rounded-lg shadow-xl bg-white w-3/4">
-          <form class="h-full w-full px-5 py-5">
+          <form className="h-full w-full px-5 py-5">
             <h1 className="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-800 text-center">
               {props.action} product
             </h1>
@@ -39,16 +39,16 @@ const ProductForm = (props) => {
               label={"Category:"}
               select={"a category"}
               options={[
-                { value: 1, text: "Videogames" },
-                { value: 2, text: "Earphones" },
-                { value: 3, text: "Smartphones" },
+                { value: 'videogames', text: "Videogames" },
+                { value: 'earphones', text: "Earphones" },
+                { value: 'smartphones', text: "Smartphones" },
               ]}
               />
             <InputFile label={"Product image:"} type={"file"} />
-            <div class="flex space-x-2 justify-center my-1.5">
+            <div className="flex space-x-2 justify-center my-1.5">
               <button
                 type="button"
-                class="w-full inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                className="w-full inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
                 Add product
               </button>
