@@ -5,6 +5,7 @@ const InputSelect = (props) => {
     <div className="flex flex-row">
       <label className="w-1/3 self-center text-left">{props.label}</label>
       <select
+      defaultValue={null}
         className="
       form-control
       block
@@ -24,9 +25,9 @@ const InputSelect = (props) => {
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
       "
       >
-        <option selected>Select {props.select}</option>
+        <option value={null}>Select {props.select}</option>
         {props.options.map((category, index) => (
-          <option key={category.value}>{category.text}</option>
+          <option key={index} value={category.value}>{category.text}</option>
         ))}
       </select>
     </div>
