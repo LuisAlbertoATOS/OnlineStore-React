@@ -19,23 +19,7 @@ import "./App.css";
 
 function App() {
   return (
-    <React.Fragment className="App">
-      <Home />
-      <p>
-        <Link to="/">Logo</Link>
-      </p>
-      <p>
-        <Link to="/sign-in">Sign in</Link>
-      </p>
-      <p>
-        <Link to="/shopping-cart">Shopping cart</Link>
-      </p>
-
-      {/* Temporary disable */}
-      <p>
-        <Link to="/product-form">New product</Link>
-      </p>
-
+    <section className="App">
       <Routes>
         <Route path="/*" element={<Home />} />
         <Route path="/sign-in" element={<SignInForm />} />
@@ -56,10 +40,25 @@ function App() {
         <Route path="/user-form" element={<UserInfoForm />} />
       </Routes>
 
+      <p>
+        <Link to="/">Logo</Link>
+      </p>
+      <p>
+        <Link to="/sign-in">Sign in</Link>
+      </p>
+      <p>
+        <Link to="/shopping-cart">Shopping cart</Link>
+      </p>
+
+      {/* Temporary disable */}
+      <p>
+        <Link to="/product-form">New product</Link>
+      </p>
+
       <h1 className="debug bg-orange-500">
         This is a test, it will appear in every component{" "}
       </h1>
-    </React.Fragment>
+    </section>
   );
 }
 

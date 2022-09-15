@@ -1,10 +1,12 @@
 import React from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
+import Navbar from '../Navbar';
 import SuccessfullPurchase from './SuccessfullPurchase';
 
 const ShoppingCart = () => {
   return (
     <div>
+      <Navbar />
       <h1 className="italic font-semibold text-center text-2xl text-slate-100 bg-blue-600 m-5">
         ShoppingCart
       </h1>
