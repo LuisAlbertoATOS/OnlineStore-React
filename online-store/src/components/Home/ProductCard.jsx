@@ -2,44 +2,33 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const ProductCard = () => {
-  const dummyProduct = {
-    productId: "12345",
-    name: "PlayStation DualSense Wireless Controller",
-    description:
-      "PlayStation DualSense Wireless Controller. Color Midnight Black. Compatible with PS4 and PS5.",
-    price: 77.05,
-    category: "Videogames",
-    stock: 20,
-    image: "https://m.media-amazon.com/images/I/61O9tWR6WDS._AC_SL1475_.jpg",
-    deleted: false,
-  };
+const ProductCard = (props) => {
 
-  const [shortDesc, setShortDesc] = useState(false);
+  const [shortDesc, setShortDesc] = useState(true);
 
   return (
     <section>
-      <div className="flex justify-center">
-        {/* <Link to={`product-detail/${dummyProduct.productId}`}> */}
+      <div className="flex justify-center mx-4 my-4">
+        {/* <Link to={`product-detail/${props.product.productId}`}> */}
         <Link to={`product-detail/`}>
           <div className="rounded-lg shadow-lg bg-white max-w-xs">
             <div href="#!">
               <img
                 className="rounded-t-lg px-5 py-5"
-                src={dummyProduct.image}
-                alt={dummyProduct.name}
+                src={props.product.image}
+                alt={props.product.name}
               />
             </div>
             <div className="p-6">
               <h5 className="text-gray-900 text-xl font-medium mb-2">
-                {dummyProduct.name}
+                {props.product.name}
               </h5>
-              {dummyProduct.description.length >= 50 && (
+              {props.product.description.length >= 65 && (
                 <section className="">
                   <div className="text-gray-700 text-base mb-4 text-left">
                     {shortDesc
-                      ? dummyProduct.description.slice(0, 50) + "..."
-                      : dummyProduct.description}
+                      ? props.product.description.slice(0, 64) + "..."
+                      : props.product.description}
                     <p
                       className="underline text-gray-400"
                       onClick={() => setShortDesc(!shortDesc)}
@@ -50,28 +39,28 @@ const ProductCard = () => {
                 </section>
               )}
 
-              {dummyProduct.description.length < 50 && (
-                <p>{dummyProduct.description}</p>
+              {props.product.description.length < 65 && (
+                <p className="text-gray-700 text-base mb-4 text-left">{props.product.description}</p>
               )}
 
-              {dummyProduct.stock === 0 && (
+              {props.product.stock === 0 && (
                 <div>
                   <p className="text-base mb-4 text-left text-red-700 font-bold">
                     Not available
                   </p>{" "}
                   <button
                     type="button"
-                    className="inline-block px-6 py-2.5 bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md"
+                    className="inline-block px-6 py-2.5 bg-blue-200 text-white font-medium text-xs leading-tight uppercase rounded shadow-md"
                   >
                     Add to shopping cart
                   </button>
                 </div>
               )}
 
-              {dummyProduct.stock !== 0 && (
+              {props.product.stock !== 0 && (
                 <div>
                   <p className="text-base mb-4 text-left text-green-700 font-bold">
-                    Price: ${dummyProduct.price}
+                    Price: ${props.product.price}
                   </p>
                   <button
                     type="button"
