@@ -39,25 +39,6 @@ function App() {
         {/* Forms */}
         <Route path="/user-form" element={<UserInfoForm />} />
       </Routes>
-
-      <p>
-        <Link to="/">Logo</Link>
-      </p>
-      <p>
-        <Link to="/sign-in">Sign in</Link>
-      </p>
-      <p>
-        <Link to="/shopping-cart">Shopping cart</Link>
-      </p>
-
-      {/* Temporary disable */}
-      <p>
-        <Link to="/product-form">New product</Link>
-      </p>
-
-      <h1 className="debug bg-orange-500">
-        This is a test, it will appear in every component{" "}
-      </h1>
     </section>
   );
 }
