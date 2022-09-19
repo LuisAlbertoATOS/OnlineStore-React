@@ -20,7 +20,8 @@ const CategoryCard = () => {
   return (
     <section>
       <div className="flex justify-center">
-        <Link to={`product-detail/`}>
+        {/* Maybe the link change it's position */}
+        <Link to={`category-list/`}>
           <div className="rounded-lg shadow-lg bg-white max-w-xs border-dashed border-2 border-sky-500">
             <div>
               <img
@@ -35,8 +36,8 @@ const CategoryCard = () => {
               </h5>
 
               {/* I don't with categories we need the "see more & see less" */}
-              {dummyProduct.description.length >= 50 && (
-                <section className="">
+              {dummyProduct.description.length >= 20 && (
+                <section>
                   <div className="text-gray-700 text-base mb-4 text-left">
                     {shortDesc
                       ? dummyProduct.description.slice(0, 50) + '...'
@@ -51,7 +52,7 @@ const CategoryCard = () => {
                 </section>
               )}
 
-              {dummyProduct.description.length < 50 && (
+              {dummyProduct.description.length < 20 && (
                 <p>{dummyProduct.description}</p>
               )}
 
