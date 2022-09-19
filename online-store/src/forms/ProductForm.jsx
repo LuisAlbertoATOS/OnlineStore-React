@@ -8,12 +8,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
 const schema = z.object({
-  name:z.string(),
-  description: z.string(),
-  price:z.number(),
-  stock:z.number(),
-  category:z.string(),
-  image:z.string()
+  name:z.string().min(5),
+  description: z.string().min(10),
+  price:z.number().positive(),
+  stock:z.number().nonnegative(),
+  category:z.enum(["videogames", "earphones", "smartphones"],  { errorMap: (issue, ctx) => {
+    return {message: 'Please select a valid option'};
+  }}),
+  // image:z.string()
 })
 
 const ProductForm = (props) => {
@@ -21,42 +23,52 @@ const ProductForm = (props) => {
     resolver: zodResolver(schema)
   });
 
+function onSubmit(data, e){
+  console.log(data)
+}
+console.log(errors)
+
+
   return (
       <React.Fragment >
         <div className="bg-blue-100 grid h-screen place-items-center">
           <div className="block p-6 rounded-lg shadow-xl bg-white w-3/4">
-            <form className="h-full w-full px-5 py-5" onSubmit={handleSubmit}>
+            <form className="h-full w-full px-5 py-5" onSubmit={handleSubmit(onSubmit)}>
               <h1 className="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-800 text-center">
                 {props.action} product
               </h1>
               <InputText
-              {...register("name")}
+              register={register}
+              name="name"
                 label={"Product name:"}
                 placeholder={"Type here"}
-                type={"text"}
+              error={errors.name}
               />
               <InputText 
-              {...register("description")}
-                label={"Description:"}
-                placeholder={"Type your description here"}
-                type={"text"}
+              register={register}
+              name="description"
+              label={"Description:"}
+              placeholder={"Type your description here"}
+              error={errors.description}
               />
+              
               <InputNumber
-              {...register("price")}
+              register={register}
+              name="price"
                 label={"Price:"}
                 placeholder={"$"}
-                type={"number"}
-                min={1}
+              error={errors.price}
                 />
               <InputNumber
-              {...register("stock")}
+              register={register}
+              name="stock"
                 label={"Stock:"}
                 placeholder={"0"}
-                type={"number"}
-                min={0}
+              error={errors.stock}
               />
               <InputSelect
-              {...register("category")}
+              register={register}
+              name="category"
                 label={"Category:"}
                 select={"a category"}
                 options={[
@@ -64,12 +76,13 @@ const ProductForm = (props) => {
                   { value: "earphones", text: "Earphones" },
                   { value: "smartphones", text: "Smartphones" },
                 ]}
+              error={errors.category}
               />
-              <InputFile
+              {/* <InputFile
               {...register("image")} 
               label={"Product image:"} 
               type={"file"} 
-              />
+              /> */}
               <div className="flex space-x-2 justify-center my-1.5">
                 <button
                   type="submit"
