@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const InputText = (props) => {
   return (
@@ -6,6 +6,7 @@ const InputText = (props) => {
       <label className="w-1/3 self-center text-left">{props.label}</label>
       <input
         type={props.type}
+        required
         className="
       form-control
       block
