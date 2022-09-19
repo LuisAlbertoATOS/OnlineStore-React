@@ -1,22 +1,9 @@
 import React from 'react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import InputFile from './input-components/InputFile';
 import InputNumber from './input-components/InputNumber';
 import InputSelect from './input-components/InputSelect';
 import InputText from './input-components/InputText';
-
-const inputs = [
-  {
-    id: 1,
-    name: 'product',
-    type: 'text',
-    placeholder: 'Product name',
-    errorMessage:
-      'Product name should be 3-16 characters and should not include special characters',
-    label: 'Product name',
-  },
-];
 
 const ProductForm = (props) => {
   return (
