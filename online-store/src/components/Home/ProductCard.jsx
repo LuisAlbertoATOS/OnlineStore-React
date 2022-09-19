@@ -3,15 +3,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const ProductCard = (props) => {
-
   const [shortDesc, setShortDesc] = useState(true);
 
   return (
-    <section>
-      <div className="flex justify-center mx-4 my-4">
+    <section className="h-[32rem] my-4 mx-4">
+      <div className="h-full flex justify-center">
         {/* <Link to={`product-detail/${props.product.productId}`}> */}
         <Link to={`product-detail/`}>
-          <div className="rounded-lg shadow-lg bg-white max-w-xs">
+          <div className="h-full relative rounded-lg shadow-lg bg-white max-w-xs">
             <div href="#!">
               <img
                 className="rounded-t-lg px-5 py-5"
@@ -40,36 +39,40 @@ const ProductCard = (props) => {
               )}
 
               {props.product.description.length < 65 && (
-                <p className="text-gray-700 text-base mb-4 text-left">{props.product.description}</p>
+                <p className="text-gray-700 text-base mb-4 text-left">
+                  {props.product.description}
+                </p>
               )}
 
-              {props.product.stock === 0 && (
-                <div>
-                  <p className="text-base mb-4 text-left text-red-700 font-bold">
-                    Not available
-                  </p>{" "}
-                  <button
-                    type="button"
-                    className="inline-block px-6 py-2.5 bg-blue-200 text-white font-medium text-xs leading-tight uppercase rounded shadow-md"
-                  >
-                    Add to shopping cart
-                  </button>
-                </div>
-              )}
+              <section className="absolute bottom-0 my-4">
+                {props.product.stock === 0 && (
+                  <div>
+                    <p className="text-base mb-4 text-left text-red-700 font-bold">
+                      Not available
+                    </p>{" "}
+                    <button
+                      type="button"
+                      className="inline-block px-6 py-2.5 bg-blue-200 text-white font-medium text-xs leading-tight uppercase rounded shadow-md"
+                    >
+                      Add to shopping cart
+                    </button>
+                  </div>
+                )}
 
-              {props.product.stock !== 0 && (
-                <div>
-                  <p className="text-base mb-4 text-left text-green-700 font-bold">
-                    Price: ${props.product.price}
-                  </p>
-                  <button
-                    type="button"
-                    className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out disabled:bg-blue-400"
-                  >
-                    Add to shopping cart
-                  </button>
-                </div>
-              )}
+                {props.product.stock !== 0 && (
+                  <div>
+                    <p className="text-base mb-4 text-left text-green-700 font-bold">
+                      Price: ${props.product.price}
+                    </p>
+                    <button
+                      type="button"
+                      className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out disabled:bg-blue-400"
+                    >
+                      Add to shopping cart
+                    </button>
+                  </div>
+                )}
+              </section>
             </div>
           </div>
         </Link>
