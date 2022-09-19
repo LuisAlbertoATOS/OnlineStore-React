@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import Home from "./components/Home/Home";
@@ -16,6 +16,7 @@ import ProductList from "./components/Home/ProductList";
 import UserInfoForm from "./forms/UserInfoForm";
 
 import "./App.css";
+import ProductCard from "./components/Home/ProductCard";
 
 function App() {
   return (
@@ -33,13 +34,15 @@ function App() {
         <Route path="/sales" element={<Sales />} />
 
         {/* Home */}
-        <Route path="/product-detail" element={<ProductDetails />} />
+        <Route path="/product-detail/:id" element={<ProductDetails />} />
         <Route path="/product-list" element={<ProductList />} />
 
         {/* Forms */}
         <Route path="/user-form" element={<UserInfoForm />} />
       </Routes>
+      <ProductCard />
     </section>
+
   );
 }
 
