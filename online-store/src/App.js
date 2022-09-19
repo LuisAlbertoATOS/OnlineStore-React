@@ -34,7 +34,7 @@ function App() {
         <Route path="/sales" element={<Sales />} />
 
         {/* Home */}
-        <Route path="/product-detail" element={<ProductDetails />} />
+        <Route path="/product-detail/:id" element={<ProductDetails />} />
         <Route path="/product-list" element={<ProductList />} />
 
         {/* Forms */}

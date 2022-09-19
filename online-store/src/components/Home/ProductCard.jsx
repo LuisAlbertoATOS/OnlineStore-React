@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProductCard = () => {
+
   const dummyProduct = {
     productId: "12345",
     name: "PlayStation DualSense Wireless Controller",
@@ -15,13 +17,15 @@ const ProductCard = () => {
   return (
     <section>
       <div className="flex justify-center">
+      <Link to={`product-detail/${dummyProduct.productId}`}>
+
         <div className="rounded-lg shadow-lg bg-white max-w-xs">
           <a href="#!">
             <img
               className="rounded-t-lg px-5 py-5"
               src={dummyProduct.image}
               alt={dummyProduct.name}
-            />
+              />
           </a>
           <div className="p-6">
             <h5 className="text-gray-900 text-xl font-medium mb-2">
@@ -53,13 +57,14 @@ const ProductCard = () => {
                 <button
                   type="button"
                   className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out disabled:bg-blue-400"
-                >
+                  >
                   Add to shopping cart
                 </button>
               </div>
             )}
           </div>
         </div>
+            </Link>
       </div>
     </section>
   );
