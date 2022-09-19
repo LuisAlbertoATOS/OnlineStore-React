@@ -21,6 +21,7 @@ const CategoryCard = () => {
     <section>
       <div className="flex justify-center">
         {/* Maybe the link change it's position */}
+        {/* Is it good to add this new component? (CategoryList) */}
         <Link to={`category-list/`}>
           <div className="rounded-lg shadow-lg bg-white max-w-xs border-dashed border-2 border-sky-500">
             <div>
