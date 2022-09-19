@@ -26,10 +26,7 @@ const SignInForm = () => {
       </div>
 
       <div class="flex items-center justify-between">
-        <div class="flex items-center">
-          <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
-          <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
-        </div>
+     
 
         <div class="text-sm">
           <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
@@ -41,7 +38,7 @@ const SignInForm = () => {
                 type="button"
                 className="w-full inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
-                Add product
+                  Sign In
               </button>
       </div>
     </form>
