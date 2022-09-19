@@ -44,7 +44,7 @@ const ProductCard = (props) => {
                 </p>
               )}
 
-              <section className="absolute bottom-0 my-4">
+              <section className="absolute bottom-0 my-4 w-5/6">
                 {props.product.stock === 0 && (
                   <div>
                     <p className="text-base mb-4 text-left text-red-700 font-bold">
@@ -52,7 +52,7 @@ const ProductCard = (props) => {
                     </p>{" "}
                     <button
                       type="button"
-                      className="inline-block px-6 py-2.5 bg-blue-200 text-white font-medium text-xs leading-tight uppercase rounded shadow-md"
+                      className="w-full inline-block px-6 py-2.5 bg-blue-200 text-white font-medium text-xs leading-tight uppercase rounded shadow-md"
                     >
                       Add to shopping cart
                     </button>
@@ -60,13 +60,13 @@ const ProductCard = (props) => {
                 )}
 
                 {props.product.stock !== 0 && (
-                  <div>
+                  <div className="">
                     <p className="text-base mb-4 text-left text-green-700 font-bold">
                       Price: ${props.product.price}
                     </p>
                     <button
                       type="button"
-                      className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out disabled:bg-blue-400"
+                      className="w-full inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out disabled:bg-blue-400"
                     >
                       Add to shopping cart
                     </button>
