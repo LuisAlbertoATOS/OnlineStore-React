@@ -22,11 +22,11 @@ const CategoryCard = () => {
       <div className="flex justify-center">
         <Link to={`product-detail/`}>
           <div className="rounded-lg shadow-lg bg-white max-w-xs border-dashed border-2 border-sky-500">
-            <div href="#!">
+            <div>
               <img
                 className="rounded-t-lg px-5 py-5"
                 src={dummyProduct.image}
-                alt={dummyProduct.name}
+                alt={dummyProduct.description}
               />
             </div>
             <div className="p-6">
