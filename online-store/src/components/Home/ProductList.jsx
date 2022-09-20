@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import AdminNavbar from "../Admin/AdminNavbar";
 import Navbar from "../Navbar";
 
@@ -45,20 +46,24 @@ const ProductList = () => {
       description:
         "HyperX Alloy Origins Core, Teclado Gaming en Inglés Ten Keyless, Interruptores mecánicos HyperX RED, Cuerpo de aluminio, iluminación RGB, Software HyperX NGenuity, Tres ángulos",
       price: 70.98,
-      category: "PC",
+      category: "Peripherals",
       stock: 15,
       image: "https://m.media-amazon.com/images/I/71cQYybJC7L._AC_SL1500_.jpg",
       deleted: false,
     },
   ];
 
-  console.log(dummyProducts);
+  
+  let { categoryId } = useParams();
+
   return (
     <section>
       <Navbar />
       <section className="flex flex-row flex-wrap">
         {dummyProducts.map((product) => {
-          return <ProductCard product={product} />;
+          if(product.category.toLowerCase() == categoryId.toLowerCase()){
+            return <ProductCard product={product} />;
+          }
         })}
       </section>
     </section>

@@ -13,31 +13,30 @@ const CategoryList = () => {
     },
     {
       categoryId: '2',
-      name: 'Consoles',
-      description: 'Products related to consoles. ',
-      category: 'consoles',
-      image: 'https://i.imgur.com/U1SE3XT.png',
-      deleted: false,
-    },
-    {
-      categoryId: '3',
-      name: 'Laptops',
+      name: 'Laptops & PC',
       description: 'Products related to laptops.',
-      category: 'laptops',
+      category: 'computers',
       image: 'https://i.imgur.com/xSxUL0N.png',
       deleted: false,
     },
     {
-      categoryId: '4',
-      name: 'Headphones',
+      categoryId: '3',
+      name: 'Audio & Headphones',
       description: 'Products related to headphones.',
-      category: 'headphones',
+      category: 'audio',
+      image: 'https://i.imgur.com/6VM1noV.png',
+      deleted: false,
+    },
+    {
+      categoryId: '4',
+      name: 'PC Accessories',
+      description: 'Keyboards, mouses, monitors and more.',
+      category: 'peripherals',
       image: 'https://i.imgur.com/6VM1noV.png',
       deleted: false,
     },
   ];
 
-  console.log(dummyCategories);
   return (
     <>
       <h1 className="italic font-semibold text-center text-2xl p-4 text-slate-100 bg-blue-600 m-5">

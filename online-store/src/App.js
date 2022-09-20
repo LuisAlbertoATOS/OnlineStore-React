@@ -39,8 +39,8 @@ function App() {
         {/* Home */}
         <Route path="/product-detail/:id" element={<ProductDetails />} />
         <Route path="/category-list" element={<CategoryList />} />
-        <Route path="/category/:id" element={<ProductList />} />
-        <Route path="/category/:id/product-details/:productId" element={<ProductDetails />} />
+        <Route path="/category/:categoryId" element={<ProductList />} />
+        <Route path="/category/:categoryId/product-details/:productId" element={<ProductDetails />} />
         {/* Change later the id or name */}
 
         {/* Forms */}
