@@ -17,12 +17,15 @@ import UserInfoForm from './forms/UserInfoForm';
 
 import './App.css';
 import CategoryList from './components/Home/CategoryList';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
     <section className="App">
       <Routes>
-        <Route path="/*" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+
         <Route path="/sign-in" element={<SignInForm />} />
         <Route path="/shopping-cart/*" element={<ShoppingCart />} />
         <Route path="/product-form" element={<ProductForm action={'New'} />} />
@@ -37,6 +40,8 @@ function App() {
         <Route path="/product-detail" element={<ProductDetails />} />
         <Route path="/product-list" element={<ProductList />} />
         <Route path="/category-list" element={<CategoryList />} />
+        {/* Change later the id or name */}
+        <Route path="/category-list/:id" element={<CategoryList />} />
 
         {/* Forms */}
         <Route path="/user-form" element={<UserInfoForm />} />

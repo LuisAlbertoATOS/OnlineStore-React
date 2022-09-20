@@ -4,50 +4,51 @@ import CategoryCard from './CategoryCard';
 const CategoryList = () => {
   const dummyCategories = [
     {
-      productId: '12345',
+      categoryId: '12345',
       name: 'Videogames',
-      description:
-        'Products related to videogames. Consoles,controllers, videogames, etc.',
+      description: 'Products related to videogames.',
       category: 'Videogames',
       image: 'https://i.imgur.com/cNVDCxs.png',
       deleted: false,
     },
     {
-      productId: '12345',
-      name: 'Videogames',
-      description:
-        'Products related to videogames. Consoles,controllers, videogames, etc.',
-      category: 'Videogames',
-      image: 'https://i.imgur.com/cNVDCxs.png',
+      categoryId: '12345',
+      name: 'Consoles',
+      description: 'Products related to consoles. ',
+      category: 'Consoles',
+      image: 'https://i.imgur.com/U1SE3XT.png',
       deleted: false,
     },
     {
-      productId: '12345',
-      name: 'Videogames',
-      description:
-        'Products related to videogames. Consoles,controllers, videogames, etc.',
-      category: 'Videogames',
-      image: 'https://i.imgur.com/cNVDCxs.png',
+      categoryId: '12345',
+      name: 'Laptops',
+      description: 'Products related to laptops.',
+      category: 'Laptops',
+      image: 'https://i.imgur.com/xSxUL0N.png',
       deleted: false,
     },
     {
-      productId: '12345',
-      name: 'Videogames',
-      description:
-        'Products related to videogames. Consoles,controllers, videogames, etc.',
-      category: 'Videogames',
-      image: 'https://i.imgur.com/cNVDCxs.png',
+      categoryId: '12345',
+      name: 'Headphones',
+      description: 'Products related to headphones.',
+      category: 'Headphones',
+      image: 'https://i.imgur.com/6VM1noV.png',
       deleted: false,
     },
   ];
 
   console.log(dummyCategories);
   return (
-    <section className="flex flex-row flex-wrap justify-center gap-3">
-      {dummyCategories.map((category) => {
-        return <CategoryCard product={category} />;
-      })}
-    </section>
+    <>
+      <h1 className="italic font-semibold text-center text-2xl p-4 text-slate-100 bg-blue-600 m-5">
+        Category List
+      </h1>
+      <section className="flex flex-row flex-wrap justify-center gap-3">
+        {dummyCategories.map((category) => {
+          return <CategoryCard category={category} />;
+        })}
+      </section>
+    </>
   );
 };
 
