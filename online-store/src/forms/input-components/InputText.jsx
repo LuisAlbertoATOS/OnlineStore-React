@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const InputText = ({ label, placeholder, register, name, error }) => {
   return (

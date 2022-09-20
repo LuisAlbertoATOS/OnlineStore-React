@@ -14,7 +14,7 @@ const AdminNavbar = () => {
           <img
             className="h-16 px-6 py-2"
             alt="Logo"
-            src="logo.png"
+            src="https://i.postimg.cc/FHrrsgPv/logo.png"
           ></img>
         </Link>
         <div className="flex flex-row">

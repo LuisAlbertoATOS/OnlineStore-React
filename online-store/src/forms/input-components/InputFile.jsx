@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const InputFile = ({ label, type, register, name, error }) => {
   return (
