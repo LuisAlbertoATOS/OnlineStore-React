@@ -33,11 +33,11 @@ function App() {
         {/* Routes below this comment doesn't work right now */}
         {/* Admin */}
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/sales" element={<Sales />} />
+        <Route path="/admin-dashboard/products" element={<Products />} />
+        <Route path="/admin-dashboard/sales" element={<Sales />} />
 
         {/* Home */}
-        <Route path="/product-detail" element={<ProductDetails />} />
+        <Route path="/product-detail/:id" element={<ProductDetails />} />
         <Route path="/product-list" element={<ProductList />} />
         <Route path="/category-list" element={<CategoryList />} />
         {/* Change later the id or name */}

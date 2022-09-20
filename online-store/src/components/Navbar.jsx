@@ -14,7 +14,7 @@ const Navbar = () => {
           <img
             className="h-16 px-6 py-2"
             alt="Logo"
-            src="https://vantiq.com/wp-content/uploads/2019/07/logo-tokyo-white-2x.png"
+            src="logo.png"
           ></img>
         </Link>
         <input
