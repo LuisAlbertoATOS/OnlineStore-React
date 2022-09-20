@@ -1,11 +1,12 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { ProductDataService } from "../services/product.services";
 import InputFile from "./input-components/InputFile";
 import InputNumber from "./input-components/InputNumber";
 import InputSelect from "./input-components/InputSelect";
 import InputText from "./input-components/InputText";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 
 const schema = z.object({
   name: z.string().min(5),
@@ -26,13 +27,15 @@ const ProductForm = (props) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
   });
 
   function onSubmit(data) {
-    console.log(data);
+    new ProductDataService().addProduct(data)
+    reset()
   }
 
   return (
