@@ -4,7 +4,7 @@ import CategoryCard from './CategoryCard';
 const CategoryList = () => {
   const dummyCategories = [
     {
-      categoryId: '12345',
+      categoryId: '1',
       name: 'Videogames',
       description: 'Products related to videogames.',
       category: 'Videogames',
@@ -12,7 +12,7 @@ const CategoryList = () => {
       deleted: false,
     },
     {
-      categoryId: '12345',
+      categoryId: '2',
       name: 'Consoles',
       description: 'Products related to consoles. ',
       category: 'Consoles',
@@ -20,7 +20,7 @@ const CategoryList = () => {
       deleted: false,
     },
     {
-      categoryId: '12345',
+      categoryId: '3',
       name: 'Laptops',
       description: 'Products related to laptops.',
       category: 'Laptops',
@@ -28,7 +28,7 @@ const CategoryList = () => {
       deleted: false,
     },
     {
-      categoryId: '12345',
+      categoryId: '4',
       name: 'Headphones',
       description: 'Products related to headphones.',
       category: 'Headphones',
