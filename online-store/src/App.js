@@ -29,8 +29,8 @@ function App() {
         {/* Routes below this comment doesn't work right now */}
         {/* Admin */}
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/sales" element={<Sales />} />
+        <Route path="/admin-dashboard/products" element={<Products />} />
+        <Route path="/admin-dashboard/sales" element={<Sales />} />
 
         {/* Home */}
         <Route path="/product-detail/:id" element={<ProductDetails />} />
@@ -39,7 +39,6 @@ function App() {
         {/* Forms */}
         <Route path="/user-form" element={<UserInfoForm />} />
       </Routes>
-      <ProductList />
     </section>
   );
 }
