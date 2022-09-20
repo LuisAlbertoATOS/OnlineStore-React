@@ -1,11 +1,13 @@
 import React from "react";
+import AdminNavbar from "../Admin/AdminNavbar";
+import Navbar from "../Navbar";
 
 import ProductCard from "./ProductCard";
 
 const ProductList = () => {
   const dummyProducts = [
     {
-      productId: "12345",
+      productId: "1",
       name: "PlayStation DualSense Wireless Controller",
       description:
         "PlayStation DualSense Wireless Controller. Color Midnight Black. Compatible with PS4 and PS5.",
@@ -16,7 +18,7 @@ const ProductList = () => {
       deleted: false,
     },
     {
-      productId: "12345",
+      productId: "2",
       name: "Nintendo Switch Nintendo",
       description:
         "Nintendo Consola Switch Neon 32GB Version 1.1 - Standard Edition Importado.",
@@ -27,10 +29,10 @@ const ProductList = () => {
       deleted: false,
     },
     {
-      productId: "12345",
+      productId: "3",
       name: "JBL VIBE 100 Wireless In-Ear Headphones",
       description:
-      "JBL VIBE 100 TWS - True Wireless In-Ear Headphones - Purple",
+        "JBL VIBE 100 TWS - True Wireless In-Ear Headphones - Purple",
       price: 49.95,
       category: "Audio",
       stock: 0,
@@ -38,7 +40,7 @@ const ProductList = () => {
       deleted: false,
     },
     {
-      productId: "12345",
+      productId: "4",
       name: "HyperX Alloy Gaming Keyboard",
       description:
         "HyperX Alloy Origins Core, Teclado Gaming en Inglés Ten Keyless, Interruptores mecánicos HyperX RED, Cuerpo de aluminio, iluminación RGB, Software HyperX NGenuity, Tres ángulos",
@@ -51,11 +53,16 @@ const ProductList = () => {
   ];
 
   console.log(dummyProducts);
-  return <section className="flex flex-row flex-wrap">
-    {dummyProducts.map((product)=>{
-      return <ProductCard product={product}/>;
-    })}
-  </section>
+  return (
+    <section>
+      <Navbar />
+      <section className="flex flex-row flex-wrap">
+        {dummyProducts.map((product) => {
+          return <ProductCard product={product} />;
+        })}
+      </section>
+    </section>
+  );
 };
 
 export default ProductList;

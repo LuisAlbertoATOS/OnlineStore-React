@@ -12,7 +12,7 @@ const CategoryCard = (props) => {
       <div className="flex justify-center">
         {id}
         {/* Maybe the link change it's position */}
-        <Link to={`category-list/:id`}>
+        <Link to={`category/${props.category.category}`}>
           <div className="rounded-lg shadow-lg bg-white max-w-xs border-dashed border-2 border-sky-500">
             <div>
               <img

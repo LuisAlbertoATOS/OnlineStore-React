@@ -28,20 +28,20 @@ function App() {
 
         <Route path="/sign-in" element={<SignInForm />} />
         <Route path="/shopping-cart/*" element={<ShoppingCart />} />
-        <Route path="/product-form" element={<ProductForm action={'New'} />} />
 
         {/* Routes below this comment doesn't work right now */}
         {/* Admin */}
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/admin-dashboard/products" element={<Products />} />
         <Route path="/admin-dashboard/sales" element={<Sales />} />
+        <Route path="/admin-dashboard/products/new-product" element={<ProductForm action={'New'} />} />
 
         {/* Home */}
         <Route path="/product-detail/:id" element={<ProductDetails />} />
-        <Route path="/product-list" element={<ProductList />} />
         <Route path="/category-list" element={<CategoryList />} />
+        <Route path="/category/:id" element={<ProductList />} />
+        <Route path="/category/:id/product-details/:productId" element={<ProductDetails />} />
         {/* Change later the id or name */}
-        <Route path="/category-list/:id" element={<CategoryList />} />
 
         {/* Forms */}
         <Route path="/user-form" element={<UserInfoForm />} />

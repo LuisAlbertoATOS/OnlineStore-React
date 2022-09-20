@@ -9,7 +9,7 @@ const ProductCard = (props) => {
     <section className="h-[32rem] my-4 mx-4">
       <div className="h-full flex justify-center">
         {/* <Link to={`product-detail/${props.product.productId}`}> */}
-        <Link to={`product-detail/`}>
+        <Link to={`product-details/${props.product.productId}`}>
           <div className="h-full relative rounded-lg shadow-lg bg-white max-w-xs">
             <div href="#!">
               <img
