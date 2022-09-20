@@ -28,7 +28,6 @@ const InputText = ({ label, placeholder, register, name, error }) => {
             "
           placeholder={placeholder}
         />
-
         {error && <p>{error.message}</p>}
       </div>
     </div>
