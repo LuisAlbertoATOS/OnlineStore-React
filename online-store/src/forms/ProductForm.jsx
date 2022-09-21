@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 import * as z from "zod";
 import { ProductDataService } from "../services/product.services";
 import InputFile from "./input-components/InputFile";
@@ -33,8 +34,13 @@ const ProductForm = (props) => {
     resolver: zodResolver(schema),
   });
 
+  let { productId } = useParams();
   function onSubmit(data) {
-    new ProductDataService().addProduct(data)
+    if(props.action.toLowerCase() === 'new'){
+      new ProductDataService().addProduct(data)
+    } else{
+      new ProductDataService().updateProduct(productId, data)
+    }
     reset()
   }
 
@@ -101,7 +107,7 @@ const ProductForm = (props) => {
                 type="submit"
                 className="w-full inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
               >
-                Add product
+                {props.action} product
               </button>
             </div>
           </form>

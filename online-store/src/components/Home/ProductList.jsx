@@ -53,7 +53,6 @@ const ProductList = () => {
     },
   ];
 
-  
   let { categoryId } = useParams();
 
   return (

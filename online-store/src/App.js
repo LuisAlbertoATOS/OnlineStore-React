@@ -35,6 +35,7 @@ function App() {
         <Route path="/admin-dashboard/products" element={<Products />} />
         <Route path="/admin-dashboard/sales" element={<Sales />} />
         <Route path="/admin-dashboard/products/new-product" element={<ProductForm action={'New'} />} />
+        <Route path="/admin-dashboard/products/edit-product/:productId" element={<ProductForm action={'Update'} />} />
 
         {/* Home */}
         <Route path="/product-detail/:id" element={<ProductDetails />} />

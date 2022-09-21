@@ -1,5 +1,11 @@
 import { db, app } from "../firebase/Firebase";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+} from "firebase/storage";
 import {
   collection,
   getDocs,
@@ -21,9 +27,14 @@ export class ProductDataService {
     return addDoc(productCollectionRef, { ...rest, image: downloadUrl });
   };
 
-  updateDoc = (id, updatedProduct) => {
+  updateProduct = async (id, updatedProduct) => {
     const productDoc = doc(db, "products", id);
-    return updateDoc(productDoc, updatedProduct);
+    const { image, ...rest } = updatedProduct;
+    const downloadUrl = await this.uploadAndGetDownloadUrl(
+      image[0],
+      `${PRODUCT_IMAGES_DIR}/${image[0].lastModified}`
+    );
+    return updateDoc(productDoc, { ...rest, image: downloadUrl });
   };
 
   getAllProducts = () => {
