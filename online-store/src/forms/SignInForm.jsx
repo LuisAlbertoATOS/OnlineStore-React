@@ -47,7 +47,7 @@ const SignInForm = () => {
         setTimeout(() => {
           setLoginEmail('')
           setLoginPassword('')
-          navigate('/home')
+          navigate('/admin-dashboard')
         }, 2000)
       }
       ).catch((error) =>{
