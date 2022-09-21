@@ -1,12 +1,29 @@
 import React from "react";
-import { Route, Routes, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCartShopping,
-  faCircleUser,
+  faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
+import { auth } from "../../firebase/Firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+
 
 const AdminNavbar = () => {
+  const navigate = useNavigate();
+
+  const logOut = (e) => {
+    e.preventDefault();
+    signOut(auth)
+      .then(console.log("signout"))
+      .then(
+        setTimeout(() => {
+          navigate("/");
+          onAuthStateChanged(auth)
+        }, 1000)
+      );
+    // await auth.signOut().then(console.log(auth))
+  };
+
   return (
     <header className="bg-blue-800 sticky top-0">
       <nav className="flex justify-between align-center px-8 ">
@@ -17,9 +34,12 @@ const AdminNavbar = () => {
             src="https://i.postimg.cc/FHrrsgPv/logo.png"
           ></img>
         </Link>
-        <div className="flex flex-row">
-          <p className="text-2xl text-white">Here will be a sign out icon</p>
-        </div>
+        <button
+            className="text-white text-lg py-5 px-2 hover:bg-blue-900"
+            onClick={logOut}
+          >
+            <FontAwesomeIcon icon={faRightFromBracket} className="px-2 fa-lg" />
+          </button>
       </nav>
     </header>
   );
