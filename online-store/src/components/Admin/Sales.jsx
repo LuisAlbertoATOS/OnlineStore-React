@@ -62,7 +62,7 @@ const Sales = () => {
   return (
     <>
       <AdminNavbar />
-      Sales
+      <h2 className="font-bold text-3xl m-4">Sales</h2>
       {/* // apply the table props */}
       <section className="w-11/12 m-0 mb-0 mx-auto my-auto">
         <table
