@@ -13,7 +13,6 @@ const ProductList = () => {
 
   const getProducts = async () => {
     const data = await new ProductDataService().getAllProducts();
-    console.log(data)
     setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 

@@ -1,7 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import * as z from "zod";
+import { CategoryDataService } from "../services/category.services";
 import { ProductDataService } from "../services/product.services";
 import InputFile from "./input-components/InputFile";
 import InputNumber from "./input-components/InputNumber";
@@ -13,17 +15,19 @@ const schema = z.object({
   description: z.string().min(10),
   price: z.number().positive(),
   stock: z.number().nonnegative(),
-  category: z.enum(["videogames", "earphones", "smartphones"], {
-    errorMap: (issue, ctx) => {
-      return { message: "Please select a valid option" };
-    },
-  }),
+  category: z.string(),
+  // category: z.enum(categories.map((c)=>{return c.category}), {
+  //   errorMap: (issue, ctx) => {
+  //     return { message: "Please select a valid option" };
+  //   },
+  // }),
   image: z
     .instanceof(FileList)
     .refine((files) => files?.length === 1, "Image is required"),
 });
 
 const ProductForm = (props) => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -34,9 +38,21 @@ const ProductForm = (props) => {
   });
 
   function onSubmit(data) {
-    new ProductDataService().addProduct(data)
-    reset()
+    new ProductDataService().addProduct(data).then(()=>{
+      navigate('/admin-dashboard/products')
+    })
+    reset();
   }
+
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  const getCategories = async () => {
+    const data = await new CategoryDataService().getAllCategories();
+    setCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
 
   return (
     <React.Fragment>
@@ -83,11 +99,9 @@ const ProductForm = (props) => {
               name="category"
               label={"Category:"}
               select={"a category"}
-              options={[
-                { value: "videogames", text: "Videogames" },
-                { value: "earphones", text: "Earphones" },
-                { value: "smartphones", text: "Smartphones" },
-              ]}
+              options={categories.map((category) => {
+                return { value: category.category, text: category.name };
+              })}
               error={errors.category}
             />
             <InputFile
@@ -97,12 +111,14 @@ const ProductForm = (props) => {
               error={errors.image}
             />
             <div className="flex space-x-2 justify-center my-1.5">
-              <button
-                type="submit"
-                className="w-full inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-              >
-                {props.action} product
-              </button>
+              {/* <Link to="/admin-dashboard/products"> */}
+                <button
+                  type="submit"
+                  className="w-full inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                >
+                  {props.action} product
+                </button>
+              {/* </Link> */}
             </div>
           </form>
         </div>
