@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
@@ -14,14 +14,10 @@ const Navbar = () => {
           <img
             className="h-16 px-6 py-2"
             alt="Logo"
-            src="https://vantiq.com/wp-content/uploads/2019/07/logo-tokyo-white-2x.png"
+            src="https://i.postimg.cc/FHrrsgPv/logo.png"
           ></img>
         </Link>
-        <input
-          type="text"
-          className="rounded-md w-1/2 m-3 px-3 font-medium focus:outline-gray-800 "
-          placeholder="Search a Product!"
-        />
+        <h3></h3>
         <div className="flex flex-row">
           <Link to="/sign-in">
             <p className="text-white text-lg py-5 px-2 hover:bg-blue-900">

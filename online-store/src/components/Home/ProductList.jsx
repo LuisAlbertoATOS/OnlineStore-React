@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { ProductDataService } from "../../services/product.services";
+import Navbar from "../Navbar";
 import ProductCard from "./ProductCard";
 
 const ProductList = () => {
@@ -15,11 +17,19 @@ const ProductList = () => {
     setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
+  let { categoryId } = useParams();
+
   return (
     <>
+    <Navbar />
     <section className="flex flex-row flex-wrap">
       {products.map((product) =>{
-        return <ProductCard product={product} />
+        if(product.category === undefined){
+          console.log(product);
+        }
+        if(product.category.toLowerCase() == categoryId.toLowerCase()){
+          return <ProductCard product={product} />;
+        }
       })}
     </section>
     </>
