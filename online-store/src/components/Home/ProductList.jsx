@@ -58,7 +58,7 @@ const ProductList = () => {
   return (
     <section>
       <Navbar />
-      <section className="flex flex-row flex-wrap">
+      <section className="flex flex-row flex-wrap justify-center">
         {dummyProducts.map((product) => {
           if(product.category.toLowerCase() == categoryId.toLowerCase()){
             return <ProductCard product={product} />;
