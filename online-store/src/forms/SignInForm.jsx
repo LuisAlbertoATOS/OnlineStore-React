@@ -23,10 +23,6 @@ const SignInForm = () => {
     }
   });
 
-  onAuthStateChanged(auth, (currentUser)=>{
-    setUser(currentUser);
-  })
-
   // const register = async ()=>{
   //   try {
   //     const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
@@ -38,7 +34,6 @@ const SignInForm = () => {
 
   const signIn = () =>{
     try {
-     
       handleSubmit()
       signInWithEmailAndPassword(auth, loginEmail, loginPassword)
       .then(()=>{
@@ -48,6 +43,7 @@ const SignInForm = () => {
           setLoginEmail('')
           setLoginPassword('')
           navigate('/admin-dashboard')
+          onAuthStateChanged(auth)
         }, 2000)
       }
       ).catch((error) =>{
@@ -59,9 +55,6 @@ const SignInForm = () => {
       console.log(error.message)
     }
   }
-
- 
-
 
   return (
     <React.Fragment>
