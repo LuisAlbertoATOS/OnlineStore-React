@@ -39,7 +39,6 @@ function App() {
         {/* Forms */}
         <Route path="/user-form" element={<UserInfoForm />} />
       </Routes>
-      <ProductList />
     </section>
   );
 }
