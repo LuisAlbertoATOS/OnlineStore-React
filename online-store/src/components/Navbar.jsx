@@ -8,7 +8,7 @@ import {
 
 } from "@fortawesome/free-solid-svg-icons";
 import { auth} from "../firebase/Firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 
 
 
