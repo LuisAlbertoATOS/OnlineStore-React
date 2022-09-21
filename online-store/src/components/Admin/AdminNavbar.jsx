@@ -25,7 +25,7 @@ const AdminNavbar = () => {
   };
 
   return (
-    <header className="bg-blue-800 sticky top-0">
+    <header className="bg-blue-800 sticky top-0 z-50">
       <nav className="flex justify-between align-center px-8 ">
         <Link to="/admin-dashboard">
           <img
