@@ -5,8 +5,8 @@ import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const AdminProductCard = (props) => {
   return (
-    <section className="h-[32rem] my-4 mx-4">
-      <div className="h-full flex justify-center">
+    <section className="h-[32rem] my-4 mx-1">
+      <div className="h-full flex justify-center w-[90%]">
         <div className="h-full relative rounded-lg shadow-lg bg-white max-w-xs">
           <div href="#!">
             <img
@@ -15,7 +15,7 @@ const AdminProductCard = (props) => {
               alt={props.product.name}
             />
           </div>
-          <div className="p-6">
+          <div className="p-6 pt-2">
             <h5 className="text-gray-900 text-xl font-medium mb-2">
               {props.product.name}
             </h5>
