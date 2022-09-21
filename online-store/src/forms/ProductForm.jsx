@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { CategoryDataService } from "../services/category.services";
 import { ProductDataService } from "../services/product.services";
 import InputFile from "./input-components/InputFile";
 import InputNumber from "./input-components/InputNumber";
@@ -13,11 +14,12 @@ const schema = z.object({
   description: z.string().min(10),
   price: z.number().positive(),
   stock: z.number().nonnegative(),
-  category: z.enum(["videogames", "earphones", "smartphones"], {
-    errorMap: (issue, ctx) => {
-      return { message: "Please select a valid option" };
-    },
-  }),
+  category: z.string(),
+  // category: z.enum(["videogames", "earphones", "smartphones"], {
+  //   errorMap: (issue, ctx) => {
+  //     return { message: "Please select a valid option" };
+  //   },
+  // }),
   image: z
     .instanceof(FileList)
     .refine((files) => files?.length === 1, "Image is required"),
@@ -36,6 +38,15 @@ const ProductForm = (props) => {
   function onSubmit(data) {
     new ProductDataService().addProduct(data)
     reset()
+  }
+
+  function getCategories() {
+    console.log(new CategoryDataService().getAllCategoryNames());
+    // new CategoryDataService().getAllCategoryNames().forEach((doc) => {
+    //   // doc.data() is never undefined for query doc snapshots
+    //   console.log('doc.data()');
+    //   console.log(doc.id, " => ", doc.data());
+    // });
   }
 
   return (
@@ -83,11 +94,14 @@ const ProductForm = (props) => {
               name="category"
               label={"Category:"}
               select={"a category"}
-              options={[
-                { value: "videogames", text: "Videogames" },
-                { value: "earphones", text: "Earphones" },
-                { value: "smartphones", text: "Smartphones" },
-              ]}
+              options={
+                  new CategoryDataService().getAllCategoryNames()
+              }
+              // options={[
+              //   { value: "videogames", text: "Videogames" },
+              //   { value: "earphones", text: "Earphones" },
+              //   { value: "smartphones", text: "Smartphones" },
+              // ]}
               error={errors.category}
             />
             <InputFile
@@ -102,6 +116,13 @@ const ProductForm = (props) => {
                 className="w-full inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
               >
                 Add product
+              </button>
+              <button
+                type=""
+                onClick={getCategories()}
+                className="w-full inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+              >
+                Get categories debug
               </button>
             </div>
           </form>
