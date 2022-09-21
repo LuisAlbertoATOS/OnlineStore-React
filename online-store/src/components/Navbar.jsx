@@ -8,7 +8,7 @@ import {
 
 } from "@fortawesome/free-solid-svg-icons";
 import { auth} from "../firebase/Firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 
 
 
@@ -24,6 +24,10 @@ const Navbar = () => {
   e.preventDefault()
    signOut(auth).then(
     console.log('signout')
+   ).then(
+    setTimeout(() => {
+      navigate('/sign-in')
+    }, 1000)
    )
   // await auth.signOut().then(console.log(auth))
   
