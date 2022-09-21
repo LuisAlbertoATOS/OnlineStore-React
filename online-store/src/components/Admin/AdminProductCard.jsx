@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPenToSquare,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 
-const ProductCard = (props) => {
-
+const AdminProductCard = (props) => {
   return (
     <section className="h-[32rem] my-4 mx-4">
       <div className="h-full flex justify-center">
@@ -33,18 +37,16 @@ const ProductCard = (props) => {
                 </p>
               )}
 
+              <div className="text-gray-700 text-base mb-4 text-left flex">
+                <p className="font-bold">Category:&nbsp;</p>{props.product.category}
+              </div>
+
               <section className="absolute bottom-0 my-4 w-5/6">
                 {props.product.stock === 0 && (
                   <div>
                     <p className="text-base mb-4 text-left text-red-700 font-bold">
                       Not available
                     </p>{" "}
-                    <button
-                      type="button"
-                      className="w-full inline-block px-6 py-2.5 bg-blue-200 text-white font-medium text-xs leading-tight uppercase rounded shadow-md"
-                    >
-                      Add to shopping cart
-                    </button>
                   </div>
                 )}
 
@@ -53,16 +55,13 @@ const ProductCard = (props) => {
                     <p className="text-base mb-4 text-left text-green-700 font-bold">
                       Price: ${props.product.price}
                     </p>
-                    <button
-                      type="button"
-                      className="w-full inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out disabled:bg-blue-400"
-                    >
-                      Add to shopping cart
-                    </button>
                   </div>
                 )}
+            <FontAwesomeIcon icon={faPenToSquare} className="px-5 fa-2xl" />
+            <FontAwesomeIcon icon={faTrash} className="px-5 fa-2xl" />
               </section>
             </div>
+            
           </div>
         </Link>
       </div>
@@ -70,4 +69,4 @@ const ProductCard = (props) => {
   );
 };
 
-export default ProductCard;
+export default AdminProductCard;
