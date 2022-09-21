@@ -22,11 +22,8 @@ const ProductList = () => {
   return (
     <>
     <Navbar />
-    <section className="flex flex-row flex-wrap">
-      {products.map((product) =>{
-        if(product.category === undefined){
-          console.log(product);
-        }
+    <section className="flex flex-row flex-wrap justify-center">
+      {products.map((product) => {
         if(product.category.toLowerCase() == categoryId.toLowerCase()){
           return <ProductCard product={product} />;
         }
