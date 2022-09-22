@@ -1,4 +1,5 @@
 import React from 'react';
+import Errors from '../../components/Errors';
 
 const InputText = ({ label, placeholder, register, name, error }) => {
   return (
@@ -28,7 +29,7 @@ const InputText = ({ label, placeholder, register, name, error }) => {
             "
           placeholder={placeholder}
         />
-        {error && <p>{error.message}</p>}
+        {error && <Errors message={error.message}/>}
       </div>
     </div>
   );

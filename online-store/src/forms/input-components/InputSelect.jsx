@@ -1,4 +1,5 @@
 import React from "react";
+import Errors from "../../components/Errors";
 
 const InputSelect = ({ label, select, options, register, name, error }) => {
   return (
@@ -34,7 +35,7 @@ const InputSelect = ({ label, select, options, register, name, error }) => {
             </option>
           ))}
         </select>
-        {error && <p>{error.message}</p>}
+        {error && <Errors message={error.message}/>}
       </div>
     </div>
   );
