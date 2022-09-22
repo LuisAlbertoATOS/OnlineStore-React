@@ -27,7 +27,6 @@ const InputSelect = ({ label, select, options, register, name, error }) => {
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             "
         >
-          <option value={null}>Select {select}</option>
           {options.map((category, index) => (
             <option key={index} value={category.value}>
               {category.text}
