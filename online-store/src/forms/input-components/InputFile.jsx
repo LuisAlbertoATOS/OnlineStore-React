@@ -1,4 +1,5 @@
 import React from 'react';
+import Errors from '../../components/Errors';
 
 const InputFile = ({ label, type, register, name, error }) => {
   return (
@@ -23,7 +24,7 @@ const InputFile = ({ label, type, register, name, error }) => {
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             "
         />
-        {error && <p>{error.message}</p>}
+        {error && <Errors message={error.message}/>}
       </div>
     </div>
   );

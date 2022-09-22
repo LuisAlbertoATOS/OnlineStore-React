@@ -54,7 +54,7 @@ const AdminProductCard = (props) => {
                   </p>
                 </div>
               )}
-              <Link to={`edit-product/${props.product.productId}`}>
+              <Link to={`edit-product/${props.product.id}`}>
                 <FontAwesomeIcon icon={faPenToSquare} className="px-5 fa-2xl" />
               </Link>
               <FontAwesomeIcon icon={faTrash} className="px-5 fa-2xl" />
