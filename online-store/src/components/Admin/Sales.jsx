@@ -12,19 +12,28 @@ const Sales = () => {
   const data = useMemo(
     () => [
       {
-        col1: 'Hello',
+        col1: 'Videogames',
         col2: 'World',
         col3: 'for col 3',
+        col5: '424',
       },
       {
-        col1: 'react-table',
+        col1: 'Audio',
         col2: 'rocks',
         col3: 'for col 3',
+        col5: '732',
       },
       {
-        col1: 'whatever',
+        col1: 'Computers',
         col2: 'you want',
         col3: 'for col 3',
+        col5: '3214',
+      },
+      {
+        col1: 'Periferals',
+        col2: 'you want',
+        col3: 'for col 3',
+        col5: '4224',
       },
     ],
     []
@@ -33,7 +42,7 @@ const Sales = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: 'Column 1',
+        Header: 'Category',
         accessor: 'col1', // accessor is the "key" in the data
       },
       {
@@ -49,7 +58,7 @@ const Sales = () => {
         accessor: 'col4',
       },
       {
-        Header: 'Column 5',
+        Header: 'Total Sales',
         accessor: 'col5',
       },
     ],
