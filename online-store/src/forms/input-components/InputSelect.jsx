@@ -1,6 +1,14 @@
 import React from "react";
 
-const InputSelect = ({ label, select, options, register, name, error }) => {
+const InputSelect = ({
+  label,
+  select,
+  options,
+  register,
+  name,
+  error,
+  value,
+}) => {
   return (
     <div className="flex flex-row">
       <label className="w-1/3 self-center text-left">{label}</label>
@@ -27,11 +35,17 @@ const InputSelect = ({ label, select, options, register, name, error }) => {
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             "
         >
-          {options.map((category, index) => (
-            <option key={index} value={category.value}>
-              {category.text}
-            </option>
-          ))}
+          {options.map((category, index) => {
+            if (value=== null || category.value !== value) {
+              return <option key={index} value={category.value}>
+                {category.text}
+              </option>;
+            } else {
+              return <option key={index} value={category.value} selected>
+                {category.text}
+              </option>;
+            }
+          })}
         </select>
         {error && <p>{error.message}</p>}
       </div>

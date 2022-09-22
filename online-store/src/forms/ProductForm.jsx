@@ -27,6 +27,7 @@ const schema = z.object({
 });
 
 const ProductForm = (props) => {
+  const isUpdate = props.action === "Update";
   const navigate = useNavigate();
   const {
     register,
@@ -39,13 +40,13 @@ const ProductForm = (props) => {
 
   let { productId } = useParams();
   function onSubmit(data) {
-    if(props.action.toLowerCase() === 'new'){
-      new ProductDataService().addProduct(data)
-    } else{
-      new ProductDataService().updateProduct(productId, data)
+    if (props.action.toLowerCase() === "new") {
+      new ProductDataService().addProduct(data);
+    } else {
+      new ProductDataService().updateProduct(productId, data);
     }
-    navigate('/admin-dashboard/products')
-    reset()
+    navigate("/admin-dashboard/products");
+    reset();
   }
 
   const [categories, setCategories] = useState([]);
@@ -75,6 +76,7 @@ const ProductForm = (props) => {
               label={"Product name:"}
               placeholder={"Type here"}
               error={errors.name}
+              value={isUpdate ? "NAME" : null}
             />
             <InputText
               register={register}
@@ -82,6 +84,7 @@ const ProductForm = (props) => {
               label={"Description:"}
               placeholder={"Type your description here"}
               error={errors.description}
+              value={isUpdate ? "DESCRIPTION" : null}
             />
 
             <InputNumber
@@ -90,6 +93,7 @@ const ProductForm = (props) => {
               label={"Price:"}
               placeholder={"$"}
               error={errors.price}
+              value={isUpdate ? 5000 : null}
             />
             <InputNumber
               register={register}
@@ -97,6 +101,7 @@ const ProductForm = (props) => {
               label={"Stock:"}
               placeholder={"0"}
               error={errors.stock}
+              value={isUpdate ? 5000 : null}
             />
             <InputSelect
               register={register}
@@ -107,6 +112,7 @@ const ProductForm = (props) => {
                 return { value: category.category, text: category.name };
               })}
               error={errors.category}
+              value={isUpdate ? "videogames" : null}
             />
             <InputFile
               register={register}
@@ -115,14 +121,12 @@ const ProductForm = (props) => {
               error={errors.image}
             />
             <div className="flex space-x-2 justify-center my-1.5">
-              {/* <Link to="/admin-dashboard/products"> */}
-                <button
-                  type="submit"
-                  className="w-full inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                >
-                  {props.action} product
-                </button>
-              {/* </Link> */}
+              <button
+                type="submit"
+                className="w-full inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+              >
+                {props.action} product
+              </button>
             </div>
           </form>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InputText = ({ label, placeholder, register, name, error }) => {
+const InputText = ({ label, placeholder, register, name, error, value }) => {
   return (
     <div className="flex">
       <label className="w-1/3 self-center text-left">{label}</label>
@@ -27,6 +27,7 @@ const InputText = ({ label, placeholder, register, name, error }) => {
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             "
           placeholder={placeholder}
+          value={value}
         />
         {error && <p>{error.message}</p>}
       </div>
