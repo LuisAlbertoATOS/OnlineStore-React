@@ -43,3 +43,31 @@ export class ProductDataService {
     return downloadUrl;
   }
 }
+
+
+/*
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { ProductDataService } from "../../services/product.services"
+
+const ProductList = () => {
+  const [products, setProducts] = useState([])
+    useEffect(() => {
+        getAllProducts();
+    }, []);
+
+    const getProducts = async () => {
+        const data = await ProductDataService.getAllProducts();
+        console.log(data.docs);
+    }
+
+  return (
+    <div>ProductList</div>
+  )
+}
+
+export default ProductList
+
+
+
+*/

@@ -1,14 +1,11 @@
 import React from "react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const ProductCard = (props) => {
-  const [shortDesc, setShortDesc] = useState(true);
 
   return (
-    <section className="h-[32rem] my-4 mx-4">
-      <div className="h-full flex justify-center">
-        {/* <Link to={`product-detail/${props.product.productId}`}> */}
+    <section className="h-[32rem] my-4 mx-1">
+      <div className="h-full flex justify-center w-[90%]">
         <Link to={`product-details/${props.product.productId}`}>
           <div className="h-full relative rounded-lg shadow-lg bg-white max-w-xs">
             <div href="#!">
@@ -25,15 +22,7 @@ const ProductCard = (props) => {
               {props.product.description.length >= 65 && (
                 <section className="">
                   <div className="text-gray-700 text-base mb-4 text-left">
-                    {shortDesc
-                      ? props.product.description.slice(0, 64) + "..."
-                      : props.product.description}
-                    <p
-                      className="underline text-gray-400"
-                      onClick={() => setShortDesc(!shortDesc)}
-                    >
-                      {shortDesc ? "See more..." : "See less..."}
-                    </p>
+                    {props.product.description.slice(0, 64) + "..."}
                   </div>
                 </section>
               )}
