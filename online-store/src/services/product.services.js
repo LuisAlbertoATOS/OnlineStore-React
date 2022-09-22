@@ -30,9 +30,11 @@ export class ProductDataService {
     return getDocs(productCollectionRef);
   };
 
-  getProduct = (id) => {
+  getProduct = async (id) => {
     const productDoc = doc(db, "products", id);
-    return getDoc(productDoc);
+    const res = await getDoc(productDoc);
+    const data = res.data()
+    return data
   };
 
   async uploadAndGetDownloadUrl(image, name) {

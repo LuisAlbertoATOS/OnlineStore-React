@@ -1,25 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from "react";
 import { ProductDataService } from "../../services/product.services";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 const ProductDetails = (props) => {
+  const [product, setProduct] = useState(null);
+  const { productId } = useParams();
 
- const {productId} = useParams()
- console.log(productId)
+  
+  async function fetchProduct() {
+    const p = await new ProductDataService().getProduct(productId);
+    setProduct(p);
 
- async function fetchProduct(){
-   const we = await new ProductDataService().getProduct(productId)
-   console.log(we.data())
- }
+  }
 
- useEffect(() => {
-  fetchProduct()
-}, [])
+  useEffect(() => {
+    fetchProduct();
+  }, []);
 
-  return (
-    <div>Details
-    </div>
-  )
-}
+  return <div>Details</div>;
+};
 
-export default ProductDetails
+export default ProductDetails;
