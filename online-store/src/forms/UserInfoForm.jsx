@@ -22,16 +22,13 @@ const UserInfoForm = () => {
     resolver: zodResolver(schema)
   });
 
-  const onSubmit =(e)=>{
-    e.preventDefault()
-    console.log('hi')
-  }
+  
 
   return (
     <React.Fragment>
       <div className="bg-blue-100 grid h-screen place-items-center">
         <div className="block p-6 rounded-lg shadow-xl bg-white w-3/4">
-          <form className="h-full w-full px-5 py-5" onSubmit={handleSubmit(onSubmit)}>
+          <form className="h-full w-full px-5 py-5" onSubmit={handleSubmit()}>
             <h1 className="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-800 text-center">
               Shipping information
             </h1>
