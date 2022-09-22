@@ -15,7 +15,7 @@ const InputSelect = ({
       <div className="flex flex-col w-full items-start">
         <select
           {...register(name)}
-          defaultValue={null}
+          value={value}
           className="
             form-control
             block
@@ -36,15 +36,11 @@ const InputSelect = ({
             "
         >
           {options.map((category, index) => {
-            if (value=== null || category.value !== value) {
-              return <option key={index} value={category.value}>
+            return (
+              <option key={index} value={category.category}>
                 {category.text}
-              </option>;
-            } else {
-              return <option key={index} value={category.value} selected>
-                {category.text}
-              </option>;
-            }
+              </option>
+            );
           })}
         </select>
         {error && <p>{error.message}</p>}

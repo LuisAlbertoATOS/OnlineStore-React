@@ -112,7 +112,7 @@ const ProductForm = (props) => {
                 return { value: category.category, text: category.name };
               })}
               error={errors.category}
-              value={isUpdate ? "videogames" : null}
+              value={isUpdate ? "videogames" : "computers"}
             />
             <InputFile
               register={register}
