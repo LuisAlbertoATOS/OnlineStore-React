@@ -28,6 +28,13 @@ const schema = z.object({
 
 const ProductForm = (props) => {
   const isUpdate = props.action === "Update";
+  let product;
+  let { productId } = useParams();
+  if(isUpdate){
+    product = new ProductDataService().getProduct(productId);
+  }
+  console.log(product);
+
   const navigate = useNavigate();
   const {
     register,
@@ -38,7 +45,6 @@ const ProductForm = (props) => {
     resolver: zodResolver(schema),
   });
 
-  let { productId } = useParams();
   function onSubmit(data) {
     if (props.action.toLowerCase() === "new") {
       new ProductDataService().addProduct(data);
