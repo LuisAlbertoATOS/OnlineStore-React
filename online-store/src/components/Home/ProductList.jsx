@@ -15,7 +15,6 @@ const ProductList = () => {
   const getProducts = async () => {
     const data = await new ProductDataService().getAllProducts();
     setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    console.log(data.docs)
   };
 
   let { categoryId } = useParams();
