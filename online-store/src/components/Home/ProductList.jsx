@@ -6,6 +6,7 @@ import Navbar from "../Navbar";
 import ProductCard from "./ProductCard";
 
 const ProductList = () => {
+
   const [products, setProducts] = useState([]);
   useEffect(() => {
     getProducts();
@@ -13,8 +14,8 @@ const ProductList = () => {
 
   const getProducts = async () => {
     const data = await new ProductDataService().getAllProducts();
-    console.log(data)
     setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    console.log(data.docs)
   };
 
   let { categoryId } = useParams();
@@ -25,7 +26,8 @@ const ProductList = () => {
     <section className="flex flex-row flex-wrap justify-center">
       {products.map((product) => {
         if(product.category.toLowerCase() == categoryId.toLowerCase()){
-          return <ProductCard product={product} />;
+          return <ProductCard product={product} 
+          />;
         }
       })}
     </section>
