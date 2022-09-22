@@ -38,7 +38,6 @@ function App() {
         <Route path="/admin-dashboard/products/edit-product/:productId" element={<ProductForm action={'Update'} />} />
 
         {/* Home */}
-        <Route path="/product-detail/:id" element={<ProductDetails />} />
         <Route path="/category-list" element={<CategoryList />} />
         <Route path="/category/:categoryId" element={<ProductList />} />
         <Route path="/category/:categoryId/product-details/:productId" element={<ProductDetails />} />
