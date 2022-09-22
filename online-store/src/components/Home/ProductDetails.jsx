@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { ProductDataService } from "../../services/product.services";
+import { useParams } from "react-router-dom";
 
-const ProductDetails = () => {
-  return (
-    <div>ProductDetails</div>
-  )
-}
+const ProductDetails = (props) => {
+  const [product, setProduct] = useState(null);
+  const { productId } = useParams();
 
-export default ProductDetails
+  
+  async function fetchProduct() {
+    const p = await new ProductDataService().getProduct(productId);
+    setProduct(p);
+
+  }
+
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+
+  return <div>Details</div>;
+};
+
+export default ProductDetails;
