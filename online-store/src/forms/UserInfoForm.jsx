@@ -1,20 +1,24 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import Errors from "../components/Errors";
 import InputText from "./input-components/InputText";
-import useForm from 'react-hook-form'
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
+
+const schema = z.object({
+  name: z.string().min(10),
+  email: z.string().email({ message: "Invalid email address" }),
+  address: z.string().min(10),
+});
 const UserInfoForm = () => {
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
-    defaultValues: {
-      name: "",
-      email: "",
-      address: "",
-    },
+    resolver: zodResolver(schema)
   });
 
   return (
@@ -30,45 +34,28 @@ const UserInfoForm = () => {
               label={"Full name:"}
               placeholder={"Full name"}
               type={"text"}
-              {...register("name", {
-                required: "Full name is required",
-                pattern: {
-                  value: 10,
-                  message: "Min length of name is of 10 caracters",
-                },
-              })}
+              name= 'name'
+              error={errors.name}
             />
-            {errors.name?.message && <Errors message={errors.name.message} />}
+           
             <InputText
               register={register}
               label={"Email:"}
               placeholder={"Email"}
               type={"email"}
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Invalid address",
-                },
-              })}
+              error={errors.email}
+              name='email'
             />
-            {errors.email?.message && <Errors message={errors.email.message} />}
+            
             <InputText
               register={register}
               label={"Address:"}
               placeholder={"Shipping address"}
               type={"text"}
-              {...register("address", {
-                required: "Full address is required",
-                pattern: {
-                  value: 5,
-                  message: "Min length of address is of 5 caracters",
-                },
-              })}
+              name='address'
+              error={errors.address}
             />
-            {errors.address?.message && (
-              <Errors message={errors.address.message} />
-            )}
+            {errors.address&& 'hola'}
             <div className="flex space-x-2 justify-center my-1.5">
               <button
                 type="submit"
