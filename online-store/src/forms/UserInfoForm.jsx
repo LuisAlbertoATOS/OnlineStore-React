@@ -1,6 +1,7 @@
 import React from "react";
 import Errors from "../components/Errors";
 import InputText from "./input-components/InputText";
+import useForm from 'react-hook-form'
 
 const UserInfoForm = () => {
 
