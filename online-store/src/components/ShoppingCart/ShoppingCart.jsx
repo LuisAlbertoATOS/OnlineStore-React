@@ -12,31 +12,45 @@ const ShoppingCart = () => {
     { productId: "qVYMv7Nig6LnEQtNMU9w", quantity: 2 },
     { productId: "nIkbkL0aFqdq0xi9PvWl", quantity: 1 },
   ];
-  
+
+  const [shoppingCart, setShoppingCart] = useState(dummyCart);
   const [items, setItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  
+
   async function fetchProduct(productId, index) {
-    await new ProductDataService()
-    .getProduct(productId)
-    .then((result) => {
+    await new ProductDataService().getProduct(productId).then((result) => {
       setItems((items) => items.concat(result));
-      setTotalPrice((totalPrice) => totalPrice + (result.price * dummyCart[index].quantity));
+      setTotalPrice(
+        (totalPrice) => totalPrice + result.price * shoppingCart[index].quantity
+      );
     });
   }
-  
+
   useEffect(() => {
     return () => {
-      dummyCart.map((cartItem, index) => {
+      shoppingCart.map((cartItem, index) => {
         fetchProduct(cartItem.productId, index);
       });
     };
   }, []);
 
+  const deleteItem = (productId) => {
+    return () => {
+
+      console.log(productId);
+      // const newShoppingCart = shoppingCart.filter((item) => {
+      //   return item.productId != productId;
+      // })
+      // setShoppingCart((shoppingCart) => shoppingCart.filter((item) => {
+      //   return item.productId !== productId;
+      // }));
+      // console.log(shoppingCart);
+    }
+  }
+
   return (
     <>
       <Navbar />
-
       <div className="container mx-auto mt-10">
         <div className="flex shadow-md my-10">
           <div className="w-3/4 bg-white px-10 py-10">
@@ -70,40 +84,22 @@ const ShoppingCart = () => {
                       </div>
                       <div className="flex flex-col justify-between ml-4 flex-grow">
                         <span className="font-bold text-sm">{item?.name}</span>
-                        <a
-                          href="#"
+                        <p
+                          onClick={deleteItem(shoppingCart[index].productId)}
                           className="font-semibold hover:text-red-500 text-gray-500 text-xs"
                         >
                           Remove
-                        </a>
+                        </p>
                       </div>
                     </div>
-                    <div className="flex justify-center w-1/5">
-                      <svg
-                        className="fill-current text-gray-600 w-3"
-                        viewBox="0 0 448 512"
-                      >
-                        <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                      </svg>
-
-                      <input
-                        className="mx-2 border text-center w-8"
-                        type="text"
-                        value={dummyCart[index].quantity}
-                      />
-
-                      <svg
-                        className="fill-current text-gray-600 w-3"
-                        viewBox="0 0 448 512"
-                      >
-                        <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                      </svg>
-                    </div>
+                    <span className="text-center w-1/5 font-semibold text-sm">
+                      {shoppingCart[index].quantity}
+                    </span>
                     <span className="text-center w-1/5 font-semibold text-sm">
                       ${item?.price}
                     </span>
                     <span className="text-center w-1/5 font-semibold text-sm">
-                      ${item?.price * dummyCart[index].quantity}
+                      ${item?.price * shoppingCart[index].quantity}
                     </span>
                   </div>
                 );

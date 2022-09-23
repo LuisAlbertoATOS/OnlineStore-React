@@ -21,7 +21,13 @@ import NotFound from './components/NotFound';
 import RequireAuth from './components/contexts/RequireAuth';
 
 function App() {
+
+  // const [shoppingCart, setShoppingCart] = useState([]);
+  // const ShoppingCartContext = React.createContext(shoppingCart, setShoppingCart);
+
   return (
+    // <ShoppingCartContext.Provider>
+
     <section className="App">
       <Routes>
         <Route path="/" element={<Home />} />
@@ -48,6 +54,7 @@ function App() {
         <Route path="/user-form" element={<UserInfoForm />} />
       </Routes>
     </section>
+    // </ShoppingCartContext.Provider>
   );
 }
 
