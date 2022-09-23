@@ -30,9 +30,11 @@ export class ProductDataService {
     return getDocs(productCollectionRef);
   };
 
-  getProduct = (id) => {
+  getProduct = async (id) => {
     const productDoc = doc(db, "products", id);
-    return getDoc(productDoc);
+    const res = await getDoc(productDoc);
+    const data = res.data()
+    return data
   };
 
   async uploadAndGetDownloadUrl(image, name) {
@@ -43,3 +45,31 @@ export class ProductDataService {
     return downloadUrl;
   }
 }
+
+
+/*
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { ProductDataService } from "../../services/product.services"
+
+const ProductList = () => {
+  const [products, setProducts] = useState([])
+    useEffect(() => {
+        getAllProducts();
+    }, []);
+
+    const getProducts = async () => {
+        const data = await ProductDataService.getAllProducts();
+        console.log(data.docs);
+    }
+
+  return (
+    <div>ProductList</div>
+  )
+}
+
+export default ProductList
+
+
+
+*/

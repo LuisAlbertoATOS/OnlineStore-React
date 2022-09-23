@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
-import AdminNavbar from './AdminNavbar';
-import { useTable } from 'react-table';
+import React, { useMemo } from "react";
+import AdminNavbar from "./AdminNavbar";
+import { useTable } from "react-table";
 
 const Sales = () => {
   // const tableInstance = useTable({ columns, data });
@@ -12,28 +12,32 @@ const Sales = () => {
   const data = useMemo(
     () => [
       {
-        col1: 'Videogames',
-        col2: 'World',
-        col3: 'for col 3',
-        col5: '424',
+        col1: "Videogames",
+        col2: "Nintendo DS",
+        col3: "$ 30",
+        col4: "10",
+        col5: "$ 300",
       },
       {
-        col1: 'Audio',
-        col2: 'rocks',
-        col3: 'for col 3',
-        col5: '732',
+        col1: "Audio",
+        col2: "rocks",
+        col3: "for col 3",
+        col4: "10",
+        col5: "732",
       },
       {
-        col1: 'Computers',
-        col2: 'you want',
-        col3: 'for col 3',
-        col5: '3214',
+        col1: "Computers",
+        col2: "you want",
+        col3: "for col 3",
+        col4: "10",
+        col5: "3214",
       },
       {
-        col1: 'Periferals',
-        col2: 'you want',
-        col3: 'for col 3',
-        col5: '4224',
+        col1: "Periferals",
+        col2: "you want",
+        col3: "for col 3",
+        col4: "10",
+        col5: "4224",
       },
     ],
     []
@@ -42,24 +46,24 @@ const Sales = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: 'Category',
-        accessor: 'col1', // accessor is the "key" in the data
+        Header: "Category",
+        accessor: "col1", // accessor is the "key" in the data
       },
       {
-        Header: 'Column 2',
-        accessor: 'col2',
+        Header: "Product",
+        accessor: "col2",
       },
       {
-        Header: 'Column 3',
-        accessor: 'col3',
+        Header: "Price",
+        accessor: "col3",
       },
       {
-        Header: 'Column 4',
-        accessor: 'col4',
+        Header: "Units sold",
+        accessor: "col4",
       },
       {
-        Header: 'Total Sales',
-        accessor: 'col5',
+        Header: "Total Sales",
+        accessor: "col5",
       },
     ],
     []
@@ -91,7 +95,7 @@ const Sales = () => {
                       <th {...column.getHeaderProps()} className="py-3 px-6">
                         {
                           // Render the header
-                          column.render('Header')
+                          column.render("Header")
                         }
                       </th>
                     ))
@@ -124,7 +128,7 @@ const Sales = () => {
                           >
                             {
                               // Render the cell contents
-                              cell.render('Cell')
+                              cell.render("Cell")
                             }
                           </td>
                         );
