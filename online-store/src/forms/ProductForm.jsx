@@ -26,27 +26,22 @@ const schema = z.object({
     .refine((files) => files?.length === 1, "Image is required"),
 });
 
-const ProductForm = (props) => {
-  const isUpdate = props.action === "Update";
-  let product;
+const ProductForm = ({ action }) => {
   let { productId } = useParams();
-  if(isUpdate){
-    product = new ProductDataService().getProduct(productId);
-  }
-  console.log(product);
-
+  const [categories, setCategories] = useState(undefined);
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
   });
 
   function onSubmit(data) {
-    if (props.action.toLowerCase() === "new") {
+    if (action.toLowerCase() === "new") {
       new ProductDataService().addProduct(data);
     } else {
       new ProductDataService().updateProduct(productId, data);
@@ -55,14 +50,30 @@ const ProductForm = (props) => {
     reset();
   }
 
-  const [categories, setCategories] = useState([]);
+  async function fetchProduct() {
+    if (action === "Update") {
+      const { image, ...p } = await new ProductDataService().getProduct(
+        productId
+      );
+      console.log(p);
+      reset(p);
+    }
+  }
+
   useEffect(() => {
     getCategories();
   }, []);
 
+  useEffect(() => {
+    if (categories) {
+      console.log("fetching");
+      fetchProduct();
+    }
+  }, [categories]);
+
   const getCategories = async () => {
     const data = await new CategoryDataService().getAllCategories();
-    setCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    setCategories(data);
   };
 
   return (
@@ -74,7 +85,7 @@ const ProductForm = (props) => {
             onSubmit={handleSubmit(onSubmit)}
           >
             <h1 className="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-800 text-center">
-              {props.action} product
+              {action} product
             </h1>
             <InputText
               register={register}
@@ -82,7 +93,6 @@ const ProductForm = (props) => {
               label={"Product name:"}
               placeholder={"Type here"}
               error={errors.name}
-              value={isUpdate ? "NAME" : null}
             />
             <InputText
               register={register}
@@ -90,7 +100,6 @@ const ProductForm = (props) => {
               label={"Description:"}
               placeholder={"Type your description here"}
               error={errors.description}
-              value={isUpdate ? "DESCRIPTION" : null}
             />
 
             <InputNumber
@@ -99,7 +108,6 @@ const ProductForm = (props) => {
               label={"Price:"}
               placeholder={"$"}
               error={errors.price}
-              value={isUpdate ? 5000 : null}
             />
             <InputNumber
               register={register}
@@ -107,19 +115,22 @@ const ProductForm = (props) => {
               label={"Stock:"}
               placeholder={"0"}
               error={errors.stock}
-              value={isUpdate ? 5000 : null}
             />
             <InputSelect
               register={register}
               name="category"
               label={"Category:"}
               select={"a category"}
-              options={categories.map((category) => {
-                return { value: category.category, text: category.name };
-              })}
               error={errors.category}
-              value={isUpdate ? "videogames" : "computers"}
-            />
+            >
+              {categories?.map((category) => 
+                (
+                  <option key={category.category} value={category.category}>
+                    {category.name}
+                  </option>
+                )
+              )}
+            </InputSelect>
             <InputFile
               register={register}
               label={"Product image:"}
@@ -131,7 +142,7 @@ const ProductForm = (props) => {
                 type="submit"
                 className="w-full inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
               >
-                {props.action} product
+                {action} product
               </button>
             </div>
           </form>

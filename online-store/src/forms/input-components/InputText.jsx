@@ -7,6 +7,7 @@ const InputText = ({ label, placeholder, register, name, error, value }) => {
       <label className="w-1/3 self-center text-left">{label}</label>
       <div className="flex flex-col w-full items-start">
         <input
+          defaultValue={value}
           {...register(name)}
           type="text"
           className="
@@ -28,7 +29,6 @@ const InputText = ({ label, placeholder, register, name, error, value }) => {
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             "
           placeholder={placeholder}
-          value={value}
         />
         {error && <Errors message={error.message}/>}
       </div>

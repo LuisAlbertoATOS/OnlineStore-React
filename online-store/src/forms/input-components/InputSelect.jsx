@@ -4,7 +4,7 @@ import Errors from "../../components/Errors";
 const InputSelect = ({
   label,
   select,
-  options,
+  children,
   register,
   name,
   error,
@@ -36,13 +36,7 @@ const InputSelect = ({
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             "
         >
-          {options.map((category, index) => {
-            return (
-              <option key={index} value={category.category}>
-                {category.text}
-              </option>
-            );
-          })}
+          {children}
         </select>
         {error && <Errors message={error.message}/>}
       </div>

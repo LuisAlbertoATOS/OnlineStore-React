@@ -29,7 +29,7 @@ const Products = () => {
       </Link>
       <section className="flex flex-row flex-wrap justify-center">
         {products.map((product) => {
-          return <AdminProductCard product={product} />;
+          return <AdminProductCard key={product.id} product={product} />;
         })}
       </section>
     </div>
