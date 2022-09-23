@@ -46,7 +46,6 @@ const SignInForm = () => {
           setLoginEmail('')
           setLoginPassword('')
           navigate('/admin-dashboard')
-          onAuthStateChanged(auth)
         }, 2000)
       }
       ).catch((error) =>{
