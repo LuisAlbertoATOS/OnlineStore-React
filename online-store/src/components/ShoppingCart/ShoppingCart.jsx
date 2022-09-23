@@ -6,26 +6,25 @@ import { ProductDataService } from "../../services/product.services";
 import Navbar from "../Navbar";
 import SuccessfullPurchase from "./SuccessfullPurchase";
 
-
 const ShoppingCart = () => {
   const dummyCart = [
     { productId: "voT5CRgqkQFizydvnhn9", quantity: 3 },
     { productId: "qVYMv7Nig6LnEQtNMU9w", quantity: 2 },
-    { productId: "nIkbkL0aFqdq0xi9PvWl", quantity: 5 },
+    { productId: "nIkbkL0aFqdq0xi9PvWl", quantity: 1 },
   ];
   
   const [items, setItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-
+  
   async function fetchProduct(productId, index) {
     await new ProductDataService()
-      .getProduct(productId)
-      .then((result) => {
-        setTotalPrice(totalPrice + (result.price * dummyCart[index].quantity));
-        setItems((items) => items.concat(result));
-      });
+    .getProduct(productId)
+    .then((result) => {
+      setItems((items) => items.concat(result));
+      setTotalPrice((totalPrice) => totalPrice + (result.price * dummyCart[index].quantity));
+    });
   }
-
+  
   useEffect(() => {
     return () => {
       dummyCart.map((cartItem, index) => {
