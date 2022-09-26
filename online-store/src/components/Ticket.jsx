@@ -64,6 +64,13 @@ const Ticket = () => {
         <Navbar />
         <SuccessfullPurchase />
 
+        {/* <Link
+          to={'/'}
+          className="block bg-blue-600 py-4 px-4 w-96 m-auto text-blue-200 text-center hover:scale-105 rounded shadow-lg uppercase  mt-6 hover:bg-blue-700 hover:text-white duration-300 ease-in-out"
+        >
+          Return to Home
+        </Link> */}
+
         <article className="flex bg-gray-100 text-gray-600 pt-10 pb-10 px-4">
           <div className="grow justify-center h-full ">
             {/* <!-- Table --> */}
@@ -138,7 +145,8 @@ const Ticket = () => {
               </div>
             </div>
           </div>
-          {/* classes deleted py-10 */}
+
+          {/*---------------------------------- SHIPPING INFO ---------------------------------- */}
           <article className="container mx-auto flex-1 justify-center">
             <div className="bg-white w-80 shadow-lg rounded  hover:scale-105 duration-300 ease-in-out">
               <header className="px-5 py-4 border-b border-gray-100">
@@ -150,7 +158,7 @@ const Ticket = () => {
                 <img
                   src="https://i.imgur.com/gcWnDPv.png"
                   alt="mailbox"
-                  className="rounded-t"
+                  className="rounded-t w-3/5 m-auto"
                 />
               </div>
               <div className="p-4">
@@ -163,19 +171,57 @@ const Ticket = () => {
         </article>
 
         {/* Button above or below */}
-        {/* <Link
-          to={'/'}
-          className="block bg-blue-600 py-4 px-4 w-96 m-auto text-blue-200 text-center rounded shadow-lg uppercase  mt-6 hover:bg-blue-800 hover:text-white duration-300 ease-in-out"
-        >
-          Return to Home
-        </Link> */}
         <Link
           to={'/'}
-          className="block bg-blue-600 py-4 px-4 w-96 m-auto text-blue-200 text-center rounded shadow-lg uppercase  mt-6 hover:bg-blue-800 hover:text-white duration-300 ease-in-out"
+          className="block bg-blue-600 py-4 px-4 w-96 m-auto text-blue-200 text-center hover:scale-105 rounded shadow-lg uppercase  mt-6 hover:bg-blue-700 hover:text-white duration-300 ease-in-out"
         >
           Return to Home
         </Link>
       </section>
+
+      {/*---------------------------------- Footer ---------------------------------- */}
+      {/* Maybe add the footer later bc well it's not thaat obligatory but looks profreshional */}
+      <footer class="p-4 bg-white shadow md:px-6 md:py-8 dark:bg-blue-900">
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <Link to={'#'} class="flex items-center mb-4 sm:mb-0">
+            <img
+              className="h-16 px-6 py-2"
+              alt="Logo"
+              src="https://i.postimg.cc/FHrrsgPv/logo.png"
+            />
+          </Link>
+          <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-200 sm:mb-0 dark:text-gray-100">
+            <li>
+              <Link to={'#'} class="mr-4 hover:underline md:mr-6 ">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link to={'#'} class="mr-4 hover:underline md:mr-6">
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link to={'#'} class="mr-4 hover:underline md:mr-6 ">
+                Licensing
+              </Link>
+            </li>
+            <li>
+              <Link to={'#'} class="hover:underline">
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <hr class="my-6  border-gray-200 sm:mx-auto dark:border-gray-100 lg:my-4" />
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-200">
+          © 2022{' '}
+          <a href="https://flowbite.com/" class="hover:underline">
+            BestTech™
+          </a>
+          . <p className="p-1">All Rights Reserved.</p>
+        </span>
+      </footer>
     </>
   );
 };
