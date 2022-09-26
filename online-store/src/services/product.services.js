@@ -29,11 +29,22 @@ export class ProductDataService {
 
   updateProduct = async (id, updatedProduct) => {
     const productDoc = doc(db, "products", id);
+    console.log("4");
     const { image, ...rest } = updatedProduct;
-    const downloadUrl = await this.uploadAndGetDownloadUrl(
-      image[0],
-      `${PRODUCT_IMAGES_DIR}/${image[0].lastModified}`
-    );
+    console.log("5");
+    let downloadUrl = '';
+    if(image){
+        downloadUrl = await this.uploadAndGetDownloadUrl(
+        image[0],
+        `${PRODUCT_IMAGES_DIR}/${image[0].lastModified}`
+      );
+    } else{
+      const p = await this.getProduct(id);
+      const downloadUrl = p.image;
+    }
+    // const p = await new ProductDataService().getProduct(productId);
+    console.log("6");
+    console.log(downloadUrl);
     return updateDoc(productDoc, { ...rest, image: downloadUrl });
   };
 

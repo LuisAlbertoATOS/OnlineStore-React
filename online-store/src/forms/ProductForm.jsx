@@ -10,7 +10,23 @@ import InputNumber from "./input-components/InputNumber";
 import InputSelect from "./input-components/InputSelect";
 import InputText from "./input-components/InputText";
 
-const schema = z.object({
+// const schema = z.object({
+//   name: z.string().min(5),
+//   description: z.string().min(10),
+//   price: z.number().positive(),
+//   stock: z.number().nonnegative(),
+//   category: z.string(),
+//   // category: z.enum(categories.map((c)=>{return c.category}), {
+//   //   errorMap: (issue, ctx) => {
+//   //     return { message: "Please select a valid option" };
+//   //   },
+//   // }),
+//   image: z
+//     .instanceof(FileList)
+//     .refine((files) => files?.length === 1, "Image is required"),
+// });
+
+const updateSchema = z.object({
   name: z.string().min(5),
   description: z.string().min(10),
   price: z.number().positive(),
@@ -21,12 +37,11 @@ const schema = z.object({
   //     return { message: "Please select a valid option" };
   //   },
   // }),
-  image: z
-    .instanceof(FileList)
-    .refine((files) => files?.length === 1, "Image is required"),
+  image: z.optional(),
 });
 
 const ProductForm = ({ action }) => {
+
   let { productId } = useParams();
   const [categories, setCategories] = useState(undefined);
   const navigate = useNavigate();
@@ -37,14 +52,19 @@ const ProductForm = ({ action }) => {
     setValue,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(
+      action.toLowerCase() === "update" ? this.updateSchema : this.updateSchema
+    ),
   });
 
   function onSubmit(data) {
+    console.log("3");
     if (action.toLowerCase() === "new") {
       new ProductDataService().addProduct(data);
     } else {
+      console.log("1");
       new ProductDataService().updateProduct(productId, data);
+      console.log("2");
     }
     navigate("/admin-dashboard/products");
     reset();
@@ -55,7 +75,6 @@ const ProductForm = ({ action }) => {
       const { image, ...p } = await new ProductDataService().getProduct(
         productId
       );
-      console.log(p);
       reset(p);
     }
   }
@@ -123,20 +142,20 @@ const ProductForm = ({ action }) => {
               select={"a category"}
               error={errors.category}
             >
-              {categories?.map((category) => 
-                (
-                  <option key={category.category} value={category.category}>
-                    {category.name}
-                  </option>
-                )
-              )}
+              {categories?.map((category) => (
+                <option key={category.category} value={category.category}>
+                  {category.name}
+                </option>
+              ))}
             </InputSelect>
+            {/* {action.toLowerCase() === "new" && ( */}
             <InputFile
               register={register}
               label={"Product image:"}
               name="image"
               error={errors.image}
             />
+            {/* )} */}
             <div className="flex space-x-2 justify-center my-1.5">
               <button
                 type="submit"

@@ -10,7 +10,6 @@ const ProductDetails = (props) => {
   async function fetchProduct() {
     const p = await new ProductDataService().getProduct(productId);
     setProduct(p);
-
   }
 
   useEffect(() => {
