@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import SuccessfullPurchase from './ShoppingCart/SuccessfullPurchase';
 import { useTable } from 'react-table';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCartShopping,
+  faBoxesPacking,
+} from '@fortawesome/free-solid-svg-icons';
 
 const Ticket = () => {
   const data = useMemo(
@@ -60,7 +65,7 @@ const Ticket = () => {
 
   return (
     <>
-      <section className="bg-gray-100 h-screen	">
+      <section className="bg-gray-100 	">
         <Navbar />
         <SuccessfullPurchase />
 
@@ -71,14 +76,18 @@ const Ticket = () => {
           Return to Home
         </Link> */}
 
-        <article className="flex bg-gray-100 text-gray-600 pt-10 pb-10 px-4">
-          <div className="grow justify-center h-full ">
+        <article className="flex bg-gray-100 text-gray-600 pt-10 pb-10 px-4 flex-col sm:flex-row">
+          <div className="grow justify-center h-full mx-3">
             {/* <!-- Table --> */}
             <div className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded  hover:scale-105 duration-300 ease-in-out">
               <header className="px-5 py-4 border-b border-gray-100">
-                <div className="font-semibold text-3xl text-gray-800">
-                  Cart Summary 🛒
-                </div>
+                <p className="font-semibold text-3xl text-gray-800">
+                  Cart Summary
+                  <FontAwesomeIcon
+                    icon={faCartShopping}
+                    className="px-2   text-yellow-500"
+                  />
+                </p>
               </header>
               <div className="overflow-x-auto p-3">
                 <table {...getTableProps()} className="table-auto w-full">
@@ -139,19 +148,24 @@ const Ticket = () => {
                 </table>
               </div>
               {/*  total amount  */}
-              <div className="flex justify-center font-bold space-x-4 text-2xl border-t border-gray-100 px-5 py-4">
+              <div className="flex justify-center font-bold text-2xl border-t border-gray-100 px-5 py-4">
                 <p>Total $</p>
-                <p className="text-green-600 p-0 m-0">{a + b}</p>
+                {/* This is dummy content */}
+                <p className="text-green-600 pl-1">{a + b}</p>
               </div>
             </div>
           </div>
 
           {/*---------------------------------- SHIPPING INFO ---------------------------------- */}
-          <article className="container mx-auto flex-1 justify-center">
+          <article className="container mt-8 flex-1 flex justify-center sm:mx-auto sm:mt-0">
             <div className="bg-white w-80 shadow-lg rounded  hover:scale-105 duration-300 ease-in-out">
               <header className="px-5 py-4 border-b border-gray-100">
                 <div className="font-semibold text-3xl text-gray-800">
-                  Shipping Info 📦
+                  Shipping Info
+                  <FontAwesomeIcon
+                    icon={faBoxesPacking}
+                    className="px-2 align-middle text-yellow-500"
+                  />
                 </div>
               </header>
               <div>
@@ -173,7 +187,7 @@ const Ticket = () => {
         {/* Button above or below */}
         <Link
           to={'/'}
-          className="block bg-blue-600 py-4 px-4 w-96 m-auto text-blue-200 text-center hover:scale-105 rounded shadow-lg uppercase  mt-6 hover:bg-blue-700 hover:text-white duration-300 ease-in-out"
+          className="block bg-blue-600 py-4 px-4 w-96 m-auto text-blue-200 text-center hover:scale-105 rounded shadow-lg uppercase  mt-6 mb-20 hover:bg-blue-700 hover:text-white duration-300 ease-in-out"
         >
           Return to Home
         </Link>
@@ -181,42 +195,42 @@ const Ticket = () => {
 
       {/*---------------------------------- Footer ---------------------------------- */}
       {/* Maybe add the footer later bc well it's not thaat obligatory but looks profreshional */}
-      <footer class="p-4 bg-white shadow md:px-6 md:py-8 dark:bg-blue-900">
-        <div class="sm:flex sm:items-center sm:justify-between">
-          <Link to={'#'} class="flex items-center mb-4 sm:mb-0">
+      <footer className="p-4 bg-white shadow md:px-6 md:py-8 dark:bg-blue-800 ">
+        <div className="m-auto w-1/2 sm:m-auto sm:w-auto  sm:flex sm:items-center sm:justify-between">
+          <Link to={'#'} className="flex items-center mb-4 sm:mb-0">
             <img
               className="h-16 px-6 py-2"
               alt="Logo"
               src="https://i.postimg.cc/FHrrsgPv/logo.png"
             />
           </Link>
-          <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-200 sm:mb-0 dark:text-gray-100">
+          <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-200 sm:mb-0 dark:text-gray-100">
             <li>
-              <Link to={'#'} class="mr-4 hover:underline md:mr-6 ">
+              <Link to={'#'} className="mr-4 hover:underline md:mr-6 ">
                 About
               </Link>
             </li>
             <li>
-              <Link to={'#'} class="mr-4 hover:underline md:mr-6">
+              <Link to={'#'} className="mr-4 hover:underline md:mr-6">
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link to={'#'} class="mr-4 hover:underline md:mr-6 ">
+              <Link to={'#'} className="mr-4 hover:underline md:mr-6 ">
                 Licensing
               </Link>
             </li>
             <li>
-              <Link to={'#'} class="hover:underline">
+              <Link to={'#'} className="hover:underline">
                 Contact
               </Link>
             </li>
           </ul>
         </div>
-        <hr class="my-6  border-gray-200 sm:mx-auto dark:border-gray-100 lg:my-4" />
-        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-200">
+        <hr className="my-6  border-gray-200 sm:mx-auto dark:border-gray-100 lg:my-4" />
+        <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-200">
           © 2022{' '}
-          <a href="https://flowbite.com/" class="hover:underline">
+          <a href="https://flowbite.com/" className="hover:underline">
             BestTech™
           </a>
           . <p className="p-1">All Rights Reserved.</p>
