@@ -230,9 +230,9 @@ const Ticket = () => {
         <hr className="my-6  border-gray-200 sm:mx-auto dark:border-gray-100 lg:my-4" />
         <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-200">
           © 2022{' '}
-          <a href="https://flowbite.com/" className="hover:underline">
+          <Link to={'#'} className="hover:underline">
             BestTech™
-          </a>
+          </Link>
           . <p className="p-1">All Rights Reserved.</p>
         </span>
       </footer>
