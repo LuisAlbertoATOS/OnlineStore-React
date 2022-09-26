@@ -25,6 +25,17 @@ export class ProductDataService {
     const productDoc = doc(db, "products", id);
     return updateDoc(productDoc, updatedProduct);
   };
+  
+  updateStocks =  (purchasedCart)  => {
+    purchasedCart.map(async(item)=>{
+      const productDoc = doc(db, "products", item.productId);
+
+      const updatedProduct = await new ProductDataService().getProduct(item.productId);
+      updatedProduct.stock -= item.quantity;
+
+      return updateDoc(productDoc, updatedProduct);
+    })
+  };
 
   getAllProducts = () => {
     return getDocs(productCollectionRef);

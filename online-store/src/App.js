@@ -34,7 +34,7 @@ function App() {
         <Route path="/sign-in" element={<SignInForm />} />
         <Route path="/shopping-cart/*" element={<ShoppingCart />} />
         <Route path="/shopping-cart/user-form" element={<UserInfoForm />} />
-        <Route path="/successfullPurchase" element={<SuccessfullPurchase />} />
+        <Route path="/successfull-purchase" element={<SuccessfullPurchase />} />
 
         {/* Routes below this comment doesn't work right now */}
         {/* Admin */}
