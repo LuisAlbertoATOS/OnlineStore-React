@@ -3,18 +3,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Route, Routes, Link, Navigate, useNavigate } from "react-router-dom";
 import { ProductDataService } from "../../services/product.services";
+import { useShoppingCartContext } from "../contexts/ShoppingCartContext";
 import Navbar from "../Navbar";
-import SuccessfullPurchase from "./SuccessfullPurchase";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
-  const dummyCart = [
-    { productId: "voT5CRgqkQFizydvnhn9", quantity: 3 },
-    { productId: "qVYMv7Nig6LnEQtNMU9w", quantity: 2 },
-    { productId: "nIkbkL0aFqdq0xi9PvWl", quantity: 1 },
-  ];
+  const { shoppingCartContext, removeFromShoppingCart } = useShoppingCartContext();
 
-  const [shoppingCart, setShoppingCart] = useState(dummyCart);
+  const [shoppingCart, setShoppingCart] = useState(shoppingCartContext);
   const [items, setItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -37,8 +33,9 @@ const ShoppingCart = () => {
 
   const deleteItem = (productId) => {
     return () => {
+      removeFromShoppingCart(productId)
+      // console.log(productId);
 
-      console.log(productId);
       // const newShoppingCart = shoppingCart.filter((item) => {
       //   return item.productId != productId;
       // })
