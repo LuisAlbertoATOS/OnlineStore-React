@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { ProductDataService } from '../../services/product.services';
-import Navbar from '../Navbar';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { ProductDataService } from "../../services/product.services";
+import Navbar from "../Navbar";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
@@ -15,7 +15,7 @@ const ProductDetails = () => {
   useEffect(() => {
     fetchProduct();
   }, []);
-  
+
   console.log(product);
 
   return (
@@ -37,16 +37,31 @@ const ProductDetails = () => {
                 {product?.name}
               </h1>
               <p className="leading-relaxed">{product?.description}</p>
-              <p className=" font-bold text-blue-500 mt-3 ">Stock: {product?.stock}</p>
+              <p className=" font-bold text-blue-500 mt-3 ">
+                Stock: {product?.stock}
+              </p>
               <div className="flex items-center pb-5 border-b-2 border-gray-200 mb-5"></div>
-              <div className="flex">
-                <span className="title-font font-medium text-2xl text-green-500">
-                  ${product?.price}
-                </span>
-                <button className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">
-                  Add to cart
-                </button>
-              </div>
+              {product?.stock !== 0 && (
+                <div className="flex">
+                  <span className="title-font font-medium text-2xl text-green-500">
+                    ${product?.price}
+                  </span>
+                  <button className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">
+                    Add to cart
+                  </button>
+                </div>
+              )}
+              {product?.stock === 0 && (
+                <div className="flex">
+                  <span className="title-font font-medium text-2xl text-red-700">
+                    Not available
+                  </span>
+                  {/* <button className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"> */}
+                  <button className="disabed flex ml-auto text-white bg-blue-200 border-0 py-2 px-6 focus:outline-none hover:bg-blue-300 rounded">
+                    Add to cart
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
