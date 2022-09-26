@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="mGXaE7WQqmvvN6tOJ2US" name="Page-1">
-        <mxGraphModel dx="778" dy="398" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="339" dy="125" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -296,7 +296,7 @@
                         <mxPoint x="1180" y="875" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="121" value="Sales&lt;br&gt;&lt;br&gt;saleId: string&lt;br&gt;user: User&lt;br&gt;products[]: Product&lt;br&gt;totalPrice: number&lt;br&gt;date: timestamp" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#660033;" parent="1" vertex="1">
+                <mxCell id="121" value="Sales&lt;br&gt;&lt;br&gt;saleId: string&lt;br&gt;user: User&lt;br&gt;products[]: Product&lt;br&gt;date: timestamp" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#660033;" parent="1" vertex="1">
                     <mxGeometry x="970" y="790" width="160" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="123" value="User&lt;br&gt;&lt;br&gt;userId: string&lt;br&gt;name: string&lt;br&gt;email: string&lt;br&gt;address: string" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#660033;" parent="1" vertex="1">
