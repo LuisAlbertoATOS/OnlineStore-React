@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link, Navigate, useNavigate } from "react-router-dom";
 import { ProductDataService } from "../../services/product.services";
 import Navbar from "../Navbar";
 import SuccessfullPurchase from "./SuccessfullPurchase";
 
 const ShoppingCart = () => {
+  const navigate = useNavigate();
   const dummyCart = [
     { productId: "voT5CRgqkQFizydvnhn9", quantity: 3 },
     { productId: "qVYMv7Nig6LnEQtNMU9w", quantity: 2 },
@@ -45,6 +46,14 @@ const ShoppingCart = () => {
       //   return item.productId !== productId;
       // }));
       // console.log(shoppingCart);
+    }
+  }
+
+  const doCheckout = () => {
+    if(shoppingCart.length > 0){
+      navigate('user-form'); 
+    } else {
+      console.log("You need items in your cart to do checkout");
     }
   }
 
@@ -141,7 +150,7 @@ const ShoppingCart = () => {
                 <span>Total cost</span>
                 <span>${+totalPrice + 10}</span>
               </div>
-              <button className="bg-blue-900 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
+              <button onClick={doCheckout} className="bg-blue-900 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
                 Checkout
               </button>
             </div>

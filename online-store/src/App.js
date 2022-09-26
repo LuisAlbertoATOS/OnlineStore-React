@@ -35,6 +35,7 @@ function App() {
 
         <Route path="/sign-in" element={<SignInForm />} />
         <Route path="/shopping-cart/*" element={<ShoppingCart />} />
+        <Route path="/shopping-cart/user-form" element={<UserInfoForm />} />
 
         {/* Routes below this comment doesn't work right now */}
         {/* Admin */}
@@ -51,7 +52,6 @@ function App() {
         {/* Change later the id or name */}
 
         {/* Forms */}
-        <Route path="/user-form" element={<UserInfoForm />} />
       </Routes>
     </section>
     // </ShoppingCartContext.Provider>
