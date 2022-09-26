@@ -29,7 +29,9 @@ const Products = () => {
       </Link>
       <section className="flex flex-row flex-wrap justify-center">
         {products.map((product) => {
-          return <AdminProductCard product={product} />;
+          if(!product.deleted){
+            return <AdminProductCard product={product} />;
+          }
         })}
       </section>
     </div>

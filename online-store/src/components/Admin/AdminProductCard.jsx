@@ -2,8 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { ProductDataService } from "../../services/product.services";
 
 const AdminProductCard = (props) => {
+
+  const handleLogicalDelete = async () => {
+    if (window.confirm('Are you sure you want to delete this product?')) {
+      await new ProductDataService().logicalDelete(props.product.id);
+    } 
+  }
+
   return (
     <section className="h-[32rem] my-4 mx-1">
       <div className="h-full flex justify-center w-[90%]">
@@ -57,7 +65,7 @@ const AdminProductCard = (props) => {
               <Link to={`edit-product/${props.product.id}`}>
                 <FontAwesomeIcon icon={faPenToSquare} className="px-5 fa-2xl" />
               </Link>
-              <FontAwesomeIcon icon={faTrash} className="px-5 fa-2xl" />
+              <FontAwesomeIcon icon={faTrash} className="px-5 fa-2xl" onClick={handleLogicalDelete}/>
             </section>
           </div>
         </div>
