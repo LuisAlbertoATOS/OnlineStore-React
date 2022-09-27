@@ -33,162 +33,82 @@ const Sales = () => {
       totalSales: 0,
     }));
     setProductsData(mappedProducts);
-    
+
     const salesPromise = await new SalesDataService().getAllSales();
     const mappedSales = salesPromise.docs.map((doc) => ({
-      products : doc.data().products,
+      products: doc.data().products,
       id: doc.id,
     }));
     setSales(mappedSales);
 
-    mappedSales.map((sale)=>{
-      sale.products.map((product)=>{
-        
-        productsData.find((o, i) => {
+    mappedSales.map((sale) => {
+      sale.products.map((product) => {
+        mappedProducts.find((o, i) => {
           if (o.id === product.productId) {
-              productsData[i].soldUnits += product.quantity;
-              productsData[i].totalSales += o.price;
+            mappedProducts[i].soldUnits += product.quantity;
+            mappedProducts[i].totalSales += o.price;
           }
-      });
+        });
 
         console.log(product.quantity, product.productId);
-      })
-    })
+      });
+    });
+    setProductsData(mappedProducts);
 
     console.log(productsData);
     console.log(sales);
-
   };
 
-  const data = useMemo(
-    () => [
-      {
-        col1: "Videogames",
-        col2: "Nintendo DS",
-        col3: "$ 30",
-        col4: "10",
-        col5: "$ 300",
-      },
-      {
-        col1: "Audio",
-        col2: "rocks",
-        col3: "for col 3",
-        col4: "10",
-        col5: "732",
-      },
-      {
-        col1: "Computers",
-        col2: "you want",
-        col3: "for col 3",
-        col4: "10",
-        col5: "3214",
-      },
-      {
-        col1: "Periferals",
-        col2: "you want",
-        col3: "for col 3",
-        col4: "10",
-        col5: "4224",
-      },
-    ],
-    []
-  );
-
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Category",
-        accessor: "category", // accessor is the "key" in the data
-      },
-      {
-        Header: "Product",
-        accessor: "name",
-      },
-      {
-        Header: "Price",
-        accessor: "price",
-      },
-      {
-        Header: "Units sold",
-        accessor: "soldUnits",
-      },
-      {
-        Header: "Total Sales",
-        accessor: "totalSales",
-      },
-    ],
-    []
-  );
-
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, productsData });
+  const columns = [
+    {
+      Header: "Category",
+      accessor: "category",
+    },
+    {
+      Header: "Product",
+      accessor: "name",
+    },
+    {
+      Header: "Price",
+      accessor: "price",
+    },
+    {
+      Header: "Units sold",
+      accessor: "soldUnits",
+    },
+    {
+      Header: "Total Sales",
+      accessor: "totalSales",
+    },
+  ];
 
   return (
     <>
       <AdminNavbar />
       <h2 className="font-bold text-3xl m-4">Sales</h2>
-      {/* // apply the table props */}
       <section className="w-11/12 m-0 mb-0 mx-auto my-auto">
-        <table
-          {...getTableProps()}
-          className="w-full text-sm text-left text-blue-400 dark:text-blue-200  "
-        >
-          <thead className="text-xs text-blue-700 uppercase bg-blue-50 dark:bg-blue-700 dark:text-blue-100 text-center">
-            {
-              // Loop over the header rows
-              headerGroups.map((headerGroup) => (
-                // Apply the header row props
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {
-                    // Loop over the headers in each row
-                    headerGroup.headers.map((column) => (
-                      // Apply the header cell props
-                      <th {...column.getHeaderProps()} className="py-3 px-6">
-                        {
-                          // Render the header
-                          column.render("Header")
-                        }
-                      </th>
-                    ))
-                  }
-                </tr>
-              ))
-            }
+        <table className="w-full text-sm text-left text-blue-400 dark:text-blue-200">
+          <thead className="text-xs text-blue-700 uppercase bg-blue-50 dark:bg-blue-700 dark:text-blue-100 text-center py-2">
+            <tr className="py-2">
+              {columns.map((column) => {
+                return <th className="py-2 px-2">{column.Header}</th>;
+              })}
+            </tr>
           </thead>
-          {/* Apply the table body props */}
-          <tbody {...getTableBodyProps()}>
-            {
-              // Loop over the table rows
-              rows.map((row) => {
-                // Prepare the row for display
-                prepareRow(row);
-                return (
-                  // Apply the row props
-                  <tr
-                    {...row.getRowProps()}
-                    className="bg-white border-b dark:bg-blue-900 dark:border-blue-700"
-                  >
-                    {
-                      // Loop over the rows cells
-                      row.cells.map((cell) => {
-                        // Apply the cell props
-                        return (
-                          <td
-                            {...cell.getCellProps()}
-                            className="py-4 px-6 text-center"
-                          >
-                            {
-                              // Render the cell contents
-                              cell.render("Cell")
-                            }
-                          </td>
-                        );
-                      })
-                    }
-                  </tr>
-                );
-              })
-            }
+          <tbody>
+            {productsData.map((product) => {
+              return (
+                <tr className="bg-white border-b dark:bg-blue-900 dark:border-blue-700">
+                  <td className="py-4 px-6 text-center capitalize">{product.category}</td>
+                  <td className="py-4 px-6 text-center">{product.name}</td>
+                  <td className="py-4 px-6 text-center">${product.price}</td>
+                  <td className="py-4 px-6 text-center">{product.soldUnits}</td>
+                  <td className="py-4 px-6 text-center">
+                    ${product.soldUnits * product.price}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </section>
