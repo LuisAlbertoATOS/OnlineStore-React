@@ -4,21 +4,22 @@ export const ShoppingCartContext = React.createContext({});
 export const useShoppingCartContext = () => useContext(ShoppingCartContext);
 
 export const ShoppingCartProvider = ({ children }) => {
-  const [shoppingCartContext, setShoppingCart] = useState([]);
+  const [shoppingCartContext, setShoppingCartContext] = useState([]);
 
   const addToShoppingCart = (productId, quantity) => {
-    setShoppingCart((shoppingCart) =>
+    setShoppingCartContext((shoppingCart) =>
       shoppingCart.concat({ productId: productId, quantity: quantity })
     );
   };
 
   const removeFromShoppingCart = (productId) => {
-    setShoppingCart(shoppingCartContext.filter(items => items.productId !== productId));
+    // setShoppingCartContext(shoppingCartContext.filter(items => items.productId !== productId));
+  
   };
 
   return (
     <ShoppingCartContext.Provider
-      value={{ shoppingCartContext, addToShoppingCart, removeFromShoppingCart }}
+      value={{ shoppingCartContext, addToShoppingCart, removeFromShoppingCart, setShoppingCartContext }}
     >
       {children}
     </ShoppingCartContext.Provider>
