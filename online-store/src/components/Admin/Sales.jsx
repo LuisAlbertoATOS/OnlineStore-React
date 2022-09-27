@@ -1,6 +1,9 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import AdminNavbar from "./AdminNavbar";
 import { useTable } from "react-table";
+
+import { SalesDataService } from "../../services/sales.services";
+import { ProductDataService } from "../../services/product.services";
 
 const Sales = () => {
   // const tableInstance = useTable({ columns, data });
@@ -9,6 +12,54 @@ const Sales = () => {
    * In the docs
    * Using React.useMemo here to ensure that our data isn't recreated on every render. If we didn't use React.useMemo, the table    would think it was receiving new data on every render and attempt to recalculate a lot of logic every single time.
    */
+
+  const [sales, setSales] = useState([]);
+  const [productsData, setProductsData] = useState([]);
+
+  useEffect(() => {
+    getSalesAndProducts();
+    console.log(sales);
+    console.log(productsData);
+  }, []);
+
+  const getSalesAndProducts = async () => {
+    const productsPromise = await new ProductDataService().getAllProducts();
+    const mappedProducts = productsPromise.docs.map((doc) => ({
+      id: doc.id,
+      category: doc.data().category,
+      name: doc.data().name,
+      price: doc.data().price,
+      soldUnits: 0,
+      totalSales: 0,
+    }));
+    setProductsData(mappedProducts);
+    
+    const salesPromise = await new SalesDataService().getAllSales();
+    const mappedSales = salesPromise.docs.map((doc) => ({
+      products : doc.data().products,
+      id: doc.id,
+    }));
+    setSales(mappedSales);
+
+    mappedSales.map((sale)=>{
+      sale.products.map((product)=>{
+        
+        productsData.find((o, i) => {
+          if (o.id === product.productId) {
+              productsData[i].soldUnits += product.quantity;
+              productsData[i].totalSales += o.price;
+          }
+      });
+
+        console.log(product.quantity, product.productId);
+      })
+    })
+
+    console.log(productsData);
+    console.log(sales);
+
+  };
+
   const data = useMemo(
     () => [
       {
@@ -47,30 +98,30 @@ const Sales = () => {
     () => [
       {
         Header: "Category",
-        accessor: "col1", // accessor is the "key" in the data
+        accessor: "category", // accessor is the "key" in the data
       },
       {
         Header: "Product",
-        accessor: "col2",
+        accessor: "name",
       },
       {
         Header: "Price",
-        accessor: "col3",
+        accessor: "price",
       },
       {
         Header: "Units sold",
-        accessor: "col4",
+        accessor: "soldUnits",
       },
       {
         Header: "Total Sales",
-        accessor: "col5",
+        accessor: "totalSales",
       },
     ],
     []
   );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+    useTable({ columns, productsData });
 
   return (
     <>
