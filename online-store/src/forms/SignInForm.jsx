@@ -51,9 +51,15 @@ const SignInForm = () => {
       ).catch((error) =>{
         if(error.message === 'Firebase: Error (auth/user-not-found).'){
           setErrorMessage('User not found')
+          setTimeout(() => {
+            setErrorMessage('')
+          }, 2000);
         }
         if( error.message === 'Firebase: Error (auth/wrong-password).'){
           setErrorMessage('Wrong password')
+          setTimeout(() => {
+            setErrorMessage('')
+          }, 2000);
         }
       })
       
