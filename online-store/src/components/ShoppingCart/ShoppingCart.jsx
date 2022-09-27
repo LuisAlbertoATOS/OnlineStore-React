@@ -15,18 +15,21 @@ const ShoppingCart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   async function fetchProduct(productId, index) {
+   
     await new ProductDataService().getProduct(productId).then((result) => {
       setItems((items) => items.concat(result));
       setTotalPrice(
         (totalPrice) => totalPrice + result.price * shoppingCart[index].quantity
       );
     });
+   
   }
 
   useEffect(() => {
     return () => {
       shoppingCart.map((cartItem, index) => {
         fetchProduct(cartItem.productId, index);
+      
       });
     };
   }, []);
@@ -34,8 +37,8 @@ const ShoppingCart = () => {
   const deleteItem = (productId) => {
     return () => {
       removeFromShoppingCart(productId)
-      // console.log(productId);
-
+      console.log(productId);
+      setShoppingCart()
       // const newShoppingCart = shoppingCart.filter((item) => {
       //   return item.productId != productId;
       // })
@@ -90,12 +93,12 @@ const ShoppingCart = () => {
                       </div>
                       <div className="flex flex-col justify-between ml-4 flex-grow">
                         <span className="font-bold text-sm">{item?.name}</span>
-                        <p
+                        <button
                           onClick={deleteItem(shoppingCart[index].productId)}
                           className="font-semibold hover:text-red-500 text-gray-500 text-xs"
                         >
                           Remove
-                        </p>
+                        </button>
                       </div>
                     </div>
                     <span className="text-center w-1/5 font-semibold text-sm">

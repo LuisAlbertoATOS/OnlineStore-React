@@ -13,11 +13,7 @@ export const ShoppingCartProvider = ({ children }) => {
   };
 
   const removeFromShoppingCart = (productId) => {
-    // setShoppingCart((shoppingCart) =>
-    //   shoppingCart.map((item) => {
-    //     return item.productId !== productId;
-    //   })
-    // );
+    setShoppingCart(shoppingCartContext.filter(items => items.productId !== productId));
   };
 
   return (
