@@ -1,61 +1,58 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Route, Routes, Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ProductDataService } from "../../services/product.services";
 import { useShoppingCartContext } from "../contexts/ShoppingCartContext";
 import Navbar from "../Navbar";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
-  const { shoppingCartContext, removeFromShoppingCart } = useShoppingCartContext();
+  const { shoppingCartContext, removeFromShoppingCart } =
+    useShoppingCartContext();
 
-  const [shoppingCart, setShoppingCart] = useState(shoppingCartContext);
   const [items, setItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [deleteSensor, setDeleteSensor] = useState(false);
 
   async function fetchProduct(productId, index) {
-   
     await new ProductDataService().getProduct(productId).then((result) => {
+      result.productId = productId;
+      result.quantity = shoppingCartContext[index].quantity;
       setItems((items) => items.concat(result));
       setTotalPrice(
-        (totalPrice) => totalPrice + result.price * shoppingCart[index].quantity
+        (totalPrice) =>
+          totalPrice + result.price * shoppingCartContext[index].quantity
       );
     });
-   
   }
 
   useEffect(() => {
+    setItems([]);
     return () => {
-      shoppingCart.map((cartItem, index) => {
+      shoppingCartContext.map((cartItem, index) => {
         fetchProduct(cartItem.productId, index);
-      
       });
+      console.log(items.length, shoppingCartContext.length);
+      console.log(shoppingCartContext);
+      console.log(items);
     };
-  }, []);
+  }, [deleteSensor]);
 
   const deleteItem = (productId) => {
     return () => {
-      removeFromShoppingCart(productId)
-      console.log(productId);
-      setShoppingCart()
-      // const newShoppingCart = shoppingCart.filter((item) => {
-      //   return item.productId != productId;
-      // })
-      // setShoppingCart((shoppingCart) => shoppingCart.filter((item) => {
-      //   return item.productId !== productId;
-      // }));
-      // console.log(shoppingCart);
-    }
-  }
+      removeFromShoppingCart(productId);
+      setDeleteSensor(!deleteSensor);
+    };
+  };
 
   const doCheckout = () => {
-    if(shoppingCart.length > 0){
-      navigate('user-form'); 
+    if (shoppingCartContext.length > 0) {
+      navigate("user-form");
     } else {
       console.log("You need items in your cart to do checkout");
     }
-  }
+  };
 
   return (
     <>
@@ -94,7 +91,7 @@ const ShoppingCart = () => {
                       <div className="flex flex-col justify-between ml-4 flex-grow">
                         <span className="font-bold text-sm">{item?.name}</span>
                         <button
-                          onClick={deleteItem(shoppingCart[index].productId)}
+                          onClick={deleteItem(item.productId)}
                           className="font-semibold hover:text-red-500 text-gray-500 text-xs"
                         >
                           Remove
@@ -102,13 +99,13 @@ const ShoppingCart = () => {
                       </div>
                     </div>
                     <span className="text-center w-1/5 font-semibold text-sm">
-                      {shoppingCart[index].quantity}
+                      {item.quantity}
                     </span>
                     <span className="text-center w-1/5 font-semibold text-sm">
                       ${item?.price}
                     </span>
                     <span className="text-center w-1/5 font-semibold text-sm">
-                      ${item?.price * shoppingCart[index].quantity}
+                      ${item?.price * item.quantity}
                     </span>
                   </div>
                 );
@@ -150,7 +147,10 @@ const ShoppingCart = () => {
                 <span>Total cost</span>
                 <span>${+totalPrice + 10}</span>
               </div>
-              <button onClick={doCheckout} className="bg-blue-900 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
+              <button
+                onClick={doCheckout}
+                className="bg-blue-900 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+              >
                 Checkout
               </button>
             </div>

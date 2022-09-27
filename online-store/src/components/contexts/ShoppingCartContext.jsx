@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 export const ShoppingCartContext = React.createContext({});
 export const useShoppingCartContext = () => useContext(ShoppingCartContext);
 
-export const ShoppingCartProvider = ({ children }) => {
+export const ShoppingCartProvider = ({children}) => {
   const [shoppingCartContext, setShoppingCart] = useState([]);
 
   const addToShoppingCart = (productId, quantity) => {
@@ -13,7 +13,8 @@ export const ShoppingCartProvider = ({ children }) => {
   };
 
   const removeFromShoppingCart = (productId) => {
-    setShoppingCart(shoppingCartContext.filter(items => items.productId !== productId));
+    const newShoppingCart = shoppingCartContext.filter(items => items.productId !== productId);
+    setShoppingCart(newShoppingCart);
   };
 
   return (
