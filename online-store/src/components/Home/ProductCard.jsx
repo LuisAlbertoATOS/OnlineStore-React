@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 const ProductCard = (props) => {
   // const {shoppingCart, setShoppingCart} = useContext(ShoppingCartContext.Provider)
@@ -10,7 +10,7 @@ const ProductCard = (props) => {
           <div className="h-full relative rounded-lg shadow-lg bg-white max-w-xs">
             <div href="#!">
               <img
-                className="rounded-t-lg px-5 py-5"
+                className="rounded-t-lg px-5 py-5 my-0 mx-auto max-h-60"
                 src={props.product.image}
                 alt={props.product.name}
               />
@@ -22,7 +22,7 @@ const ProductCard = (props) => {
               {props.product.description.length >= 65 && (
                 <section className="">
                   <div className="text-gray-700 text-base mb-4 text-left">
-                    {props.product.description.slice(0, 64) + "..."}
+                    {props.product.description.slice(0, 64) + '...'}
                   </div>
                 </section>
               )}
@@ -38,7 +38,7 @@ const ProductCard = (props) => {
                   <div>
                     <p className="text-base mb-4 text-left text-red-700 font-bold">
                       Not available
-                    </p>{" "}
+                    </p>{' '}
                     <button
                       type="button"
                       className="w-full inline-block px-6 py-2.5 bg-blue-200 text-white font-medium text-xs leading-tight uppercase rounded shadow-md"

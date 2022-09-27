@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
-import { useParams } from "react-router-dom";
-import { useShoppingCartContext } from "../contexts/ShoppingCartContext";
-import { ProductDataService } from "../../services/product.services";
-import Navbar from "../Navbar";
+import React, { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { useShoppingCartContext } from '../contexts/ShoppingCartContext';
+import { ProductDataService } from '../../services/product.services';
+import Navbar from '../Navbar';
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
@@ -18,11 +18,11 @@ const ProductDetails = () => {
     fetchProduct();
   }, []);
 
-  const {addToShoppingCart} = useShoppingCartContext();
+  const { addToShoppingCart } = useShoppingCartContext();
 
   const addToShoppingCartHandler = (productId, quantity) => {
     addToShoppingCart(productId, quantity);
-  }
+  };
 
   return (
     <section>
@@ -32,7 +32,7 @@ const ProductDetails = () => {
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img
               alt="ecommerce"
-              className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
+              className="lg:w-1/2 w-full object-contain object-center rounded my-0 mx-auto max-h-[30em]"
               src={product?.image}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
