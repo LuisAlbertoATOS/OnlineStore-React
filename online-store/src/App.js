@@ -57,9 +57,9 @@ function App() {
         <Route
           path="/admin-dashboard/sales"
           element={
-            // <RequireAuth> // FOR TESTING PURPOSES THIS WAS REMOVED
+            <RequireAuth>
               <Sales />
-            // </RequireAuth>
+            </RequireAuth>
           }
           />
         <Route
