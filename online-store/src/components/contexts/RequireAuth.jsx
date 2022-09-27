@@ -5,8 +5,7 @@ import { auth } from "../../firebase/Firebase";
 const RequireAuth = ({ children }) => {
   return (
     <div>
-      {/* {auth.currentUser ? children : <Navigate to="/sign-in" replace />} */}
-      {auth.currentUser ? children : children}
+      {auth.currentUser ? children : <Navigate to="/sign-in" replace />}
     </div>
   );
 };
