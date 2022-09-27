@@ -57,9 +57,9 @@ const ShoppingCart = () => {
   }
 
   return (
-    <>
+    <section className="h-screen w-screen bg-blue-300">
       <Navbar />
-      <div className="container mx-auto mt-10">
+      <div className="align-content-center container mx-auto mt-10 w-5/6 pl-5">
         <div className="flex shadow-md my-10">
           <div className="w-3/4 bg-white px-10 py-10">
             <div className="flex justify-between border-b pb-8">
@@ -85,9 +85,9 @@ const ShoppingCart = () => {
             {items?.length > 0 &&
               items.map((item, index) => {
                 return (
-                  <div className="border-double border-4 border-sky-500 flex items-center hover:bg-gray-100 -mx-8 pr-6 pl-3 py-5">
+                  <div className="border-double border-4 border-blue-500 flex items-center hover:bg-gray-100 -mx-8 pr-6 pl-3 py-5 mb-2">
                     <div className="flex w-1/2">
-                        <FontAwesomeIcon icon={faTrash} className="px-5 fa-xl self-center hover:text-red-500" onClick={deleteItem(shoppingCart[index].productId)}/>
+                        <FontAwesomeIcon icon={faTrash} className="px-5 fa-xl self-center hover:text-red-500 cursor-pointer" onClick={deleteItem(shoppingCart[index].productId)}/>
                       <div className="w-40">
                         <img className="h-24" src={item.image} alt="" />
                       </div>
@@ -122,7 +122,7 @@ const ShoppingCart = () => {
             </Link>
           </div>
 
-          <div id="summary" className="w-1/4 px-8 py-10">
+          <div id="summary" className="bg-blue-50 w-1/4 px-8 py-10">
             <h1 className="font-semibold text-2xl border-b pb-8">
               Order Summary
             </h1>
@@ -162,7 +162,7 @@ const ShoppingCart = () => {
       {/* <Routes>
         <Route path="successfull-purchase" element={<SuccessfullPurchase />} />
       </Routes> */}
-    </>
+    </section>
   );
 };
 
