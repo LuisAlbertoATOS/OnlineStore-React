@@ -30,7 +30,6 @@ const Sales = () => {
       name: doc.data().name,
       price: doc.data().price,
       soldUnits: 0,
-      totalSales: 0,
     }));
     setProductsData(mappedProducts);
 
@@ -46,12 +45,17 @@ const Sales = () => {
         mappedProducts.find((o, i) => {
           if (o.id === product.productId) {
             mappedProducts[i].soldUnits += product.quantity;
-            mappedProducts[i].totalSales += o.price;
           }
         });
 
         console.log(product.quantity, product.productId);
       });
+    });
+
+    mappedProducts.sort(function(a, b) {
+      let totalPriceA = a.soldUnits * a.price;
+      let totalPriceB = b.soldUnits * b.price;
+      return totalPriceB - totalPriceA;
     });
     setProductsData(mappedProducts);
 
