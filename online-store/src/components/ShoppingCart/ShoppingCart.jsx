@@ -1,3 +1,5 @@
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -65,16 +67,16 @@ const ShoppingCart = () => {
               <h2 className="font-semibold text-2xl">{items?.length} Items</h2>
             </div>
             <div className="flex mt-10 mb-5">
-              <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
+              <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/2">
                 Product Details
               </h3>
-              <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">
+              <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/6">
                 Quantity
               </h3>
-              <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">
+              <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/6">
                 Price
               </h3>
-              <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">
+              <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/6">
                 Total
               </h3>
             </div>
@@ -83,28 +85,23 @@ const ShoppingCart = () => {
             {items?.length > 0 &&
               items.map((item, index) => {
                 return (
-                  <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
-                    <div className="flex w-2/5">
-                      <div className="w-20">
+                  <div className="border-double border-4 border-sky-500 flex items-center hover:bg-gray-100 -mx-8 pr-6 pl-3 py-5">
+                    <div className="flex w-1/2">
+                        <FontAwesomeIcon icon={faTrash} className="px-5 fa-xl self-center hover:text-red-500" onClick={deleteItem(shoppingCart[index].productId)}/>
+                      <div className="w-40">
                         <img className="h-24" src={item.image} alt="" />
                       </div>
-                      <div className="flex flex-col justify-between ml-4 flex-grow">
-                        <span className="font-bold text-sm">{item?.name}</span>
-                        <p
-                          onClick={deleteItem(shoppingCart[index].productId)}
-                          className="font-semibold hover:text-red-500 text-gray-500 text-xs"
-                        >
-                          Remove
-                        </p>
+                      <div className="flex flex-col justify-between self-center flex-grow">
+                        <span className="font-bold text-1xl">{item?.name}</span>
                       </div>
                     </div>
-                    <span className="text-center w-1/5 font-semibold text-sm">
+                    <span className="text-center w-1/6 font-semibold text-sm">
                       {shoppingCart[index].quantity}
                     </span>
-                    <span className="text-center w-1/5 font-semibold text-sm">
+                    <span className="text-center w-1/6 font-semibold text-sm text-green-600">
                       ${item?.price}
                     </span>
-                    <span className="text-center w-1/5 font-semibold text-sm">
+                    <span className="text-center w-1/6 font-semibold text-sm text-green-600">
                       ${item?.price * shoppingCart[index].quantity}
                     </span>
                   </div>
