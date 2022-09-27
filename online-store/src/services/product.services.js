@@ -40,14 +40,10 @@ export class ProductDataService {
   };
 
   logicalDelete = async (productId) => {
-    console.log("0");
-    console.log(productId);
     const productDoc = doc(db, "products", productId);
-    console.log("1");
     let deletedProduct = await new ProductDataService().getProduct(productId);
     deletedProduct.deleted = true;
     
-    console.log("2");
     return updateDoc(productDoc, deletedProduct);
   };
 

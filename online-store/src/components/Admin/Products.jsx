@@ -6,9 +6,10 @@ import AdminProductCard from "./AdminProductCard";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [deletedSensor, setDeletedSensor] = useState(false);
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [deletedSensor]);
 
   const getProducts = async () => {
     const data = await new ProductDataService().getAllProducts();
@@ -30,7 +31,7 @@ const Products = () => {
       <section className="flex flex-row flex-wrap justify-center">
         {products.map((product) => {
           if(!product.deleted){
-            return <AdminProductCard product={product} />;
+            return <AdminProductCard product={product} setDeletedSensor={setDeletedSensor} deletedSensor={deletedSensor} />;
           }
         })}
       </section>
