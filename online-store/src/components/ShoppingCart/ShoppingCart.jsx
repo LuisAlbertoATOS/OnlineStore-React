@@ -37,8 +37,7 @@ const ShoppingCart = () => {
   const deleteItem = (productId) => {
     return () => {
       removeFromShoppingCart(productId)
-      console.log(productId);
-      setShoppingCart()
+      
       // const newShoppingCart = shoppingCart.filter((item) => {
       //   return item.productId != productId;
       // })
