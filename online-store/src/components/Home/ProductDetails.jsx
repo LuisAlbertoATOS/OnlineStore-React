@@ -7,6 +7,7 @@ import Navbar from "../Navbar";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1)
   const { productId } = useParams();
 
   async function fetchProduct() {
@@ -18,11 +19,18 @@ const ProductDetails = () => {
     fetchProduct();
   }, []);
 
-  const {addToShoppingCart} = useShoppingCartContext();
+  const handleDecrement = () => {
+    setQuantity(prevCount => prevCount - 1)
+  }
+  const handleIncrement = () => {
+    setQuantity(prevCount => prevCount + 1)
+  }
+  
+  const { addToShoppingCart } = useShoppingCartContext();
 
   const addToShoppingCartHandler = (productId, quantity) => {
     addToShoppingCart(productId, quantity);
-  }
+  };
 
   return (
     <section>
@@ -52,8 +60,13 @@ const ProductDetails = () => {
                   <span className="title-font font-medium text-2xl text-green-500">
                     ${product?.price}
                   </span>
+                  <div className="flex ml-8">
+                    <button type="button" className="text-white bg-blue-500 border-0 my-2 w-7 focus:outline-none hover:bg-blue-600 rounded" onClick={handleDecrement}>-</button>
+                    <div type="text" className="place-self-center mx-3">{quantity}</div>
+                    <button type="button" className="text-white bg-blue-500 border-0 my-2 w-7 focus:outline-none hover:bg-blue-600 rounded" onClick={handleIncrement}>+</button>
+                  </div>
                   <button
-                    onClick={() => addToShoppingCartHandler(productId, 1)}
+                    onClick={() => addToShoppingCartHandler(productId, quantity)}
                     className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
                   >
                     Add to cart
