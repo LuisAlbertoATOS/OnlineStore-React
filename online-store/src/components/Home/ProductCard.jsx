@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 const ProductCard = (props) => {
-  // const {shoppingCart, setShoppingCart} = useContext(ShoppingCartContext.Provider)
   return (
     <section className="h-[32rem] my-4 mx-1">
       <div className="h-full flex justify-center w-[90%]">
