@@ -47,7 +47,6 @@ const ProductCard = (props) => {
                     </button>
                   </div>
                 )}
-
                 {props.product.stock !== 0 && (
                   <div className="">
                     <p className="text-base mb-4 text-left text-green-700 font-bold">

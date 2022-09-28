@@ -7,7 +7,7 @@ import Navbar from "../Navbar";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(1);
   const { productId } = useParams();
 
   async function fetchProduct() {
@@ -20,12 +20,16 @@ const ProductDetails = () => {
   }, []);
 
   const handleDecrement = () => {
-    setQuantity(prevCount => prevCount - 1)
-  }
+    if (quantity > 1) {
+      setQuantity((prevCount) => prevCount - 1);
+    }
+  };
   const handleIncrement = () => {
-    setQuantity(prevCount => prevCount + 1)
-  }
-  
+    if (quantity < product.stock) {
+      setQuantity((prevCount) => prevCount + 1);
+    }
+  };
+
   const { addToShoppingCart } = useShoppingCartContext();
 
   const addToShoppingCartHandler = (productId, quantity) => {
@@ -61,12 +65,29 @@ const ProductDetails = () => {
                     ${product?.price}
                   </span>
                   <div className="flex ml-8">
-                    <button type="button" className="text-white bg-blue-500 border-0 my-2 w-7 focus:outline-none hover:bg-blue-600 rounded" onClick={handleDecrement}>-</button>
-                    <div type="text" className="place-self-center mx-3">{quantity}</div>
-                    <button type="button" className="text-white bg-blue-500 border-0 my-2 w-7 focus:outline-none hover:bg-blue-600 rounded" onClick={handleIncrement}>+</button>
+                    <button
+                      type="button"
+                      className={`text-white border-0 my-2 w-7 focus:outline-none rounded ${1 < quantity ? "bg-blue-500 hover:bg-blue-600" : "bg-blue-200 hover:bg-blue-300"}`}
+                      onClick={handleDecrement}
+                      >
+                      -
+                    </button>
+                    <div type="text" className="place-self-center mx-3">
+                      {quantity}
+                    </div>
+                    {/* <div className={`banner ${active ? "active" : ""}`}>{children}</div> */}
+                    <button
+                      type="button"
+                      className={`text-white border-0 my-2 w-7 focus:outline-none rounded ${product?.stock > quantity ? "bg-blue-500 hover:bg-blue-600" : "bg-blue-200 hover:bg-blue-300"}`}
+                      onClick={handleIncrement}
+                      >
+                      +
+                    </button>
                   </div>
                   <button
-                    onClick={() => addToShoppingCartHandler(productId, quantity)}
+                    onClick={() =>
+                      addToShoppingCartHandler(productId, quantity)
+                    }
                     className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
                   >
                     Add to cart
