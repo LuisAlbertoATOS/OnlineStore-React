@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useShoppingCartContext } from "../contexts/ShoppingCartContext";
+import { ShoppingCartContext, useShoppingCartContext } from "../contexts/ShoppingCartContext";
 import { ProductDataService } from "../../services/product.services";
 import Navbar from "../Navbar";
+import Errors from "../Errors";
 import SuccessTemplate from "../SuccessTemplate";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const { productId } = useParams();
-
-  const [successfulMsg, setSuccessfulMsg] = useState("");
 
   async function fetchProduct() {
     const p = await new ProductDataService().getProduct(productId);
@@ -32,14 +31,10 @@ const ProductDetails = () => {
     }
   };
 
-  const { addToShoppingCart } = useShoppingCartContext();
+  const { addToShoppingCart, repeatedArticleMsg, successfulMsg} = useShoppingCartContext();
 
   const addToShoppingCartHandler = (productId, quantity) => {
     addToShoppingCart(productId, quantity);
-    setSuccessfulMsg("Successfully purchased!");
-    setTimeout(() => {
-      setSuccessfulMsg("");
-    }, 2000);
   };
 
   return (
@@ -54,7 +49,9 @@ const ProductDetails = () => {
               src={product?.image}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-              {successfulMsg && <SuccessTemplate message={successfulMsg} />}
+              {repeatedArticleMsg && (<Errors message={repeatedArticleMsg}/>)}
+              {successfulMsg && (<SuccessTemplate message={successfulMsg}/>)}
+
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
                 Category: {product?.category.toUpperCase()}
               </h2>
@@ -102,7 +99,7 @@ const ProductDetails = () => {
                     onClick={() =>
                       addToShoppingCartHandler(productId, quantity)
                     }
-                    className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
+                    className={`flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded `}
                   >
                     Add to cart
                   </button>
