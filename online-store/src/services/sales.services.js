@@ -14,7 +14,6 @@ export class SalesDataService {
   };
 
   getAllSales = () => {
-    console.log("hey");
     return getDocs(salesCollectionRef);
   };
 }
