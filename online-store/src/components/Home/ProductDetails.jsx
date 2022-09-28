@@ -75,7 +75,6 @@ const ProductDetails = () => {
                     <div type="text" className="place-self-center mx-3">
                       {quantity}
                     </div>
-                    {/* <div className={`banner ${active ? "active" : ""}`}>{children}</div> */}
                     <button
                       type="button"
                       className={`text-white border-0 my-2 w-7 focus:outline-none rounded ${product?.stock > quantity ? "bg-blue-500 hover:bg-blue-600" : "bg-blue-200 hover:bg-blue-300"}`}
