@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
+import { useShoppingCartContext } from "../contexts/ShoppingCartContext";
 import { ProductDataService } from "../../services/product.services";
 import Navbar from "../Navbar";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
   const { productId } = useParams();
 
   async function fetchProduct() {
@@ -16,10 +19,25 @@ const ProductDetails = () => {
     fetchProduct();
   }, []);
 
-  console.log(product);
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity((prevCount) => prevCount - 1);
+    }
+  };
+  const handleIncrement = () => {
+    if (quantity < product.stock) {
+      setQuantity((prevCount) => prevCount + 1);
+    }
+  };
+
+  const { addToShoppingCart } = useShoppingCartContext();
+
+  const addToShoppingCartHandler = (productId, quantity) => {
+    addToShoppingCart(productId, quantity);
+  };
 
   return (
-    <>
+    <section>
       <Navbar />
       <section className="text-gray-700 body-font overflow-hidden bg-white">
         <div className="container px-5 py-24 mx-auto">
@@ -46,7 +64,31 @@ const ProductDetails = () => {
                   <span className="title-font font-medium text-2xl text-green-500">
                     ${product?.price}
                   </span>
-                  <button className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">
+                  <div className="flex ml-8">
+                    <button
+                      type="button"
+                      className={`text-white border-0 my-2 w-7 focus:outline-none rounded ${1 < quantity ? "bg-blue-500 hover:bg-blue-600" : "bg-blue-200 hover:bg-blue-300"}`}
+                      onClick={handleDecrement}
+                      >
+                      -
+                    </button>
+                    <div type="text" className="place-self-center mx-3">
+                      {quantity}
+                    </div>
+                    <button
+                      type="button"
+                      className={`text-white border-0 my-2 w-7 focus:outline-none rounded ${product?.stock > quantity ? "bg-blue-500 hover:bg-blue-600" : "bg-blue-200 hover:bg-blue-300"}`}
+                      onClick={handleIncrement}
+                      >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    onClick={() =>
+                      addToShoppingCartHandler(productId, quantity)
+                    }
+                    className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
+                  >
                     Add to cart
                   </button>
                 </div>
@@ -56,7 +98,6 @@ const ProductDetails = () => {
                   <span className="title-font font-medium text-2xl text-red-700">
                     Not available
                   </span>
-                  {/* <button className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"> */}
                   <button className="disabed flex ml-auto text-white bg-blue-200 border-0 py-2 px-6 focus:outline-none hover:bg-blue-300 rounded">
                     Add to cart
                   </button>
@@ -66,7 +107,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </section>
-    </>
+    </section>
   );
 };
 
