@@ -9,13 +9,17 @@ const ShoppingCart = () => {
   const {
     shoppingCartContext,
     setShoppingCartContext,
-    totalPrice
+    totalPrice,
+    setTotalPrice
   } = useShoppingCartContext();
 
   const deleteItem = (productId) => {
     return () => {
       if (window.confirm('Are you sure you want to delete this product?')) {
         const newShoppingCart = shoppingCartContext.filter((items) => items.productId !== productId);
+        const prod = shoppingCartContext.filter((items) => items.productId === productId);
+        const removedPrice = +prod[0].price * +prod[0].quantity;
+        setTotalPrice((totalPrice) => (totalPrice-removedPrice));
         setShoppingCartContext(newShoppingCart);
       }
     };

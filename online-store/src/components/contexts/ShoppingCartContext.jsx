@@ -10,7 +10,7 @@ export const ShoppingCartProvider = ({ children }) => {
 
   const addToShoppingCart = async (productId, quantity) => {
     await new ProductDataService().getProduct(productId).then((result) => {   
-      setTotalPrice((totalPrice)=>(totalPrice+(result.price*quantity)));
+      setTotalPrice((totalPrice)=>(totalPrice + (result.price * quantity)));
       setShoppingCartContext((shoppingCart) =>
         shoppingCart.concat({
           productId: productId,
@@ -30,7 +30,8 @@ export const ShoppingCartProvider = ({ children }) => {
         shoppingCartContext,
         addToShoppingCart,
         setShoppingCartContext,
-        totalPrice
+        totalPrice,
+        setTotalPrice
       }}
     >
       {children}
