@@ -8,46 +8,44 @@ import Navbar from "../Navbar";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
-  
-  const { shoppingCartContext, removeFromShoppingCart, setShoppingCartContext } =
-    useShoppingCartContext();
 
-  
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [deleteSensor, setDeleteSensor] = useState(false);
+  const {
+    shoppingCartContext,
+    setShoppingCartContext,
+    totalPrice
+  } = useShoppingCartContext();
 
-  async function fetchProduct(productId, index) {
-    await new ProductDataService().getProduct(productId).then((result) => {
-      result.productId = productId;
-      result.quantity = shoppingCartContext[index].quantity;
-      setShoppingCartContext((shoppingCartContext) => shoppingCartContext.concat(result));
-      setTotalPrice(
-        (totalPrice) =>
-          totalPrice + result.price * shoppingCartContext[index].quantity
-      );
-    });
-  }
+  // const [totalPrice, setTotalPrice] = useState(0);
+  // const [deleteSensor, setDeleteSensor] = useState(false);
 
-  useEffect(() => {
-    
-    return () => {
-      setShoppingCartContext([])
-      setTotalPrice(0)
-      shoppingCartContext.map((cartItem, index) => {
-        fetchProduct(cartItem.productId, index);
-     
-      });
-      
-      console.log(shoppingCartContext);
-    };
-  }, [deleteSensor]);
+  // async function fetchProduct(productId, index) {
+  //   await new ProductDataService().getProduct(productId).then((result) => {
+  //     result.productId = productId;
+  //     result.quantity = shoppingCartContext[index].quantity;
+  //     setShoppingCartContext((shoppingCartContext) =>
+  //       shoppingCartContext.concat(result)
+  //     );
+  //     setTotalPrice(
+  //       (totalPrice) =>
+  //         totalPrice + result.price * shoppingCartContext[index].quantity
+  //     );
+  //   });
+  // }
+
+  // useEffect(() => {
+  //   return () => {
+  //     // setShoppingCartContext([]);
+  //     // setTotalPrice(0);
+  //   };
+  // }, [deleteSensor]);
 
   const deleteItem = (productId) => {
     return () => {
-      // removeFromShoppingCart(productId);
-       setShoppingCartContext(shoppingCartContext.filter(items => items.productId !== productId));
-       setDeleteSensor(!deleteSensor);
-       
+      if (window.confirm('Are you sure you want to delete this product?')) {
+        const newShoppingCart = shoppingCartContext.filter((items) => items.productId !== productId);
+        setShoppingCartContext(newShoppingCart);
+        // setDeleteSensor(!deleteSensor);
+      }
     };
   };
 
@@ -56,7 +54,6 @@ const ShoppingCart = () => {
       navigate("user-form");
     } else {
       console.log("You need items in your cart to do checkout");
-      
     }
   };
 
@@ -68,7 +65,9 @@ const ShoppingCart = () => {
           <div className="w-3/4 bg-white px-10 py-10">
             <div className="flex justify-between border-b pb-8">
               <h1 className="font-semibold text-2xl">Shopping Cart</h1>
-              <h2 className="font-semibold text-2xl">{shoppingCartContext?.length} Items</h2>
+              <h2 className="font-semibold text-2xl">
+                {shoppingCartContext?.length} Items
+              </h2>
             </div>
             <div className="flex mt-10 mb-5">
               <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
@@ -85,7 +84,9 @@ const ShoppingCart = () => {
               </h3>
             </div>
 
-            {shoppingCartContext?.length === 0 && <p>No items in the shopping cart</p>}
+            {shoppingCartContext?.length === 0 && (
+              <p>No items in the shopping cart</p>
+            )}
             {shoppingCartContext?.length > 0 &&
               shoppingCartContext.map((item) => {
                 return (
@@ -151,6 +152,7 @@ const ShoppingCart = () => {
             <div className="border-t mt-8">
               <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                 <span>Total cost</span>
+                {/* <span>${+totalPrice + 10}</span> */}
                 <span>${+totalPrice + 10}</span>
               </div>
               <button
