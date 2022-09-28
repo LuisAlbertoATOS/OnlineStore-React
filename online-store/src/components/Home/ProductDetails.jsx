@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
-import { useParams } from "react-router-dom";
-import { useShoppingCartContext } from "../contexts/ShoppingCartContext";
-import { ProductDataService } from "../../services/product.services";
-import Navbar from "../Navbar";
+import React, { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { useShoppingCartContext } from '../contexts/ShoppingCartContext';
+import { ProductDataService } from '../../services/product.services';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
@@ -39,7 +40,7 @@ const ProductDetails = () => {
   return (
     <section>
       <Navbar />
-      <section className="text-gray-700 body-font overflow-hidden bg-white">
+      <section className="text-gray-700 body-font overflow-hidden bg-white ">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img
@@ -67,9 +68,13 @@ const ProductDetails = () => {
                   <div className="flex ml-8">
                     <button
                       type="button"
-                      className={`text-white border-0 my-2 w-7 focus:outline-none rounded ${1 < quantity ? "bg-blue-500 hover:bg-blue-600" : "bg-blue-200 hover:bg-blue-300"}`}
+                      className={`text-white border-0 my-2 w-7 focus:outline-none rounded ${
+                        1 < quantity
+                          ? 'bg-blue-500 hover:bg-blue-600'
+                          : 'bg-blue-200 hover:bg-blue-300'
+                      }`}
                       onClick={handleDecrement}
-                      >
+                    >
                       -
                     </button>
                     <div type="text" className="place-self-center mx-3">
@@ -77,9 +82,13 @@ const ProductDetails = () => {
                     </div>
                     <button
                       type="button"
-                      className={`text-white border-0 my-2 w-7 focus:outline-none rounded ${product?.stock > quantity ? "bg-blue-500 hover:bg-blue-600" : "bg-blue-200 hover:bg-blue-300"}`}
+                      className={`text-white border-0 my-2 w-7 focus:outline-none rounded ${
+                        product?.stock > quantity
+                          ? 'bg-blue-500 hover:bg-blue-600'
+                          : 'bg-blue-200 hover:bg-blue-300'
+                      }`}
                       onClick={handleIncrement}
-                      >
+                    >
                       +
                     </button>
                   </div>
@@ -107,6 +116,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </section>
   );
 };

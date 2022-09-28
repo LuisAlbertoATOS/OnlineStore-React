@@ -1,7 +1,8 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useShoppingCartContext } from "../contexts/ShoppingCartContext";
-import Navbar from "../Navbar";
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useShoppingCartContext } from '../contexts/ShoppingCartContext';
+import Footer from '../Footer';
+import Navbar from '../Navbar';
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
@@ -10,16 +11,20 @@ const ShoppingCart = () => {
     shoppingCartContext,
     setShoppingCartContext,
     totalPrice,
-    setTotalPrice
+    setTotalPrice,
   } = useShoppingCartContext();
 
   const deleteItem = (productId) => {
     return () => {
       if (window.confirm('Are you sure you want to delete this product?')) {
-        const newShoppingCart = shoppingCartContext.filter((items) => items.productId !== productId);
-        const prod = shoppingCartContext.filter((items) => items.productId === productId);
+        const newShoppingCart = shoppingCartContext.filter(
+          (items) => items.productId !== productId
+        );
+        const prod = shoppingCartContext.filter(
+          (items) => items.productId === productId
+        );
         const removedPrice = +prod[0].price * +prod[0].quantity;
-        setTotalPrice((totalPrice) => (totalPrice-removedPrice));
+        setTotalPrice((totalPrice) => totalPrice - removedPrice);
         setShoppingCartContext(newShoppingCart);
       }
     };
@@ -27,16 +32,16 @@ const ShoppingCart = () => {
 
   const doCheckout = () => {
     if (shoppingCartContext.length > 0) {
-      navigate("user-form");
+      navigate('user-form');
     } else {
-      console.log("You need items in your cart to do checkout");
+      console.log('You need items in your cart to do checkout');
     }
   };
 
   return (
     <>
       <Navbar />
-      <div className="container mx-auto mt-10">
+      <div className="container mx-auto mt-10 mb-[11.4em]">
         <div className="flex shadow-md my-10">
           <div className="w-3/4 bg-white px-10 py-10">
             <div className="flex justify-between border-b pb-8">
@@ -95,7 +100,7 @@ const ShoppingCart = () => {
               })}
 
             <Link
-              to={"/"}
+              to={'/'}
               className="flex font-semibold text-blue-900 text-sm mt-10"
             >
               <svg
@@ -140,6 +145,8 @@ const ShoppingCart = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 };
