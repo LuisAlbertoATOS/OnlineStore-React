@@ -14,7 +14,7 @@ export const ShoppingCartProvider = ({ children }) => {
       
 
       if(shoppingCartContext.find(item=> item.productId === productId)){
-        setRepeatedArticleMsg('This article is already in the sopping cart')
+        setRepeatedArticleMsg('This article is already in the shopping cart')
 
         setTimeout(() => {
           setRepeatedArticleMsg('')
