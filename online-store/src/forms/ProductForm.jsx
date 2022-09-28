@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import * as z from "zod";
+import { Schema } from "zod";
 import { CategoryDataService } from "../services/category.services";
 import { ProductDataService } from "../services/product.services";
 import InputFile from "./input-components/InputFile";
@@ -16,11 +17,6 @@ import InputText from "./input-components/InputText";
 //   price: z.number().positive(),
 //   stock: z.number().nonnegative(),
 //   category: z.string(),
-//   // category: z.enum(categories.map((c)=>{return c.category}), {
-//   //   errorMap: (issue, ctx) => {
-//   //     return { message: "Please select a valid option" };
-//   //   },
-//   // }),
 //   image: z
 //     .instanceof(FileList)
 //     .refine((files) => files?.length === 1, "Image is required"),
@@ -32,11 +28,6 @@ const updateSchema = z.object({
   price: z.number().positive(),
   stock: z.number().nonnegative(),
   category: z.string(),
-  // category: z.enum(categories.map((c)=>{return c.category}), {
-  //   errorMap: (issue, ctx) => {
-  //     return { message: "Please select a valid option" };
-  //   },
-  // }),
   image: z.optional(),
 });
 
@@ -52,9 +43,7 @@ const ProductForm = ({ action }) => {
     setValue,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(
-      action.toLowerCase() === "update" ? this.updateSchema : this.updateSchema
-    ),
+    resolver: zodResolver( updateSchema),
   });
 
   function onSubmit(data) {
@@ -87,6 +76,7 @@ const ProductForm = ({ action }) => {
     if (categories) {
       console.log("fetching");
       fetchProduct();
+      console.log("fetched !");
     }
   }, [categories]);
 

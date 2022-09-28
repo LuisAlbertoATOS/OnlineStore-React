@@ -19,11 +19,17 @@ const PRODUCT_IMAGES_DIR = "product-images";
 const productCollectionRef = collection(db, "products");
 export class ProductDataService {
   addProduct = async (newProduct) => {
+    console.log("...........");
     const { image, ...rest } = newProduct;
-    const downloadUrl = await this.uploadAndGetDownloadUrl(
-      image[0],
-      `${PRODUCT_IMAGES_DIR}/${image[0].lastModified}`
-    );
+    console.log(image);
+    console.log("...........");
+    let downloadUrl = 'https://i.postimg.cc/dtbnB4Bq/Default-Image.png';
+    if(image !== undefined){
+      downloadUrl = await this.uploadAndGetDownloadUrl(
+        image[0],
+        `${PRODUCT_IMAGES_DIR}/${image[0].lastModified}`
+        );
+    }
     return addDoc(productCollectionRef, { ...rest, image: downloadUrl });
   };
 
@@ -42,7 +48,7 @@ export class ProductDataService {
       const p = await this.getProduct(id);
       const downloadUrl = p.image;
     }
-    // const p = await new ProductDataService().getProduct(productId);
+
     console.log("6");
     console.log(downloadUrl);
     return updateDoc(productDoc, { ...rest, image: downloadUrl });
