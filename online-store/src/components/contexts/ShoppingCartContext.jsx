@@ -24,16 +24,11 @@ export const ShoppingCartProvider = ({ children }) => {
     });
   };
 
-  const removeFromShoppingCart = (productId) => {
-    // setShoppingCartContext(shoppingCartContext.filter(items => items.productId !== productId));
-  };
-
   return (
     <ShoppingCartContext.Provider
       value={{
         shoppingCartContext,
         addToShoppingCart,
-        removeFromShoppingCart,
         setShoppingCartContext,
         totalPrice
       }}

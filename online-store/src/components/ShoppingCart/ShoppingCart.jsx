@@ -1,8 +1,5 @@
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ProductDataService } from "../../services/product.services";
 import { useShoppingCartContext } from "../contexts/ShoppingCartContext";
 import Navbar from "../Navbar";
 
@@ -15,36 +12,11 @@ const ShoppingCart = () => {
     totalPrice
   } = useShoppingCartContext();
 
-  // const [totalPrice, setTotalPrice] = useState(0);
-  // const [deleteSensor, setDeleteSensor] = useState(false);
-
-  // async function fetchProduct(productId, index) {
-  //   await new ProductDataService().getProduct(productId).then((result) => {
-  //     result.productId = productId;
-  //     result.quantity = shoppingCartContext[index].quantity;
-  //     setShoppingCartContext((shoppingCartContext) =>
-  //       shoppingCartContext.concat(result)
-  //     );
-  //     setTotalPrice(
-  //       (totalPrice) =>
-  //         totalPrice + result.price * shoppingCartContext[index].quantity
-  //     );
-  //   });
-  // }
-
-  // useEffect(() => {
-  //   return () => {
-  //     // setShoppingCartContext([]);
-  //     // setTotalPrice(0);
-  //   };
-  // }, [deleteSensor]);
-
   const deleteItem = (productId) => {
     return () => {
       if (window.confirm('Are you sure you want to delete this product?')) {
         const newShoppingCart = shoppingCartContext.filter((items) => items.productId !== productId);
         setShoppingCartContext(newShoppingCart);
-        // setDeleteSensor(!deleteSensor);
       }
     };
   };
@@ -152,7 +124,6 @@ const ShoppingCart = () => {
             <div className="border-t mt-8">
               <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                 <span>Total cost</span>
-                {/* <span>${+totalPrice + 10}</span> */}
                 <span>${+totalPrice + 10}</span>
               </div>
               <button
@@ -165,17 +136,6 @@ const ShoppingCart = () => {
           </div>
         </div>
       </div>
-
-      {/* <h1 className="italic font-semibold text-center text-2xl text-slate-100 bg-blue-600 m-5">
-        ShoppingCart
-      </h1> */}
-
-      {/* <p>
-        <Link to="successfull-purchase">Buy</Link>
-      </p> */}
-      {/* <Routes>
-        <Route path="successfull-purchase" element={<SuccessfullPurchase />} />
-      </Routes> */}
     </>
   );
 };
