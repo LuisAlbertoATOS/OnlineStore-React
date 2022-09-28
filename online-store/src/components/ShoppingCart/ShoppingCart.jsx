@@ -40,12 +40,12 @@ const ShoppingCart = () => {
   };
 
   return (
-    <section className="bg-blue-300 h-full">
-      <section className="w-screen bg-blue-300">
+    <section className="h-full">
+      <section className="w-screen">
         <Navbar />
         <div className="align-content-center container mx-auto mt-10 w-5/6 pb-10">
-          <div className="flex shadow-md">
-            <div className="w-3/4 bg-white px-5 py-10">
+          <div className="flex shadow-xl">
+            <div className="w-3/4 bg-blue-50 px-5 py-10">
               <div className="flex justify-between border-b pb-8">
                 <h1 className="font-semibold text-2xl">Shopping Cart</h1>
                 <h2 className="font-semibold text-2xl">
@@ -74,7 +74,7 @@ const ShoppingCart = () => {
               {shoppingCartContext?.length > 0 &&
                 shoppingCartContext.map((item) => {
                   return (
-                    <div className="border-double border-4 border-blue-500 rounded-lg flex items-center hover:bg-gray-100 mx-1 pr-6 pl-3 py-5 mb-2">
+                    <div className="border-double border-4 bg-white border-blue-500 rounded-lg flex items-center hover:bg-gray-100 mx-1 pr-6 pl-3 py-5 mb-2">
                       <div className="flex w-1/2">
                         <FontAwesomeIcon
                           icon={faTrash}
@@ -117,7 +117,7 @@ const ShoppingCart = () => {
               </Link>
             </div>
 
-            <div id="summary" className="bg-blue-50 w-1/4 px-8 py-10">
+            <div id="summary" className="bg-blue-100 w-1/4 px-8 py-10">
               <h1 className="font-semibold text-2xl border-b pb-8">
                 Order Summary
               </h1>
