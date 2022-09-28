@@ -24,7 +24,7 @@ const ProductList = () => {
     <Navbar />
     <section className="flex flex-row flex-wrap justify-center">
       {products.map((product) => {
-        if(product.category.toLowerCase() == categoryId.toLowerCase()){
+        if(product.category.toLowerCase() == categoryId.toLowerCase() && !product.deleted){
           return <ProductCard product={product} 
           />;
         }

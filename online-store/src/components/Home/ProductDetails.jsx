@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useShoppingCartContext } from "../contexts/ShoppingCartContext";
 import { ProductDataService } from "../../services/product.services";
@@ -9,7 +8,7 @@ import SuccessTemplate from "../SuccessTemplate";
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
-const [successfulMsg, setSuccessfulMsg] = useState('')
+  const [successfulMsg, setSuccessfulMsg] = useState("");
   async function fetchProduct() {
     const p = await new ProductDataService().getProduct(productId);
     setProduct(p);
@@ -19,17 +18,15 @@ const [successfulMsg, setSuccessfulMsg] = useState('')
     fetchProduct();
   }, []);
 
-  const {addToShoppingCart} = useShoppingCartContext();
+  const { addToShoppingCart } = useShoppingCartContext();
 
   const addToShoppingCartHandler = (productId, quantity) => {
-    
     addToShoppingCart(productId, quantity);
-    setSuccessfulMsg('Successfully purchased!');
+    setSuccessfulMsg("Successfully purchased!");
     setTimeout(() => {
-      setSuccessfulMsg('')
+      setSuccessfulMsg("");
     }, 2000);
-
-  }
+  };
 
   return (
     <section>
@@ -39,13 +36,11 @@ const [successfulMsg, setSuccessfulMsg] = useState('')
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img
               alt="ecommerce"
-              className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
+              className="lg:w-1/2 w-full object-contain object-center rounded my-0 mx-auto max-h-[30em]"
               src={product?.image}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-              {successfulMsg && (
-               <SuccessTemplate message={successfulMsg}/>
-              )}
+              {successfulMsg && <SuccessTemplate message={successfulMsg} />}
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
                 Category: {product?.category.toUpperCase()}
               </h2>
