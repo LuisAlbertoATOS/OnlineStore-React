@@ -13,7 +13,7 @@ const SignInForm = () => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [user, setUser] = useState({})
-
+  
   const [errorMessage, setErrorMessage] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
   
@@ -50,9 +50,15 @@ const SignInForm = () => {
       ).catch((error) =>{
         if(error.message === 'Firebase: Error (auth/user-not-found).'){
           setErrorMessage('User not found')
+          setTimeout(() => {
+            setErrorMessage('')
+          }, 2000);
         }
         if( error.message === 'Firebase: Error (auth/wrong-password).'){
           setErrorMessage('Wrong password')
+          setTimeout(() => {
+            setErrorMessage('')
+          }, 2000);
         }
       })
       

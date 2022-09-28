@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const ProductCard = (props) => {
   // const {shoppingCart, setShoppingCart} = useContext(ShoppingCartContext.Provider)
@@ -22,7 +22,7 @@ const ProductCard = (props) => {
               {props.product.description.length >= 65 && (
                 <section className="">
                   <div className="text-gray-700 text-base mb-4 text-left">
-                    {props.product.description.slice(0, 64) + '...'}
+                    {props.product.description.slice(0, 64) + "..."}
                   </div>
                 </section>
               )}
@@ -34,33 +34,24 @@ const ProductCard = (props) => {
               )}
 
               <section className="absolute bottom-0 my-4 w-5/6">
-                {props.product.stock === 0 && (
-                  <div>
+                <div>
+                  {props.product.stock === 0 && (
                     <p className="text-base mb-4 text-left text-red-700 font-bold">
                       Not available
-                    </p>{' '}
-                    <button
-                      type="button"
-                      className="w-full inline-block px-6 py-2.5 bg-blue-200 text-white font-medium text-xs leading-tight uppercase rounded shadow-md"
-                    >
-                      Add to shopping cart
-                    </button>
-                  </div>
-                )}
-
-                {props.product.stock !== 0 && (
-                  <div className="">
+                    </p>
+                  )}
+                  {props.product.stock !== 0 && (
                     <p className="text-base mb-4 text-left text-green-700 font-bold">
                       Price: ${props.product.price}
                     </p>
-                    <button
-                      type="button"
-                      className="w-full inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out disabled:bg-blue-400"
-                    >
-                      Add to shopping cart
-                    </button>
-                  </div>
-                )}
+                  )}
+                  <button
+                    type="button"
+                    className="w-full inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out disabled:bg-blue-400"
+                  >
+                    See details
+                  </button>
+                </div>
               </section>
             </div>
           </div>

@@ -1,58 +1,33 @@
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { Route, Routes, Link, Navigate, useNavigate } from "react-router-dom";
-import { ProductDataService } from "../../services/product.services";
+import { Link, useNavigate } from "react-router-dom";
 import { useShoppingCartContext } from "../contexts/ShoppingCartContext";
 import Navbar from "../Navbar";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
-  const { shoppingCartContext, removeFromShoppingCart } = useShoppingCartContext();
 
-  const [shoppingCart, setShoppingCart] = useState(shoppingCartContext);
-  const [items, setItems] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  async function fetchProduct(productId, index) {
-    await new ProductDataService().getProduct(productId).then((result) => {
-      setItems((items) => items.concat(result));
-      setTotalPrice(
-        (totalPrice) => totalPrice + result.price * shoppingCart[index].quantity
-      );
-    });
-  }
-
-  useEffect(() => {
-    return () => {
-      shoppingCart.map((cartItem, index) => {
-        fetchProduct(cartItem.productId, index);
-      });
-    };
-  }, []);
+  const {
+    shoppingCartContext,
+    setShoppingCartContext,
+    totalPrice
+  } = useShoppingCartContext();
 
   const deleteItem = (productId) => {
     return () => {
-      removeFromShoppingCart(productId)
-      // console.log(productId);
-
-      // const newShoppingCart = shoppingCart.filter((item) => {
-      //   return item.productId != productId;
-      // })
-      // setShoppingCart((shoppingCart) => shoppingCart.filter((item) => {
-      //   return item.productId !== productId;
-      // }));
-      // console.log(shoppingCart);
-    }
-  }
+      if (window.confirm('Are you sure you want to delete this product?')) {
+        const newShoppingCart = shoppingCartContext.filter((items) => items.productId !== productId);
+        setShoppingCartContext(newShoppingCart);
+      }
+    };
+  };
 
   const doCheckout = () => {
-    if(shoppingCart.length > 0){
-      navigate('user-form'); 
+    if (shoppingCartContext.length > 0) {
+      navigate("user-form");
     } else {
       console.log("You need items in your cart to do checkout");
     }
-  }
+  };
 
   return (
     <>
@@ -62,7 +37,9 @@ const ShoppingCart = () => {
           <div className="w-3/4 bg-white px-10 py-10">
             <div className="flex justify-between border-b pb-8">
               <h1 className="font-semibold text-2xl">Shopping Cart</h1>
-              <h2 className="font-semibold text-2xl">{items?.length} Items</h2>
+              <h2 className="font-semibold text-2xl">
+                {shoppingCartContext?.length} Items
+              </h2>
             </div>
             <div className="flex mt-10 mb-5">
               <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
@@ -79,9 +56,11 @@ const ShoppingCart = () => {
               </h3>
             </div>
 
-            {items?.length === 0 && <p>No items in the shopping cart</p>}
-            {items?.length > 0 &&
-              items.map((item, index) => {
+            {shoppingCartContext?.length === 0 && (
+              <p>No items in the shopping cart</p>
+            )}
+            {shoppingCartContext?.length > 0 &&
+              shoppingCartContext.map((item) => {
                 return (
                   <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
                     <div className="flex w-2/5">
@@ -90,22 +69,22 @@ const ShoppingCart = () => {
                       </div>
                       <div className="flex flex-col justify-between ml-4 flex-grow">
                         <span className="font-bold text-sm">{item?.name}</span>
-                        <p
-                          onClick={deleteItem(shoppingCart[index].productId)}
+                        <button
+                          onClick={deleteItem(item.productId)}
                           className="font-semibold hover:text-red-500 text-gray-500 text-xs"
                         >
                           Remove
-                        </p>
+                        </button>
                       </div>
                     </div>
                     <span className="text-center w-1/5 font-semibold text-sm">
-                      {shoppingCart[index].quantity}
+                      {item.quantity}
                     </span>
                     <span className="text-center w-1/5 font-semibold text-sm">
                       ${item?.price}
                     </span>
                     <span className="text-center w-1/5 font-semibold text-sm">
-                      ${item?.price * shoppingCart[index].quantity}
+                      ${item?.price * item.quantity}
                     </span>
                   </div>
                 );
@@ -147,24 +126,16 @@ const ShoppingCart = () => {
                 <span>Total cost</span>
                 <span>${+totalPrice + 10}</span>
               </div>
-              <button onClick={doCheckout} className="bg-blue-900 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
+              <button
+                onClick={doCheckout}
+                className="bg-blue-900 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+              >
                 Checkout
               </button>
             </div>
           </div>
         </div>
       </div>
-
-      {/* <h1 className="italic font-semibold text-center text-2xl text-slate-100 bg-blue-600 m-5">
-        ShoppingCart
-      </h1> */}
-
-      {/* <p>
-        <Link to="successfull-purchase">Buy</Link>
-      </p> */}
-      {/* <Routes>
-        <Route path="successfull-purchase" element={<SuccessfullPurchase />} />
-      </Routes> */}
     </>
   );
 };
