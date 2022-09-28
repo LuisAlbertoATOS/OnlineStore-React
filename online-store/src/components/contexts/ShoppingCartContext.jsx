@@ -7,11 +7,21 @@ export const useShoppingCartContext = () => useContext(ShoppingCartContext);
 export const ShoppingCartProvider = ({ children }) => {
   const [shoppingCartContext, setShoppingCartContext] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-
+  const [repeatedArticleMsg, setRepeatedArticleMsg] = useState('')
   const addToShoppingCart = async (productId, quantity) => {
     await new ProductDataService().getProduct(productId).then((result) => {   
       setTotalPrice((totalPrice)=>(totalPrice + (result.price * quantity)));
-      setShoppingCartContext((shoppingCart) =>
+      
+
+      if(shoppingCartContext.find(item=> item.productId === productId)){
+        setRepeatedArticleMsg('This article is already in the sopping cart')
+
+        setTimeout(() => {
+          setRepeatedArticleMsg('')
+
+        }, 3000);
+      }else{
+        setShoppingCartContext((shoppingCart) =>
         shoppingCart.concat({
           productId: productId,
           quantity: quantity,
@@ -21,6 +31,9 @@ export const ShoppingCartProvider = ({ children }) => {
           image: result.image,
           category: result.category,
         }))
+    
+      }
+      
     });
   };
 
@@ -31,7 +44,8 @@ export const ShoppingCartProvider = ({ children }) => {
         addToShoppingCart,
         setShoppingCartContext,
         totalPrice,
-        setTotalPrice
+        setTotalPrice,
+        repeatedArticleMsg
       }}
     >
       {children}
