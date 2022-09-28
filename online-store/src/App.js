@@ -15,12 +15,12 @@ import ProductDetails from "./components/Home/ProductDetails";
 import ProductList from "./components/Home/ProductList";
 import UserInfoForm from "./forms/UserInfoForm";
 
-import "./App.css";
-import CategoryList from "./components/Home/CategoryList";
-import NotFound from "./components/NotFound";
-import RequireAuth from "./components/contexts/RequireAuth";
+import './App.css';
+import CategoryList from './components/Home/CategoryList';
+import NotFound from './components/NotFound';
+import RequireAuth from './components/contexts/RequireAuth';
+import Ticket from './components/Ticket';
 import { ShoppingCartProvider } from "./components/contexts/ShoppingCartContext";
-import SuccessfullPurchase from "./components/ShoppingCart/SuccessfullPurchase";
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
         <Route path="/sign-in" element={<SignInForm />} />
         <Route path="/shopping-cart/*" element={<ShoppingCart />} />
         <Route path="/shopping-cart/user-form" element={<UserInfoForm />} />
-        <Route path="/successfull-purchase" element={<SuccessfullPurchase />} />
+        <Route path="/ticket" element={<Ticket />} />
 
         {/* Routes below this comment doesn't work right now */}
         {/* Admin */}
@@ -45,7 +45,7 @@ function App() {
               <AdminDashboard />
             </RequireAuth>
           }
-          />
+        />
         <Route
           path="/admin-dashboard/products"
           element={
@@ -53,7 +53,7 @@ function App() {
               <Products />
             </RequireAuth>
           }
-          />
+        />
         <Route
           path="/admin-dashboard/sales"
           element={
@@ -61,23 +61,23 @@ function App() {
               <Sales />
             </RequireAuth>
           }
-          />
+        />
         <Route
           path="/admin-dashboard/products/new-product"
           element={
             <RequireAuth>
-              <ProductForm action={"New"} />
+              <ProductForm action={'New'} />
             </RequireAuth>
           }
-          />
+        />
         <Route
           path="/admin-dashboard/products/edit-product/:productId"
           element={
             <RequireAuth>
-              <ProductForm action={"Update"} />
+              <ProductForm action={'Update'} />
             </RequireAuth>
           }
-          />
+        />
 
         {/* Home */}
         <Route path="/category-list" element={<CategoryList />} />
@@ -85,7 +85,7 @@ function App() {
         <Route
           path="/category/:categoryId/product-details/:productId"
           element={<ProductDetails />}
-          />
+        />
         {/* Change later the id or name */}
 
         {/* Forms */}
