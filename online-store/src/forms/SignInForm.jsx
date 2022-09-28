@@ -41,7 +41,6 @@ const SignInForm = () => {
       signInWithEmailAndPassword(auth, loginEmail, loginPassword)
       .then(()=>{
         setSuccessMessage('Successfully Log in')
-        console.log(user)
         setTimeout(() => {
           setLoginEmail('')
           setLoginPassword('')
