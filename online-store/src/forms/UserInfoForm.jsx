@@ -16,7 +16,7 @@ const schema = z.object({
 });
 
 const UserInfoForm = () => {
-  const { shoppingCartContext } = useShoppingCartContext();
+  const { shoppingCartContext, setShoppingCartContext } = useShoppingCartContext();
 
   const {
     register,
@@ -39,7 +39,8 @@ const UserInfoForm = () => {
 
     new SalesDataService().addSale(data).then(()=>{
       new ProductDataService().updateStocks(shoppingCartContext);
-      navigate('/successfull-purchase')
+      navigate('/ticket')
+      setShoppingCartContext([]);
     })
     reset();
   }

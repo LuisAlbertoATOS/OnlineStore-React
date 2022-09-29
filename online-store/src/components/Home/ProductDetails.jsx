@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { useShoppingCartContext } from '../contexts/ShoppingCartContext';
+import { ShoppingCartContext, useShoppingCartContext } from '../contexts/ShoppingCartContext';
 import { ProductDataService } from '../../services/product.services';
 import Navbar from '../Navbar';
+import SuccessTemplate from "../SuccessTemplate";
 import Footer from '../Footer';
 
 const ProductDetails = () => {
@@ -31,7 +31,7 @@ const ProductDetails = () => {
     }
   };
 
-  const { addToShoppingCart } = useShoppingCartContext();
+  const { addToShoppingCart, repeatedArticleMsg, successfulMsg} = useShoppingCartContext();
 
   const addToShoppingCartHandler = (productId, quantity) => {
     addToShoppingCart(productId, quantity);
@@ -49,6 +49,9 @@ const ProductDetails = () => {
               src={product?.image}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+              {repeatedArticleMsg && (<Errors message={repeatedArticleMsg}/>)}
+              {successfulMsg && (<SuccessTemplate message={successfulMsg}/>)}
+
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
                 Category: {product?.category.toUpperCase()}
               </h2>
@@ -70,8 +73,8 @@ const ProductDetails = () => {
                       type="button"
                       className={`text-white border-0 my-2 w-7 focus:outline-none rounded ${
                         1 < quantity
-                          ? 'bg-blue-500 hover:bg-blue-600'
-                          : 'bg-blue-200 hover:bg-blue-300'
+                          ? "bg-blue-500 hover:bg-blue-600"
+                          : "bg-blue-200 hover:bg-blue-300"
                       }`}
                       onClick={handleDecrement}
                     >
@@ -84,8 +87,8 @@ const ProductDetails = () => {
                       type="button"
                       className={`text-white border-0 my-2 w-7 focus:outline-none rounded ${
                         product?.stock > quantity
-                          ? 'bg-blue-500 hover:bg-blue-600'
-                          : 'bg-blue-200 hover:bg-blue-300'
+                          ? "bg-blue-500 hover:bg-blue-600"
+                          : "bg-blue-200 hover:bg-blue-300"
                       }`}
                       onClick={handleIncrement}
                     >
@@ -96,7 +99,7 @@ const ProductDetails = () => {
                     onClick={() =>
                       addToShoppingCartHandler(productId, quantity)
                     }
-                    className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
+                    className={`flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded `}
                   >
                     Add to cart
                   </button>
