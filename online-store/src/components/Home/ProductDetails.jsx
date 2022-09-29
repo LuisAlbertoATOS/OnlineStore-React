@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ShoppingCartContext, useShoppingCartContext } from '../contexts/ShoppingCartContext';
+import { useShoppingCartContext } from '../contexts/ShoppingCartContext';
 import { ProductDataService } from '../../services/product.services';
 import Navbar from '../Navbar';
 import SuccessTemplate from "../SuccessTemplate";
 import Footer from '../Footer';
+import Errors from '../Errors';
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
