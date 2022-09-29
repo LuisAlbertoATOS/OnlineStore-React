@@ -8,6 +8,7 @@ import {
   faCartShopping,
   faBoxesPacking,
 } from '@fortawesome/free-solid-svg-icons';
+import Footer from './Footer';
 
 const Ticket = () => {
   const data = useMemo(
@@ -184,6 +185,8 @@ const Ticket = () => {
           Return to Home
         </Link>
       </section>
+
+      <Footer/>
     </>
   );
 };
