@@ -81,7 +81,7 @@ const ProductDetails = () => {
                     >
                       -
                     </button>
-                    <div type="text" className="place-self-center mx-3">
+                    <div id="product-detail-quantity" type="text" className="place-self-center mx-3">
                       {quantity}
                     </div>
                     <button
