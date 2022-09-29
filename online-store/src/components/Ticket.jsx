@@ -29,7 +29,7 @@ const Ticket = () => {
   
   useEffect(() => {
     async function getTotalPrice() {
-      let total = 0
+      let total = 10
       saleData.products?.map((product) => {
         const price = product.price * product.quantity
         total += price 

@@ -40,6 +40,7 @@ const UserInfoForm = () => {
     const res = await new SalesDataService().addSale(data)
     console.log(res)
     new ProductDataService().updateStocks(shoppingCartContext);
+    setShoppingCartContext([]);
     navigate(`/ticket/${res.id}`)
     reset();
   }
