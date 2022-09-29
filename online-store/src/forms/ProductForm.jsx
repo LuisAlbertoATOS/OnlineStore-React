@@ -11,16 +11,16 @@ import InputNumber from "./input-components/InputNumber";
 import InputSelect from "./input-components/InputSelect";
 import InputText from "./input-components/InputText";
 
-// const schema = z.object({
-//   name: z.string().min(5),
-//   description: z.string().min(10),
-//   price: z.number().positive(),
-//   stock: z.number().nonnegative(),
-//   category: z.string(),
-//   image: z
-//     .instanceof(FileList)
-//     .refine((files) => files?.length === 1, "Image is required"),
-// });
+const schema = z.object({
+  name: z.string().min(5),
+  description: z.string().min(10),
+  price: z.number().positive(),
+  stock: z.number().nonnegative(),
+  category: z.string(),
+  image: z
+    .instanceof(FileList)
+    .refine((files) => files?.length === 1, "Image is required"),
+});
 
 const updateSchema = z.object({
   name: z.string().min(5),
@@ -28,7 +28,6 @@ const updateSchema = z.object({
   price: z.number().positive(),
   stock: z.number().nonnegative(),
   category: z.string(),
-  image: z.optional(),
 });
 
 const ProductForm = ({ action }) => {
@@ -43,7 +42,7 @@ const ProductForm = ({ action }) => {
     setValue,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver( updateSchema),
+    resolver: zodResolver( action.toLowerCase() === "new" ? schema : updateSchema ),
   });
 
   function onSubmit(data) {

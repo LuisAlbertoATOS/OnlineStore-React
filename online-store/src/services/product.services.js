@@ -20,34 +20,28 @@ const productCollectionRef = collection(db, "products");
 export class ProductDataService {
   addProduct = async (newProduct) => {
     console.log("...........");
+
     const { image, ...rest } = newProduct;
+
     console.log(image);
     console.log("...........");
-    let downloadUrl = 'https://i.postimg.cc/dtbnB4Bq/Default-Image.png';
-    if(image !== undefined){
-      downloadUrl = await this.uploadAndGetDownloadUrl(
-        image[0],
-        `${PRODUCT_IMAGES_DIR}/${image[0].lastModified}`
-        );
-    }
+
+    const downloadUrl = await this.uploadAndGetDownloadUrl(
+      image[0],
+      `${PRODUCT_IMAGES_DIR}/${image[0].lastModified}`
+    );
+
     return addDoc(productCollectionRef, { ...rest, image: downloadUrl });
   };
 
   updateProduct = async (id, updatedProduct) => {
     const productDoc = doc(db, "products", id);
     console.log("4");
-    const { image, ...rest } = updatedProduct;
+    const { ...rest } = updatedProduct;
     console.log("5");
-    let downloadUrl = '';
-    if(image){
-        downloadUrl = await this.uploadAndGetDownloadUrl(
-        image[0],
-        `${PRODUCT_IMAGES_DIR}/${image[0].lastModified}`
-      );
-    } else{
-      const p = await this.getProduct(id);
-      const downloadUrl = p.image;
-    }
+
+    const p = await this.getProduct(id);
+    const downloadUrl = p.image;
 
     console.log("6");
     console.log(downloadUrl);
@@ -61,8 +55,8 @@ export class ProductDataService {
   getProduct = async (id) => {
     const productDoc = doc(db, "products", id);
     const res = await getDoc(productDoc);
-    const data = res.data()
-    return data
+    const data = res.data();
+    return data;
   };
 
   async uploadAndGetDownloadUrl(image, name) {
@@ -73,7 +67,6 @@ export class ProductDataService {
     return downloadUrl;
   }
 }
-
 
 /*
 import React, { useEffect } from "react";
