@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { ShoppingCartContext, useShoppingCartContext } from "../contexts/ShoppingCartContext";
-import { ProductDataService } from "../../services/product.services";
-import Navbar from "../Navbar";
-import Errors from "../Errors";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { ShoppingCartContext, useShoppingCartContext } from '../contexts/ShoppingCartContext';
+import { ProductDataService } from '../../services/product.services';
+import Navbar from '../Navbar';
 import SuccessTemplate from "../SuccessTemplate";
+import Footer from '../Footer';
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
@@ -40,7 +40,7 @@ const ProductDetails = () => {
   return (
     <section>
       <Navbar />
-      <section className="text-gray-700 body-font overflow-hidden bg-white">
+      <section className="text-gray-700 body-font overflow-hidden bg-white ">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img
@@ -119,6 +119,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </section>
   );
 };

@@ -1,9 +1,10 @@
+import React from 'react';
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Link, useNavigate } from 'react-router-dom';
+import { useShoppingCartContext } from '../contexts/ShoppingCartContext';
+import Footer from '../Footer';
+import Navbar from '../Navbar';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useShoppingCartContext } from "../contexts/ShoppingCartContext";
-import Navbar from "../Navbar";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
@@ -33,9 +34,9 @@ const ShoppingCart = () => {
 
   const doCheckout = () => {
     if (shoppingCartContext.length > 0) {
-      navigate("user-form");
+      navigate('user-form');
     } else {
-      console.log("You need items in your cart to do checkout");
+      console.log('You need items in your cart to do checkout');
     }
   };
 
@@ -150,6 +151,8 @@ const ShoppingCart = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </section>
   );
 };
