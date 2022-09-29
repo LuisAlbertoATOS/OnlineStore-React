@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-const SuccessfullPurchase = () => {
+const SuccessfullPurchase = ({data}) => {
+
   return (
-    <div>SuccessfullPurchase</div>
-  )
-}
+    <section className="italic font-semibold text-center text-2xl pt-4 pb-4 rounded text-slate-100 bg-green-600 m-5">
+      Successfull Purchase
+    </section>
+  );
+};
 
-export default SuccessfullPurchase
+export default SuccessfullPurchase;
