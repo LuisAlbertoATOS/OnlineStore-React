@@ -5,6 +5,7 @@ import { ProductDataService } from '../../services/product.services';
 import Navbar from '../Navbar';
 import SuccessTemplate from "../SuccessTemplate";
 import Footer from '../Footer';
+import Errors from '../Errors'
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
