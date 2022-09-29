@@ -75,7 +75,7 @@ const ShoppingCart = () => {
               {shoppingCartContext?.length > 0 &&
                 shoppingCartContext.map((item) => {
                   return (
-                    <div className="border-double border-4 bg-white border-blue-500 rounded-lg flex items-center hover:bg-gray-100 mx-1 pr-6 pl-3 py-5 mb-2">
+                    <div className="border-double border-4 bg-white border-blue-500 rounded-lg flex items-center hover:bg-gray-100 mx-1 pr-6 pl-3 py-5 mb-2" key={item?.productId}>
                       <div className="flex w-1/2">
                         <FontAwesomeIcon
                           icon={faTrash}

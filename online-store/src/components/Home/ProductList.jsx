@@ -25,10 +25,10 @@ const ProductList = () => {
       <section className="flex flex-row flex-wrap justify-center">
         {products.map((product) => {
           if (
-            product.category.toLowerCase() == categoryId.toLowerCase() &&
+            product.category.toLowerCase() === categoryId.toLowerCase() &&
             !product.deleted
           ) {
-            return <ProductCard key={product.id} product={product} />;
+            return <ProductCard product={product} key={product.id}/>;
           }
         })}
       </section>

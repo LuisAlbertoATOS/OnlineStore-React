@@ -5,7 +5,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useShoppingCartContext } from "../components/contexts/ShoppingCartContext";
 import { SalesDataService } from "../services/sales.services";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ProductDataService } from "../services/product.services";
 
 
@@ -38,7 +38,6 @@ const UserInfoForm = () => {
       date: Date.now(),
     }
     const res = await new SalesDataService().addSale(data)
-    console.log(res)
     new ProductDataService().updateStocks(shoppingCartContext);
     setShoppingCartContext([]);
     navigate(`/ticket/${res.id}`)

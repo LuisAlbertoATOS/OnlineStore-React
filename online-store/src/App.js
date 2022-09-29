@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
 
 import Home from "./components/Home/Home";
 import SignInForm from "./forms/SignInForm";
 import ProductForm from "./forms/ProductForm";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 
-// Components that aren't ready
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import Products from "./components/Admin/Products";
 import Sales from "./components/Admin/Sales";
@@ -15,7 +13,6 @@ import ProductDetails from "./components/Home/ProductDetails";
 import ProductList from "./components/Home/ProductList";
 import UserInfoForm from "./forms/UserInfoForm";
 
-import './App.css';
 import CategoryList from './components/Home/CategoryList';
 import NotFound from './components/NotFound';
 import RequireAuth from './components/contexts/RequireAuth';
@@ -26,7 +23,7 @@ function App() {
   return (
     <ShoppingCartProvider>
 
-    <section className="App">
+    <section className="text-center">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
@@ -36,7 +33,6 @@ function App() {
         <Route path="/shopping-cart/user-form" element={<UserInfoForm />} />
         <Route path="/ticket/:saleId" element={<Ticket />} />
 
-        {/* Routes below this comment doesn't work right now */}
         {/* Admin */}
         <Route
           path="/admin-dashboard"
@@ -86,9 +82,6 @@ function App() {
           path="/category/:categoryId/product-details/:productId"
           element={<ProductDetails />}
         />
-        {/* Change later the id or name */}
-
-        {/* Forms */}
       </Routes>
     </section>
           </ShoppingCartProvider>

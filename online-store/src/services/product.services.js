@@ -19,13 +19,7 @@ const PRODUCT_IMAGES_DIR = "product-images";
 const productCollectionRef = collection(db, "products");
 export class ProductDataService {
   addProduct = async (newProduct) => {
-    console.log("...........");
-
     const { image, ...rest } = newProduct;
-
-    console.log(image);
-    console.log("...........");
-
     const downloadUrl = await this.uploadAndGetDownloadUrl(
       image[0],
       `${PRODUCT_IMAGES_DIR}/${image[0].lastModified}`
@@ -35,15 +29,11 @@ export class ProductDataService {
 
   updateProduct = async (id, updatedProduct) => {
     const productDoc = doc(db, "products", id);
-    console.log("4");
     const { ...rest } = updatedProduct;
-    console.log("5");
 
     const p = await this.getProduct(id);
     const downloadUrl = p.image;
 
-    console.log("6");
-    console.log(downloadUrl);
     return updateDoc(productDoc, { ...rest, image: downloadUrl });
   };
 

@@ -1,9 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as z from "zod";
-import { Schema } from "zod";
 import { CategoryDataService } from "../services/category.services";
 import { ProductDataService } from "../services/product.services";
 import InputFile from "./input-components/InputFile";
@@ -39,20 +38,16 @@ const ProductForm = ({ action }) => {
     register,
     handleSubmit,
     reset,
-    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver( action.toLowerCase() === "new" ? schema : updateSchema ),
   });
 
   function onSubmit(data) {
-    console.log("3");
     if (action.toLowerCase() === "new") {
       new ProductDataService().addProduct(data);
     } else {
-      console.log("1");
       new ProductDataService().updateProduct(productId, data);
-      console.log("2");
     }
     navigate("/admin-dashboard/products");
     reset();
@@ -73,9 +68,7 @@ const ProductForm = ({ action }) => {
 
   useEffect(() => {
     if (categories) {
-      console.log("fetching");
       fetchProduct();
-      console.log("fetched !");
     }
   }, [categories]);
 

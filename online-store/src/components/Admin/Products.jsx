@@ -31,7 +31,7 @@ const Products = () => {
       <section className="flex flex-row flex-wrap justify-center">
         {products.map((product) => {
           if(!product.deleted){
-            return <AdminProductCard product={product} setDeletedSensor={setDeletedSensor} deletedSensor={deletedSensor} />;
+            return <AdminProductCard product={product} setDeletedSensor={setDeletedSensor} deletedSensor={deletedSensor} key={product.id}/>;
           }
         })}
       </section>

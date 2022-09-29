@@ -1,14 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AdminNavbar from "./AdminNavbar";
 
 import { SalesDataService } from "../../services/sales.services";
 import { ProductDataService } from "../../services/product.services";
 
 const Sales = () => {
-  // const tableInstance = useTable({ columns, data });
 
   /**
-   * In the docs
    * Using React.useMemo here to ensure that our data isn't recreated on every render. If we didn't use React.useMemo, the table    would think it was receiving new data on every render and attempt to recalculate a lot of logic every single time.
    */
   const [productsData, setProductsData] = useState([]);
@@ -90,7 +88,7 @@ const Sales = () => {
           <tbody>
             {productsData.map((product) => {
               return (
-                <tr className="bg-white border-b dark:bg-blue-900 dark:border-blue-700">
+                <tr className="bg-white border-b dark:bg-blue-900 dark:border-blue-700" key={product.id}>
                   <td className="py-4 px-6 text-center capitalize">{product.category}</td>
                   <td className="py-4 px-6 text-center">{product.name}</td>
                   <td className="py-4 px-6 text-center">${product.price}</td>

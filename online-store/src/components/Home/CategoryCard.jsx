@@ -3,15 +3,11 @@ import { Link, useParams } from "react-router-dom";
 
 const CategoryCard = (props) => {
   const { id } = useParams();
-
-  //! Name and Category? I only need the name?
-  //? Price and stock don't need them right?
-
+  
   return (
     <section className="h-[25rem] my-4 mx-1">
       <div className="h-full flex justify-center">
         {id}
-        {/* Maybe the link change it's position */}
         <Link to={`category/${props.category.category}`}>
           <div className="h-full relative rounded-lg shadow-lg bg-white max-w-xs border-dashed border-2 border-sky-500">
             <div>

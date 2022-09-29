@@ -5,7 +5,7 @@ import {
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { auth } from "../../firebase/Firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 
 
 const AdminNavbar = () => {
@@ -20,7 +20,6 @@ const AdminNavbar = () => {
           navigate("/");
         }, 1000)
       );
-    // await auth.signOut().then(console.log(auth))
   };
 
   return (
