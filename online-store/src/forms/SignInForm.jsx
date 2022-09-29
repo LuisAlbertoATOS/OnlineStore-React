@@ -80,7 +80,7 @@ const SignInForm = () => {
               <form className="mt-8 space-y-6" onSubmit={handleSubmit(signIn)}>
                 <div className="-space-y-px rounded-md shadow-sm">
                   <div>
-                    <label for="email-address" className="sr-only">
+                    <label htmlFor="email-address" className="sr-only">
                       Email address
                     </label>
                     <input
@@ -103,7 +103,7 @@ const SignInForm = () => {
                     )}
                   </div>
                   <div>
-                    <label for="password" className="sr-only">
+                    <label htmlFor="password" className="sr-only">
                       Password
                     </label>
                     <input
