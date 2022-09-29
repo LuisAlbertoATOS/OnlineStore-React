@@ -28,7 +28,8 @@ const UserInfoForm = () => {
   });
 
   const navigate = useNavigate();
-  function onSubmit(userData) {
+  
+  async function onSubmit(userData) {
     const data = {
       name: userData.name,
       email: userData.email,
@@ -36,12 +37,10 @@ const UserInfoForm = () => {
       products: shoppingCartContext,
       date: Date.now(),
     }
-
-    const saleId = new SalesDataService().addSale(data).then(()=>{
-      new ProductDataService().updateStocks(shoppingCartContext);
-    })
-    console.log(saleId)
-    // navigate(`/ticket/${}`)
+    const res = await new SalesDataService().addSale(data)
+    console.log(res)
+    new ProductDataService().updateStocks(shoppingCartContext);
+    navigate(`/ticket/${res.id}`)
     reset();
   }
 
