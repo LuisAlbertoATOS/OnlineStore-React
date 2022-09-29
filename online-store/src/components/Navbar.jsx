@@ -20,7 +20,6 @@ const Navbar = () => {
             src="https://i.postimg.cc/FHrrsgPv/logo.png"
           ></img>
         </Link>
-        <h3></h3>
         <div className="flex flex-row">
           <Link to="/sign-in">
             <p className="text-white text-lg py-5 px-2 hover:bg-blue-900">

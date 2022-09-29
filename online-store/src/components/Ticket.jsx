@@ -69,13 +69,6 @@ const Ticket = () => {
         <Navbar />
         <SuccessfullPurchase />
 
-        {/* <Link
-          to={'/'}
-          className="block bg-blue-600 py-4 px-4 w-96 m-auto text-blue-200 text-center hover:scale-105 rounded shadow-lg uppercase  mt-6 hover:bg-blue-700 hover:text-white duration-300 ease-in-out"
-        >
-          Return to Home
-        </Link> */}
-
         <article className="flex bg-gray-100 text-gray-600 pt-10 pb-10 px-4 flex-col sm:flex-row">
           <div className="grow justify-center h-full mx-3">
             {/* <!-- Table --> */}
@@ -184,7 +177,6 @@ const Ticket = () => {
           </article>
         </article>
 
-        {/* Button above or below */}
         <Link
           to={'/'}
           className="block bg-blue-600 py-4 px-4 w-96 m-auto text-blue-200 text-center hover:scale-105 rounded shadow-lg uppercase  mt-6 mb-20 hover:bg-blue-700 hover:text-white duration-300 ease-in-out"
@@ -192,50 +184,6 @@ const Ticket = () => {
           Return to Home
         </Link>
       </section>
-
-      {/*---------------------------------- Footer ---------------------------------- */}
-      {/* Maybe add the footer later bc well it's not thaat obligatory but looks profreshional */}
-      <footer className="p-4 bg-white shadow md:px-6 md:py-8 dark:bg-blue-800 ">
-        <div className="m-auto w-1/2 sm:m-auto sm:w-auto  sm:flex sm:items-center sm:justify-between">
-          <Link to={'#'} className="flex items-center mb-4 sm:mb-0">
-            <img
-              className="h-16 px-6 py-2"
-              alt="Logo"
-              src="https://i.postimg.cc/FHrrsgPv/logo.png"
-            />
-          </Link>
-          <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-200 sm:mb-0 dark:text-gray-100">
-            <li>
-              <Link to={'#'} className="mr-4 hover:underline md:mr-6 ">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to={'#'} className="mr-4 hover:underline md:mr-6">
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link to={'#'} className="mr-4 hover:underline md:mr-6 ">
-                Licensing
-              </Link>
-            </li>
-            <li>
-              <Link to={'#'} className="hover:underline">
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <hr className="my-6  border-gray-200 sm:mx-auto dark:border-gray-100 lg:my-4" />
-        <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-200">
-          © 2022{' '}
-          <Link to={'#'} className="hover:underline">
-            BestTech™
-          </Link>
-          . <p className="p-1">All Rights Reserved.</p>
-        </span>
-      </footer>
     </>
   );
 };
