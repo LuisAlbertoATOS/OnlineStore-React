@@ -37,10 +37,11 @@ const UserInfoForm = () => {
       date: Date.now(),
     }
 
-    new SalesDataService().addSale(data).then(()=>{
+    const saleId = new SalesDataService().addSale(data).then(()=>{
       new ProductDataService().updateStocks(shoppingCartContext);
-      navigate('/successfull-purchase')
     })
+    console.log(saleId)
+    // navigate(`/ticket/${}`)
     reset();
   }
 
