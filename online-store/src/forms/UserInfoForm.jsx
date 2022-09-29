@@ -16,7 +16,7 @@ const schema = z.object({
 });
 
 const UserInfoForm = () => {
-  const { shoppingCartContext } = useShoppingCartContext();
+  const { shoppingCartContext, setShoppingCartContext } = useShoppingCartContext();
 
   const {
     register,

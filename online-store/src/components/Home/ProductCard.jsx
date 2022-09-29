@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ProductCard = (props) => {
   return (
@@ -21,7 +21,7 @@ const ProductCard = (props) => {
               {props.product.description.length >= 65 && (
                 <section className="">
                   <div className="text-gray-700 text-base mb-4 text-left">
-                    {props.product.description.slice(0, 64) + "..."}
+                    {props.product.description.slice(0, 64) + '...'}
                   </div>
                 </section>
               )}

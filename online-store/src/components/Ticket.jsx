@@ -64,7 +64,7 @@ const Ticket = () => {
 
   return (
     <>
-      <section className="bg-gray-100 	">
+      <section className="bg-gray-100">
         <Navbar />
         <SuccessfullPurchase />
         <article className="flex bg-gray-100 text-gray-600 pt-10 pb-10 px-4 flex-col sm:flex-row">
@@ -92,7 +92,7 @@ const Ticket = () => {
                   {/* Apply the table body props */}
                   <tbody className="text-sm divide-y divide-gray-100">
                     { saleData.products?.map((product) => (
-                      <tr className="bg-white border-b dark:bg-blue-900 dark:border-blue-700" key={product.productId}>
+                      <tr className="bg-white border-b" key={product.productId}>
                         <td className="py-4 px-6 text-center capitalize">
                           {product.category}
                         </td>
