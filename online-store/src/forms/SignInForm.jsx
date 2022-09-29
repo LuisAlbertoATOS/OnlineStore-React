@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  onAuthStateChanged,
   signInWithEmailAndPassword,
-  AuthCheck,
 } from "firebase/auth";
 import { auth } from "../firebase/Firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Errors from "../components/Errors";
 import SuccessTemplate from "../components/SuccessTemplate";
 
 const SignInForm = () => {
-  // const [registerEmail, setRegisterEmail] = useState('');
-  // const [registerPassword, setRegisterPassword] = useState('');
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [user, setUser] = useState({});
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -32,15 +27,6 @@ const SignInForm = () => {
       password: "",
     },
   });
-
-  // const register = async ()=>{
-  //   try {
-  //     const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-  //     console.log(user)
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }
 
   const signIn = () => {
     try {
@@ -148,12 +134,12 @@ const SignInForm = () => {
 
                 <div className="flex items-center justify-between">
                   <div className="text-sm">
-                    <a
-                      href="#"
+                    <Link
+                      to={'#'}
                       className="font-medium text-indigo-600 hover:text-indigo-500"
                     >
                       Forgot your password?
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
