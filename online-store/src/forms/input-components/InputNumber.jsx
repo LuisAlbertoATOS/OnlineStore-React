@@ -1,7 +1,7 @@
 import React from "react";
 import Errors from "../../components/Errors";
 
-const InputNumber = ({ label, placeholder, register, name, error }) => {
+const InputNumber = ({ label, placeholder, register, name, error, value }) => {
   return (
     <div className="flex flex-row">
       <label className="w-1/3 self-center text-left">{label}</label>
@@ -28,6 +28,7 @@ const InputNumber = ({ label, placeholder, register, name, error }) => {
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             "
           placeholder={placeholder}
+          value={value}
         />
         {error && <Errors message={error.message}/>}
       </div>

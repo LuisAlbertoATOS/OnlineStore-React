@@ -12,8 +12,11 @@ import { array } from "zod";
 const categoryCollectionRef = collection(db, "categories");
 export class CategoryDataService {
 
-  getAllCategories = () => {
-    return getDocs(categoryCollectionRef);
+  getAllCategories = async () => {
+    const res = await getDocs(categoryCollectionRef); 
+    let categories = [];
+    res.forEach((category) => categories.push(category.data()));
+    return categories;
   };
 
   // getAllCategoryNames = async () => {

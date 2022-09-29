@@ -28,7 +28,7 @@ const ProductList = () => {
             product.category.toLowerCase() == categoryId.toLowerCase() &&
             !product.deleted
           ) {
-            return <ProductCard product={product} />;
+            return <ProductCard key={product.id} product={product} />;
           }
         })}
       </section>

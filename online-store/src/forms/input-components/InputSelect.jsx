@@ -1,14 +1,22 @@
 import React from "react";
 import Errors from "../../components/Errors";
 
-const InputSelect = ({ label, select, options, register, name, error }) => {
+const InputSelect = ({
+  label,
+  select,
+  children,
+  register,
+  name,
+  error,
+  value,
+}) => {
   return (
     <div className="flex flex-row">
       <label className="w-1/3 self-center text-left">{label}</label>
       <div className="flex flex-col w-full items-start">
         <select
           {...register(name)}
-          defaultValue={null}
+          value={value}
           className="
             form-control
             block
@@ -28,11 +36,7 @@ const InputSelect = ({ label, select, options, register, name, error }) => {
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             "
         >
-          {options.map((category, index) => (
-            <option key={index} value={category.value}>
-              {category.text}
-            </option>
-          ))}
+          {children}
         </select>
         {error && <Errors message={error.message}/>}
       </div>
