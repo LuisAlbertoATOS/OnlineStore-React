@@ -13,13 +13,18 @@ https://online-store-d6dd3-default-rtdb.firebaseio.com/
 
 Tailwind CSS
 
+## Possible libraries
+React-Table <br>
+Docs: https://react-table-v7.tanstack.com/docs/quick-start <br>
+Example: https://blog.openreplay.com/better-tables-with-react-table
+
 ### Framework
 
 React v.18.2.0
 
 ## Contributors
 
-- Alex Mancinas
-- Alan García
-- Cristian Hernández
-- Luis Pérez
+* Alex Mancinas
+* Alan García
+* Cristian Hernández
+* Luis Pérez
