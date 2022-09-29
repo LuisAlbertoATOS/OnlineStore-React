@@ -3,6 +3,10 @@ import { useForm } from "react-hook-form";
 import InputText from "./input-components/InputText";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useShoppingCartContext } from "../components/contexts/ShoppingCartContext";
+import { SalesDataService } from "../services/sales.services";
+import { Navigate, useNavigate } from "react-router-dom";
+import { ProductDataService } from "../services/product.services";
 
 
 const schema = z.object({
@@ -12,6 +16,7 @@ const schema = z.object({
 });
 
 const UserInfoForm = () => {
+  const { shoppingCartContext, setShoppingCartContext } = useShoppingCartContext();
 
   const {
     register,
@@ -22,13 +27,29 @@ const UserInfoForm = () => {
     resolver: zodResolver(schema)
   });
 
-  
+  const navigate = useNavigate();
+  function onSubmit(userData) {
+    const data = {
+      name: userData.name,
+      email: userData.email,
+      address: userData.address,
+      products: shoppingCartContext,
+      date: Date.now(),
+    }
+
+    new SalesDataService().addSale(data).then(()=>{
+      new ProductDataService().updateStocks(shoppingCartContext);
+      navigate('/ticket')
+      setShoppingCartContext([]);
+    })
+    reset();
+  }
 
   return (
     <React.Fragment>
       <div className="bg-blue-100 grid h-screen place-items-center">
         <div className="block p-6 rounded-lg shadow-xl bg-white w-3/4">
-          <form className="h-full w-full px-5 py-5" onSubmit={handleSubmit()}>
+          <form className="h-full w-full px-5 py-5" onSubmit={handleSubmit(onSubmit)}>
             <h1 className="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-800 text-center">
               Shipping information
             </h1>
@@ -40,7 +61,6 @@ const UserInfoForm = () => {
               name= 'name'
               error={errors.name}
             />
-           
             <InputText
               register={register}
               label={"Email:"}

@@ -87,7 +87,7 @@ const ProductForm = ({ action }) => {
   return (
     <React.Fragment>
       <div className="bg-blue-100 grid h-screen place-items-center">
-        <div className="block p-6 rounded-lg shadow-xl bg-white w-3/4">
+        <div className="block p-6 rounded-lg shadow-2xl bg-white w-3/4">
           <form
             className="h-full w-full px-5 py-5"
             onSubmit={handleSubmit(onSubmit)}
@@ -137,14 +137,14 @@ const ProductForm = ({ action }) => {
                 </option>
               ))}
             </InputSelect>
-            {/* {action.toLowerCase() === "new" && ( */}
+            {action.toLowerCase() === "new" && (
             <InputFile
               register={register}
               label={"Product image:"}
               name="image"
               error={errors.image}
             />
-            {/* )} */}
+            )}
             <div className="flex space-x-2 justify-center my-1.5">
               <button
                 type="submit"

@@ -18,7 +18,6 @@ const AdminNavbar = () => {
       .then(
         setTimeout(() => {
           navigate("/");
-          onAuthStateChanged(auth)
         }, 1000)
       );
     // await auth.signOut().then(console.log(auth))

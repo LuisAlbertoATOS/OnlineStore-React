@@ -30,8 +30,7 @@ export class ProductDataService {
       image[0],
       `${PRODUCT_IMAGES_DIR}/${image[0].lastModified}`
     );
-
-    return addDoc(productCollectionRef, { ...rest, image: downloadUrl });
+    return addDoc(productCollectionRef, { ...rest, image: downloadUrl, deleted: false });
   };
 
   updateProduct = async (id, updatedProduct) => {
@@ -46,6 +45,27 @@ export class ProductDataService {
     console.log("6");
     console.log(downloadUrl);
     return updateDoc(productDoc, { ...rest, image: downloadUrl });
+  };
+
+  updateStocks = (purchasedCart) => {
+    purchasedCart.map(async (item) => {
+      const productDoc = doc(db, "products", item.productId);
+
+      const updatedProduct = await new ProductDataService().getProduct(
+        item.productId
+      );
+      updatedProduct.stock -= item.quantity;
+
+      return updateDoc(productDoc, updatedProduct);
+    });
+  };
+
+  logicalDelete = async (productId) => {
+    const productDoc = doc(db, "products", productId);
+    let deletedProduct = await new ProductDataService().getProduct(productId);
+    deletedProduct.deleted = true;
+    
+    return updateDoc(productDoc, deletedProduct);
   };
 
   getAllProducts = () => {
@@ -67,30 +87,3 @@ export class ProductDataService {
     return downloadUrl;
   }
 }
-
-/*
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { ProductDataService } from "../../services/product.services"
-
-const ProductList = () => {
-  const [products, setProducts] = useState([])
-    useEffect(() => {
-        getAllProducts();
-    }, []);
-
-    const getProducts = async () => {
-        const data = await ProductDataService.getAllProducts();
-        console.log(data.docs);
-    }
-
-  return (
-    <div>ProductList</div>
-  )
-}
-
-export default ProductList
-
-
-
-*/

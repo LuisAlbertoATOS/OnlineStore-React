@@ -14,9 +14,9 @@ export class CategoryDataService {
 
   getAllCategories = async () => {
     const res = await getDocs(categoryCollectionRef); 
-    const categories = [] 
-    res.forEach((category) => categories.push(category.data()))
-    return categories
+    let categories = [];
+    res.forEach((category) => categories.push(category.data()));
+    return categories;
   };
 
   // getAllCategoryNames = async () => {

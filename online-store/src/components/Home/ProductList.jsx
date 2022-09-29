@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { ProductDataService } from "../../services/product.services";
-import Navbar from "../Navbar";
-import ProductCard from "./ProductCard";
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { ProductDataService } from '../../services/product.services';
+import Footer from '../Footer';
+import Navbar from '../Navbar';
+import ProductCard from './ProductCard';
 
 const ProductList = () => {
-
   const [products, setProducts] = useState([]);
   useEffect(() => {
     getProducts();
@@ -21,15 +21,18 @@ const ProductList = () => {
 
   return (
     <>
-    <Navbar />
-    <section className="flex flex-row flex-wrap justify-center">
-      {products.map((product) => {
-        if(product.category.toLowerCase() == categoryId.toLowerCase()){
-          return <ProductCard key={product.id} product={product} 
-          />;
-        }
-      })}
-    </section>
+      <Navbar />
+      <section className="flex flex-row flex-wrap justify-center">
+        {products.map((product) => {
+          if (
+            product.category.toLowerCase() == categoryId.toLowerCase() &&
+            !product.deleted
+          ) {
+            return <ProductCard key={product.id} product={product} />;
+          }
+        })}
+      </section>
+      <Footer />
     </>
   );
 };

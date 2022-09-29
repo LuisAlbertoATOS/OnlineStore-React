@@ -10,7 +10,10 @@ const CategoryList = () => {
 
   const getCategories = async () => {
     const data = await new CategoryDataService().getAllCategories();
-    setCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    console.log(data);
+    console.log(data.map((doc) => ({ ...doc, id: doc.id })));
+    setCategories(data.map((doc) => ({ ...doc, id: doc.id })));
+    console.log(categories);
   };
 
   return (

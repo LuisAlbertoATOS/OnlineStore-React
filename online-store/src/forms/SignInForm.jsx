@@ -1,29 +1,36 @@
-import React, {useState, useEffect} from "react";
-import {onAuthStateChanged, signInWithEmailAndPassword, AuthCheck} from 'firebase/auth';
+import React, { useState, useEffect } from "react";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  AuthCheck,
+} from "firebase/auth";
 import { auth } from "../firebase/Firebase";
 import { useNavigate } from "react-router-dom";
-import {useForm} from 'react-hook-form'
+import { useForm } from "react-hook-form";
 import Errors from "../components/Errors";
 import SuccessTemplate from "../components/SuccessTemplate";
 
 const SignInForm = () => {
-  
   // const [registerEmail, setRegisterEmail] = useState('');
   // const [registerPassword, setRegisterPassword] = useState('');
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
-  const [user, setUser] = useState({})
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [user, setUser] = useState({});
 
-  const [errorMessage, setErrorMessage] = useState('')
-  const [successMessage, setSuccessMessage] = useState('')
-  
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
   const navigate = useNavigate();
 
-  const {register, handleSubmit,formState:{errors}} = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
-      email: '',
-      password: ''
-    }
+      email: "",
+      password: "",
+    },
   });
 
   // const register = async ()=>{
@@ -35,35 +42,37 @@ const SignInForm = () => {
   //   }
   // }
 
-  const signIn = () =>{
+  const signIn = () => {
     try {
-      handleSubmit()
+      handleSubmit();
       signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-      .then(()=>{
-        setSuccessMessage('Successfully Log in')
-        console.log(user)
-        setTimeout(() => {
-          setLoginEmail('')
-          setLoginPassword('')
-          navigate('/admin-dashboard')
-          onAuthStateChanged(auth)
-        }, 2000)
-      }
-      ).catch((error) =>{
-        if(error.message === 'Firebase: Error (auth/user-not-found).'){
-          setErrorMessage('User not found')
-        }
-        if( error.message === 'Firebase: Error (auth/wrong-password).'){
-          setErrorMessage('Wrong password')
-        }
-      })
-      
-      
+        .then(() => {
+          setSuccessMessage("Successfully Log in");
+          setTimeout(() => {
+            setLoginEmail("");
+            setLoginPassword("");
+            navigate("/admin-dashboard");
+          }, 2000);
+        })
+        .catch((error) => {
+          if (error.message === "Firebase: Error (auth/user-not-found).") {
+            setErrorMessage("User not found");
+            setTimeout(() => {
+              setErrorMessage("");
+            }, 2000);
+          }
+          if (error.message === "Firebase: Error (auth/wrong-password).") {
+            setErrorMessage("Wrong password");
+            setTimeout(() => {
+              setErrorMessage("");
+            }, 2000);
+          }
+        });
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-  }
-  
+  };
+
   return (
     <React.Fragment>
       <div className="bg-blue-100 grid h-screen place-items-center">
@@ -73,7 +82,7 @@ const SignInForm = () => {
               <div>
                 <div>
                   {successMessage && (
-                   <SuccessTemplate message={successMessage}/>
+                    <SuccessTemplate message={successMessage} />
                   )}
 
                   {errorMessage && <Errors message={errorMessage} />}
@@ -166,4 +175,3 @@ const SignInForm = () => {
 };
 
 export default SignInForm;
-
