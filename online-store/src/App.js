@@ -31,7 +31,7 @@ function App() {
         <Route path="/sign-in" element={<SignInForm />} />
         <Route path="/shopping-cart/*" element={<ShoppingCart />} />
         <Route path="/shopping-cart/user-form" element={<UserInfoForm />} />
-        <Route path="/ticket" element={<Ticket />} />
+        <Route path="/ticket/:saleId" element={<Ticket />} />
 
         {/* Admin */}
         <Route

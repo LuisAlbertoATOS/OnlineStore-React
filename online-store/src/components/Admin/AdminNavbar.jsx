@@ -20,7 +20,6 @@ const AdminNavbar = () => {
           navigate("/");
         }, 1000)
       );
-    // await auth.signOut().then(console.log(auth))
   };
 
   return (
