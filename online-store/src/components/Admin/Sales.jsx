@@ -88,7 +88,7 @@ const Sales = () => {
           <tbody>
             {productsData.map((product) => {
               return (
-                <tr className="bg-white border-b dark:bg-blue-900 dark:border-blue-700">
+                <tr className="bg-white border-b dark:bg-blue-900 dark:border-blue-700" key={product.id}>
                   <td className="py-4 px-6 text-center capitalize">{product.category}</td>
                   <td className="py-4 px-6 text-center">{product.name}</td>
                   <td className="py-4 px-6 text-center">${product.price}</td>
