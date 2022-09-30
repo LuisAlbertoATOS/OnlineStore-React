@@ -1,10 +1,10 @@
 import React from 'react';
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { useShoppingCartContext } from '../contexts/ShoppingCartContext';
 import Footer from '../Footer';
 import Navbar from '../Navbar';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const ShoppingCart = () => {
 
   const deleteItem = (productId) => {
     return () => {
-      if (window.confirm("Are you sure you want to delete this product?")) {
+      if (window.confirm('Are you sure you want to delete this product?')) {
         const newShoppingCart = shoppingCartContext.filter(
           (items) => items.productId !== productId
         );
@@ -41,7 +41,7 @@ const ShoppingCart = () => {
   };
 
   return (
-    <section className="h-full">
+    <section className="h-full overflow-hidden">
       <section className="w-screen">
         <Navbar />
         <div className="align-content-center container mx-auto mt-10 w-5/6 pb-10">
@@ -51,7 +51,7 @@ const ShoppingCart = () => {
                 <h1 className="font-semibold text-2xl">Shopping Cart</h1>
                 <h2 className="font-semibold text-2xl">
                   {shoppingCartContext?.length} Item
-                  {shoppingCartContext?.length > 1 && "s"}
+                  {shoppingCartContext?.length > 1 && 's'}
                 </h2>
               </div>
               <div className="flex mt-10 mb-5">
@@ -75,7 +75,10 @@ const ShoppingCart = () => {
               {shoppingCartContext?.length > 0 &&
                 shoppingCartContext.map((item) => {
                   return (
-                    <div className="border-double border-4 bg-white border-blue-500 rounded-lg flex items-center hover:bg-gray-100 mx-1 pr-6 pl-3 py-5 mb-2" key={item?.productId}>
+                    <div
+                      className="border-double border-4 bg-white border-blue-500 rounded-lg flex items-center hover:bg-gray-100 mx-1 pr-6 pl-3 py-5 mb-2"
+                      key={item?.productId}
+                    >
                       <div className="flex w-1/2">
                         <FontAwesomeIcon
                           icon={faTrash}
@@ -105,7 +108,7 @@ const ShoppingCart = () => {
                 })}
 
               <Link
-                to={"/"}
+                to={'/'}
                 className="flex font-semibold text-blue-900 text-sm mt-10"
               >
                 <svg
@@ -152,6 +155,7 @@ const ShoppingCart = () => {
         </div>
       </section>
 
+      <hr className="mt-[8.8em] border-none" />
       <Footer />
     </section>
   );
