@@ -1,15 +1,29 @@
 import React from 'react';
-import '@testing-library/jest-dom/extend-expect';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import SuccessfullPurchase from './SuccessfullPurchase';
 
-test('renders content', () => {
-  const successfullPurchase = {
-    content: 'This is a test',
-    important: true,
-  };
+import { screens } from '@testing-library/dom';
 
-  const view = render(<SuccessfullPurchase />);
+test('Renders successful purchase text', () => {
+  render(<SuccessfullPurchase />);
+  const text = screen.getByText(/Successfull Purchase/i);
+  expect(text).toBeInTheDocument();
+});
 
-  console.log(view);
+test('Render Title', () => {
+  render(<SuccessfullPurchase />);
+  const title = screen.getByTestId('mytestid');
+  expect(title).toBeInTheDocument();
+});
+
+test('Sum should be 6', () => {
+  render(<SuccessfullPurchase />);
+  const sum = screen.getByTitle('sum');
+  expect(sum.textContent).toBe('6');
+});
+
+test('Renders 3 list items', () => {
+  render(<SuccessfullPurchase />);
+  const listItem = screen.getAllByRole('listitem');
+  expect(listItem.length).toEqual(3);
 });
