@@ -2,8 +2,8 @@ import React from 'react';
 
 const Hero = () => {
   return (
-    <section class="relative ">
-      <div class="container  flex flex-col-reverse lg:flex-row items-center gap-12 mt-14 mx-auto lg:mt-28">
+    <section class="relative overflow-hidden ">
+      <div class="container flex flex-col-reverse lg:flex-row items-center gap-12 mt-14 mx-auto lg:mt-28">
         {/* <!-- Content --> */}
         <div class="flex flex-1 flex-col items-center lg:items-start">
           <h2 class="text-bookmark-blue font-bold text-3xl md:text-4 lg:text-5xl text-center lg:text-left mb-6">
@@ -27,7 +27,6 @@ const Hero = () => {
       <div
         class="
           hidden
-          sm:block
           md:block
           overflow-hidden
           bg-blue-800
