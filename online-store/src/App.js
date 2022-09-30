@@ -33,6 +33,7 @@ function App() {
           <Route path="/shopping-cart/*" element={<ShoppingCart />} />
           <Route path="/shopping-cart/user-form" element={<UserInfoForm />} />
           <Route path="/ticket/:saleId" element={<Ticket />} />
+          <Route path="/ticket" element={<Ticket />} />
 
           {/* Admin */}
           <Route

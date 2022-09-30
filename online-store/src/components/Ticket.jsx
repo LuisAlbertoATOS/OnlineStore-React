@@ -1,65 +1,64 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
-import { useParams } from "react-router-dom";
-import SuccessfullPurchase from "./ShoppingCart/SuccessfullPurchase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
+import { useParams } from 'react-router-dom';
+import SuccessfullPurchase from './ShoppingCart/SuccessfullPurchase';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCartShopping,
   faBoxesPacking,
-} from "@fortawesome/free-solid-svg-icons";
-import { SalesDataService } from "../services/sales.services";
-import { useEffect, useContext } from "react";
+} from '@fortawesome/free-solid-svg-icons';
+import { SalesDataService } from '../services/sales.services';
+import { useEffect, useContext } from 'react';
 import Footer from './Footer';
 export const ShoppingCartContext = React.createContext({});
 export const useShoppingCartContext = () => useContext(ShoppingCartContext);
 
 const Ticket = () => {
   const [saleData, setSaleData] = useState({});
-  const [totalPrice, setTotalPrice] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0);
   const { saleId } = useParams();
 
-  
   useEffect(() => {
-    async function fetchSale() { 
+    async function fetchSale() {
       const sale = await new SalesDataService().getSale(saleId);
       setSaleData(sale);
     }
     fetchSale();
   }, [saleId]);
-  
+
   useEffect(() => {
     async function getTotalPrice() {
-      let total = 10
+      let total = 10;
       saleData.products?.map((product) => {
-        const price = product.price * product.quantity
-        total += price 
-      })
-      setTotalPrice(total)
-    } 
+        const price = product.price * product.quantity;
+        total += price;
+      });
+      setTotalPrice(total);
+    }
     getTotalPrice();
-  }, [saleData])
-  
+  }, [saleData]);
+
   const columns = [
     {
-      Header: "Category",
-      accessor: "category",
+      Header: 'Category',
+      accessor: 'category',
     },
     {
-      Header: "Product",
-      accessor: "name",
+      Header: 'Product',
+      accessor: 'name',
     },
     {
-      Header: "Price",
-      accessor: "price",
+      Header: 'Price',
+      accessor: 'price',
     },
     {
-      Header: "Units sold",
-      accessor: "soldUnits",
+      Header: 'Units sold',
+      accessor: 'soldUnits',
     },
     {
-      Header: "Total Sales",
-      accessor: "totalSales",
+      Header: 'Total Sales',
+      accessor: 'totalSales',
     },
   ];
 
@@ -86,13 +85,17 @@ const Ticket = () => {
                   <thead className="text-sm uppercase text-gray-400 bg-gray-100">
                     <tr className="py-2">
                       {columns.map((column) => {
-                        return <th className="py-2 px-2" key={column.accessor}>{column.Header}</th>;
+                        return (
+                          <th className="py-2 px-2" key={column.accessor}>
+                            {column.Header}
+                          </th>
+                        );
                       })}
                     </tr>
                   </thead>
                   {/* Apply the table body props */}
                   <tbody className="text-sm divide-y divide-gray-100">
-                    { saleData.products?.map((product) => (
+                    {saleData.products?.map((product) => (
                       <tr className="bg-white border-b" key={product.productId}>
                         <td className="py-4 px-6 text-center capitalize">
                           {product.category}
@@ -107,8 +110,7 @@ const Ticket = () => {
                           {product.quantity}
                         </td>
                         <td className="py-4 px-6 text-center">
-                          $
-                          { product.quantity * product.price }
+                          ${product.quantity * product.price}
                         </td>
                       </tr>
                     ))}
@@ -153,13 +155,14 @@ const Ticket = () => {
         </article>
 
         <Link
-          to={"/"}
-          className="block bg-blue-600 py-4 px-4 w-96 m-auto text-blue-200 text-center hover:scale-105 rounded shadow-lg uppercase  mt-6 mb-20 hover:bg-blue-700 hover:text-white duration-300 ease-in-out"
+          to={'/'}
+          className="block bg-blue-600 py-4 px-4 w-96 m-auto text-blue-200 text-center hover:scale-105 rounded shadow-lg uppercase  mt-6 mb-24 hover:bg-blue-700 hover:text-white duration-300 ease-in-out"
         >
           Return to Home
         </Link>
+        <hr className="bg-gray-100" />
       </section>
-      <Footer/>
+      <Footer />
     </>
   );
 };
