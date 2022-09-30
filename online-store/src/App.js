@@ -28,7 +28,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
 
-          <Route path="/hero" element={<Hero />} />
           <Route path="/sign-in" element={<SignInForm />} />
           <Route path="/shopping-cart/*" element={<ShoppingCart />} />
           <Route path="/shopping-cart/user-form" element={<UserInfoForm />} />
@@ -63,7 +62,7 @@ function App() {
             path="/admin-dashboard/products/new-product"
             element={
               <RequireAuth>
-                <ProductForm action={'New'} />
+                <ProductForm action={"New"} />
               </RequireAuth>
             }
           />
@@ -71,7 +70,7 @@ function App() {
             path="/admin-dashboard/products/edit-product/:productId"
             element={
               <RequireAuth>
-                <ProductForm action={'Update'} />
+                <ProductForm action={"Update"} />
               </RequireAuth>
             }
           />
