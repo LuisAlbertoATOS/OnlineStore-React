@@ -1,23 +1,24 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-import Home from "./components/Home/Home";
-import SignInForm from "./forms/SignInForm";
-import ProductForm from "./forms/ProductForm";
-import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
+import Home from './components/Home/Home';
+import SignInForm from './forms/SignInForm';
+import ProductForm from './forms/ProductForm';
+import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 
-import AdminDashboard from "./components/Admin/AdminDashboard";
-import Products from "./components/Admin/Products";
-import Sales from "./components/Admin/Sales";
-import ProductDetails from "./components/Home/ProductDetails";
-import ProductList from "./components/Home/ProductList";
-import UserInfoForm from "./forms/UserInfoForm";
+import AdminDashboard from './components/Admin/AdminDashboard';
+import Products from './components/Admin/Products';
+import Sales from './components/Admin/Sales';
+import ProductDetails from './components/Home/ProductDetails';
+import ProductList from './components/Home/ProductList';
+import UserInfoForm from './forms/UserInfoForm';
 
-import CategoryList from "./components/Home/CategoryList";
-import NotFound from "./components/NotFound";
-import RequireAuth from "./components/contexts/RequireAuth";
-import Ticket from "./components/Ticket";
-import { ShoppingCartProvider } from "./components/contexts/ShoppingCartContext";
+import CategoryList from './components/Home/CategoryList';
+import NotFound from './components/NotFound';
+import RequireAuth from './components/contexts/RequireAuth';
+import Ticket from './components/Ticket';
+import { ShoppingCartProvider } from './components/contexts/ShoppingCartContext';
+import Hero from './components/Hero';
 
 function App() {
   return (
